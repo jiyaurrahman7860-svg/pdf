@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- NO-INDEX GSC SECURITY DIRECTIVE -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
+    <title>SaveFast PDF - Admin Control Panel</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <style>
+        /* Admin Panel Specific Styles */
+        body {
+            background-color: #070a13;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Passcode Auth Modal */
+        .auth-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 10, 19, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .auth-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .auth-card p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .auth-input {
+            width: 100%;
+            background: #1e293b;
+            border: 1.5px solid #334155;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 2px;
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        .auth-input:focus {
+            border-color: #6366f1;
+        }
+
+        .auth-btn {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .auth-error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* Admin Dashboard Container */
+        .admin-dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .admin-sidebar {
+            width: 260px;
+            background: #0f172a;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+            flex-shrink: 0;
+        }
+
+        .admin-brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #f8fafc;
+        }
+
+        .nav-item.active {
+            background: rgba(79, 70, 229, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        /* Main Content Viewport */
+        .admin-content {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .admin-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .health-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lock-btn {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lock-btn:hover {
+            background: #334155;
+        }
+
+        /* Stat Grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .stat-card .label {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        /* Tab Content Section */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .panel-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .panel-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #6366f1;
+        }
+
+        textarea.form-control {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #334155;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #6366f1;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* --- CARD STYLE TOOLS GRID --- */
+        .admin-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .admin-tool-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .admin-tool-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .admin-tool-card.status-active {
+            border-top: 4px solid #10b981;
+        }
+
+        .admin-tool-card.status-maintenance {
+            border-top: 4px solid #f59e0b;
+            background: #1a1e36;
+        }
+
+        .admin-tool-card.status-disabled {
+            border-top: 4px solid #ef4444;
+            opacity: 0.65;
+        }
+
+        .admin-tool-card-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-tool-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .admin-tool-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .admin-tool-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .admin-tool-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 0 0 2px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-tool-path {
+            font-size: 11px;
+            color: #94a3b8;
+            display: block;
+        }
+
+        .admin-tool-category {
+            display: inline-block;
+            background: #0f172a;
+            color: #818cf8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .admin-tool-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #334155;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-select-control {
+            width: 100%;
+            background: #0f172a;
+            border: 1.5px solid #334155;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .status-select-control.val-active { color: #34d399; border-color: #059669; }
+        .status-select-control.val-maintenance { color: #fbbf24; border-color: #d97706; }
+        .status-select-control.val-disabled { color: #f87171; border-color: #dc2626; }
+
+        .btn-action {
+            background: #6366f1;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- PASSCODE AUTHENTICATION MODAL -->
+    <div id="admin-auth-modal" class="auth-overlay">
+        <div class="auth-card">
+            <h2>SaveFast Admin</h2>
+            <p>Enter Administrator Passcode to access control panel</p>
+            <input type="password" id="admin-passcode-input" class="auth-input" placeholder="••••••••" autofocus>
+            <button type="button" id="admin-login-btn" class="auth-btn">Unlock Console</button>
+            <div id="auth-error-msg" class="auth-error">Incorrect passcode. Please try again.</div>
+            <div style="margin-top: 20px; font-size: 11px; color: #64748b;">Protected area • No-Index GSC Directive</div>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN DASHBOARD -->
+    <div id="admin-dashboard-app" class="admin-dashboard" style="display: none;">
+        <!-- Left Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <span>SaveFast Admin</span>
+            </div>
+            <nav class="admin-nav">
+                <div class="nav-item active" data-tab="tab-overview">
+                    <span>📊</span> Overview & Stats
+                </div>
+                <div class="nav-item" data-tab="tab-tools">
+                    <span>🛠️</span> Tools Control Center
+                </div>
+                <div class="nav-item" data-tab="tab-support">
+                    <span>✉️</span> Support & Email
+                </div>
+                <div class="nav-item" data-tab="tab-announcement">
+                    <span>📢</span> Announcement Banner
+                </div>
+                <div class="nav-item" data-tab="tab-seo">
+                    <span>🔍</span> SEO & Custom Scripts
+                </div>
+                <div class="nav-item" data-tab="tab-security">
+                    <span>🔒</span> Security & Backup
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-content">
+            <div class="admin-header">
+                <h1 id="tab-title-header">Overview & Dashboard</h1>
+                <div class="header-actions">
+                    <div class="health-badge">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #34d399;"></span>
+                        Real-Time Sync Active
+                    </div>
+                    <button type="button" id="admin-logout-btn" class="lock-btn">🔒 Lock Console</button>
+                </div>
+            </div>
+
+            <!-- TAB 1: OVERVIEW & STATS -->
+            <div id="tab-overview" class="tab-content active">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="label">Total Tools Registered</div>
+                        <div class="value" id="stat-total-tools">57</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Active & Online Tools</div>
+                        <div class="value" id="stat-active-tools" style="color: #34d399;">57</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Support Email</div>
+                        <div class="value" id="stat-support-email" style="font-size: 16px; margin-top: 8px;">support@savefast.in</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Announcement Banner</div>
+                        <div class="value" id="stat-banner-status" style="font-size: 18px; margin-top: 6px; color: #818cf8;">Active</div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3>🚀 Quick Action Shortcuts</h3>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button type="button" class="btn-action" id="quick-toggle-banner">Toggle Banner ON/OFF</button>
+                        <button type="button" class="btn-action" style="background: #059669;" id="quick-export-config">Export Config Backup (JSON)</button>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3>⚡ Real-Time Live Sync Active</h3>
+                    <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.6;">
+                        All changes made in this Admin Panel automatically broadcast live across open user browser tabs in real time using storage event synchronization. Switching a tool to <b>Maintenance</b> or <b>Disabled</b> instantly updates open user tabs without manual refresh!
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 2: TOOLS CONTROL CENTER (CARD STYLE GRID) -->
+            <div id="tab-tools" class="tab-content">
+                <div class="panel-card">
+                    <h3>🛠️ Tools Control Center (Card Style Management)</h3>
+                    <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
+                        Manage status (<b>🟢 Active & Online</b>, <b>🛠️ Maintenance Mode</b>, <b>🔴 Disabled / Offline</b>) and highlight badges (<b>🔥 Hot</b>, <b>⭐ Featured</b>, <b>🆕 New</b>) for all tools in real time.
+                    </p>
+
+                    <div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <input type="text" id="tool-search-input" class="form-control" placeholder="Search tool by name or file..." style="max-width: 320px;">
+                        <select id="tool-category-filter" class="form-control" style="max-width: 240px;">
+                            <option value="ALL">All Categories</option>
+                            <option value="Convert to PDF">Convert to PDF</option>
+                            <option value="Convert from PDF">Convert from PDF</option>
+                            <option value="Organize & Modify Pages">Organize & Modify Pages</option>
+                            <option value="Edit, Annotate & Sign">Edit, Annotate & Sign</option>
+                            <option value="Optimize & Secure">Optimize & Secure</option>
+                        </select>
+                    </div>
+
+                    <!-- CARD STYLE GRID CONTAINER -->
+                    <div id="admin-tools-card-grid" class="admin-tools-grid">
+                        <!-- Populated dynamically from tools.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SUPPORT & EMAIL SETTINGS -->
+            <div id="tab-support" class="tab-content">
+                <div class="panel-card">
+                    <h3>✉️ Direct Support Email & Contact Settings</h3>
+                    <div class="form-group">
+                        <label>Primary Support Email Address</label>
+                        <input type="email" id="input-support-email" class="form-control" value="support@savefast.in">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Phone / WhatsApp Number</label>
+                        <input type="text" id="input-support-phone" class="form-control" value="+91 98765 43210">
+                    </div>
+                    <div class="form-group">
+                        <label>Support Response Time Badge</label>
+                        <input type="text" id="input-support-response" class="form-control" value="< 2 Hours">
+                    </div>
+                    <button type="button" class="btn-action" id="save-support-btn">Save Support Settings</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: ANNOUNCEMENT BANNER -->
+            <div id="tab-announcement" class="tab-content">
+                <div class="panel-card">
+                    <h3>📢 Website Announcement Banner Control</h3>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 16px;">
+                        <label style="margin: 0;">Enable Announcement Banner</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="banner-enabled-check" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Banner Announcement Message</label>
+                        <input type="text" id="banner-text-input" class="form-control" value="🎉 New: Interactive PDF Text Editing is now live! Select and edit PDF text directly.">
+                    </div>
+                    <div class="form-group">
+                        <label>Banner Visual Style / Type</label>
+                        <select id="banner-type-select" class="form-control">
+                            <option value="promo">Promo (Purple Gradient)</option>
+                            <option value="info">Info (Blue)</option>
+                            <option value="success">Success (Green)</option>
+                            <option value="warning">Warning (Orange)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>CTA Button Target Link</label>
+                        <input type="text" id="banner-link-input" class="form-control" value="edit-pdf-text.html">
+                    </div>
+                    <button type="button" class="btn-action" id="save-banner-btn">Save Announcement Settings</button>
+                </div>
+
+                <div class="panel-card">
+                    <h3>👁️ Live Banner Visual Preview</h3>
+                    <div id="banner-preview-box" style="padding: 14px; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border-radius: 8px; text-align: center; font-weight: 600; font-size: 13.5px;">
+                        <span id="preview-text">🎉 New: Interactive PDF Text Editing is now live! Select and edit PDF text directly.</span>
+                        <a href="javascript:void(0)" style="color: white; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 50px; text-decoration: none; margin-left: 10px;">Try Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: SEO & CUSTOM SCRIPTS -->
+            <div id="tab-seo" class="tab-content">
+                <div class="panel-card">
+                    <h3>🔍 SEO & Custom Analytics Injector</h3>
+                    <div class="form-group">
+                        <label>Google Analytics (GA4) Tracking ID</label>
+                        <input type="text" id="input-ga-id" class="form-control" placeholder="e.g. G-XXXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Custom Head Script Injection (<code>&lt;head&gt;</code>)</label>
+                        <textarea id="input-head-script" class="form-control" placeholder="<!-- Add custom pixel, scripts or meta tags here -->"></textarea>
+                    </div>
+                    <button type="button" class="btn-action" id="save-seo-btn">Save SEO & Script Settings</button>
+                </div>
+            </div>
+
+            <!-- TAB 6: SECURITY & BACKUP -->
+            <div id="tab-security" class="tab-content">
+                <div class="panel-card">
+                    <h3>🔒 Change Admin Console Passcode</h3>
+                    <div class="form-group">
+                        <label>Current Passcode</label>
+                        <input type="password" id="input-old-passcode" class="form-control" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>New Passcode</label>
+                        <input type="password" id="input-new-passcode" class="form-control" placeholder="••••••••">
+                    </div>
+                    <button type="button" class="btn-action" id="change-passcode-btn">Update Admin Passcode</button>
+                </div>
+
+                <div class="panel-card">
+                    <h3>💾 Configuration Backup & Restore</h3>
+                    <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 16px;">Export your complete Admin configuration settings to a JSON backup file, or restore settings from a previous backup.</p>
+                    <div style="display: flex; gap: 12px;">
+                        <button type="button" class="btn-action" style="background: #059669;" id="export-json-btn">Export Config (JSON)</button>
+                        <button type="button" class="btn-action" style="background: #d97706;" id="import-json-trigger">Import Config (JSON)</button>
+                        <input type="file" id="import-json-file" accept=".json" hidden>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include tools list database -->
+    <script src="tools.js"></script>
+    <script src="admin-config.js"></script>
+
+    <!-- Admin Panel JavaScript Logic -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const DEFAULT_PASSCODE = 'savefast2026';
+        const authModal = document.getElementById('admin-auth-modal');
+        const dashboardApp = document.getElementById('admin-dashboard-app');
+        const passInput = document.getElementById('admin-passcode-input');
+        const loginBtn = document.getElementById('admin-login-btn');
+        const errorMsg = document.getElementById('auth-error-msg');
+
+        function checkAuth() {
+            const savedSession = sessionStorage.getItem('savefast_admin_session');
+            if (savedSession === 'authenticated') {
+                showDashboard();
+            }
+        }
+
+        function getStoredPasscode() {
+            return localStorage.getItem('savefast_admin_passcode') || DEFAULT_PASSCODE;
+        }
+
+        loginBtn.addEventListener('click', attemptLogin);
+        passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+        function attemptLogin() {
+            const val = passInput.value.trim();
+            if (val === getStoredPasscode()) {
+                sessionStorage.setItem('savefast_admin_session', 'authenticated');
+                showDashboard();
+            } else {
+                errorMsg.style.display = 'block';
+                passInput.value = '';
+                passInput.focus();
+            }
+        }
+
+        function showDashboard() {
+            authModal.style.display = 'none';
+            dashboardApp.style.display = 'flex';
+            loadAdminData();
+        }
+
+        document.getElementById('admin-logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('savefast_admin_session');
+            location.reload();
+        });
+
+        // Navigation Tabs Switcher
+        const navItems = document.querySelectorAll('.nav-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const tabHeader = document.getElementById('tab-title-header');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetTab = item.getAttribute('data-tab');
+                navItems.forEach(n => n.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                item.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                tabHeader.textContent = item.textContent.trim();
+            });
+        });
+
+        function loadAdminData() {
+            const config = window.SaveFastAdminConfig || {};
+            
+            if (typeof tools !== 'undefined') {
+                document.getElementById('stat-total-tools').textContent = tools.length;
+                let activeCount = 0;
+                tools.forEach(t => {
+                    const tCfg = (config.toolsConfig || {})[t.href] || {};
+                    if ((tCfg.status || 'active') === 'active') activeCount++;
+                });
+                document.getElementById('stat-active-tools').textContent = activeCount;
+                renderToolsCardGrid(tools);
+            }
+
+            document.getElementById('input-support-email').value = config.supportEmail || 'support@savefast.in';
+            document.getElementById('input-support-phone').value = config.supportPhone || '+91 98765 43210';
+            document.getElementById('input-support-response').value = config.supportResponseTime || '< 2 Hours';
+            document.getElementById('stat-support-email').textContent = config.supportEmail || 'support@savefast.in';
+
+            if (config.announcement) {
+                document.getElementById('banner-enabled-check').checked = !!config.announcement.enabled;
+                document.getElementById('banner-text-input').value = config.announcement.text || '';
+                document.getElementById('banner-type-select').value = config.announcement.type || 'promo';
+                document.getElementById('banner-link-input').value = config.announcement.link || '';
+                document.getElementById('stat-banner-status').textContent = config.announcement.enabled ? 'Active' : 'Disabled';
+                updateBannerPreview();
+            }
+
+            document.getElementById('input-ga-id').value = config.gaTrackingId || '';
+            document.getElementById('input-head-script').value = config.customHeadScript || '';
+        }
+
+        // =========================================================================
+        // CARD STYLE TOOLS GRID RENDERER WITH REAL-TIME INSTANT SYNC
+        // =========================================================================
+        function renderToolsCardGrid(toolsList) {
+            const grid = document.getElementById('admin-tools-card-grid');
+            grid.innerHTML = '';
+
+            const config = window.SaveFastAdminConfig || {};
+            const toolsCfg = config.toolsConfig || {};
+
+            toolsList.forEach((t) => {
+                const tCfg = toolsCfg[t.href] || {};
+                const status = tCfg.status || 'active'; // 'active', 'maintenance', 'disabled'
+                const badge = tCfg.badge || 'none';
+
+                const slug = t.href ? t.href.replace('.html', '') : t.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                const iconSrc = `tool-icons/${slug}.svg`;
+
+                const card = document.createElement('div');
+                card.className = `admin-tool-card status-${status}`;
+                card.dataset.href = t.href;
+                card.dataset.category = t.category;
+
+                card.innerHTML = `
+                    <div class="admin-tool-card-head">
+                        <div class="admin-tool-icon">
+                            <img src="${iconSrc}" alt="${t.title}" onerror="this.src='favicon.png'" />
+                        </div>
+                        <div class="admin-tool-info">
+                            <h4 class="admin-tool-title">${t.title}</h4>
+                            <span class="admin-tool-path">${t.href}</span>
+                            <span class="admin-tool-category">${t.category}</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-tool-controls">
+                        <div class="control-group">
+                            <label>Tool Status</label>
+                            <select class="status-select-control val-${status} tool-status-select" data-href="${t.href}">
+                                <option value="active" ${status === 'active' ? 'selected' : ''}>🟢 Active & Online</option>
+                                <option value="maintenance" ${status === 'maintenance' ? 'selected' : ''}>🛠️ Maintenance Mode</option>
+                                <option value="disabled" ${status === 'disabled' ? 'selected' : ''}>🔴 Disabled / Offline</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Highlight Badge</label>
+                            <select class="status-select-control tool-badge-select" data-href="${t.href}" style="color: #cbd5e1;">
+                                <option value="none" ${badge === 'none' ? 'selected' : ''}>None</option>
+                                <option value="hot" ${badge === 'hot' ? 'selected' : ''}>🔥 Hot</option>
+                                <option value="featured" ${badge === 'featured' ? 'selected' : ''}>⭐ Featured</option>
+                                <option value="new" ${badge === 'new' ? 'selected' : ''}>🆕 New</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+
+                // Add Live Real-Time Change Listeners
+                const statusSelect = card.querySelector('.tool-status-select');
+                statusSelect.addEventListener('change', (e) => {
+                    updateToolConfigLive(t.href, 'status', e.target.value);
+                });
+
+                const badgeSelect = card.querySelector('.tool-badge-select');
+                badgeSelect.addEventListener('change', (e) => {
+                    updateToolConfigLive(t.href, 'badge', e.target.value);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Live Real-Time Sync Updater
+        function updateToolConfigLive(href, key, value) {
+            const config = window.SaveFastAdminConfig || {};
+            if (!config.toolsConfig) config.toolsConfig = {};
+            if (!config.toolsConfig[href]) config.toolsConfig[href] = {};
+
+            config.toolsConfig[href][key] = value;
+
+            // Save to localStorage -> triggers 'storage' event across all open user tabs!
+            localStorage.setItem('savefast_admin_config', JSON.stringify(config));
+            window.SaveFastAdminConfig = config;
+
+            // Update card styling locally
+            const card = document.querySelector(`.admin-tool-card[data-href="${href}"]`);
+            if (card && key === 'status') {
+                card.className = `admin-tool-card status-${value}`;
+                const sel = card.querySelector('.tool-status-select');
+                if (sel) sel.className = `status-select-control val-${value} tool-status-select`;
+            }
+
+            // Recalculate active stats
+            if (typeof tools !== 'undefined') {
+                let activeCount = 0;
+                tools.forEach(t => {
+                    const tCfg = config.toolsConfig[t.href] || {};
+                    if ((tCfg.status || 'active') === 'active') activeCount++;
+                });
+                document.getElementById('stat-active-tools').textContent = activeCount;
+            }
+        }
+
+        // Search & Category Filter
+        const searchInput = document.getElementById('tool-search-input');
+        const categoryFilter = document.getElementById('tool-category-filter');
+
+        if (searchInput) searchInput.addEventListener('input', filterToolsGrid);
+        if (categoryFilter) categoryFilter.addEventListener('change', filterToolsGrid);
+
+        function filterToolsGrid() {
+            const term = searchInput.value.toLowerCase().trim();
+            const cat = categoryFilter.value;
+
+            document.querySelectorAll('.admin-tool-card').forEach(card => {
+                const title = card.querySelector('.admin-tool-title').textContent.toLowerCase();
+                const path = card.dataset.href.toLowerCase();
+                const cardCat = card.dataset.category;
+
+                const matchSearch = !term || title.includes(term) || path.includes(term);
+                const matchCat = cat === 'ALL' || cardCat === cat;
+
+                card.style.display = (matchSearch && matchCat) ? 'flex' : 'none';
+            });
+        }
+
+        // Live Banner Preview
+        document.getElementById('banner-text-input').addEventListener('input', updateBannerPreview);
+        document.getElementById('banner-type-select').addEventListener('change', updateBannerPreview);
+
+        function updateBannerPreview() {
+            const text = document.getElementById('banner-text-input').value;
+            const type = document.getElementById('banner-type-select').value;
+            const previewBox = document.getElementById('banner-preview-box');
+            const previewText = document.getElementById('preview-text');
+
+            previewText.textContent = text;
+            previewBox.style.background = type === 'promo' ? 'linear-gradient(135deg, #4f46e5, #7c3aed)' : type === 'warning' ? '#d97706' : type === 'success' ? '#059669' : '#2563eb';
+        }
+
+        // Save Support Settings
+        document.getElementById('save-support-btn').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            config.supportEmail = document.getElementById('input-support-email').value.trim();
+            config.supportPhone = document.getElementById('input-support-phone').value.trim();
+            config.supportResponseTime = document.getElementById('input-support-response').value.trim();
+
+            localStorage.setItem('savefast_admin_config', JSON.stringify(config));
+            alert('Support settings saved successfully!');
+            loadAdminData();
+        });
+
+        // Save Banner Settings
+        document.getElementById('save-banner-btn').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            config.announcement = {
+                enabled: document.getElementById('banner-enabled-check').checked,
+                text: document.getElementById('banner-text-input').value.trim(),
+                type: document.getElementById('banner-type-select').value,
+                link: document.getElementById('banner-link-input').value.trim(),
+                dismissible: true
+            };
+
+            localStorage.setItem('savefast_admin_config', JSON.stringify(config));
+            alert('Announcement Banner settings saved!');
+            loadAdminData();
+        });
+
+        // Quick Actions
+        document.getElementById('quick-toggle-banner').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            if (!config.announcement) config.announcement = {};
+            config.announcement.enabled = !config.announcement.enabled;
+            localStorage.setItem('savefast_admin_config', JSON.stringify(config));
+            alert(`Announcement banner ${config.announcement.enabled ? 'Enabled' : 'Disabled'}!`);
+            loadAdminData();
+        });
+
+        document.getElementById('quick-export-config').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
+            const a = document.createElement('a');
+            a.href = dataStr;
+            a.download = 'savefast-admin-config.json';
+            a.click();
+        });
+
+        // Save SEO Settings
+        document.getElementById('save-seo-btn').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            config.gaTrackingId = document.getElementById('input-ga-id').value.trim();
+            config.customHeadScript = document.getElementById('input-head-script').value.trim();
+
+            localStorage.setItem('savefast_admin_config', JSON.stringify(config));
+            alert('SEO & Custom Script settings saved!');
+        });
+
+        // Change Passcode
+        document.getElementById('change-passcode-btn').addEventListener('click', () => {
+            const oldP = document.getElementById('input-old-passcode').value;
+            const newP = document.getElementById('input-new-passcode').value;
+
+            if (oldP !== getStoredPasscode()) {
+                alert('Current passcode is incorrect.');
+                return;
+            }
+            if (!newP || newP.length < 4) {
+                alert('New passcode must be at least 4 characters long.');
+                return;
+            }
+
+            localStorage.setItem('savefast_admin_passcode', newP);
+            alert('Passcode updated successfully!');
+            document.getElementById('input-old-passcode').value = '';
+            document.getElementById('input-new-passcode').value = '';
+        });
+
+        // Export Config JSON
+        document.getElementById('export-json-btn').addEventListener('click', () => {
+            const config = window.SaveFastAdminConfig || {};
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
+            const a = document.createElement('a');
+            a.href = dataStr;
+            a.download = 'savefast-admin-config.json';
+            a.click();
+        });
+
+        checkAuth();
+    });
+    </script>
+</body>
+</html>
