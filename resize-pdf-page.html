@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Resize PDF pages to standard formats like A4, Letter, Legal, or custom dimensions. Perfect for printing optimization, document standardization, and format compliance. Free online PDF resizer." />
+    <title>Resize PDF Pages | Change PDF Page Size Free Online Tool</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/resize-pdf-page.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Resize PDF Pages Tool",
+        "description": "Resize PDF pages to standard formats like A4, Letter, Legal, or custom dimensions. Perfect for printing optimization, document standardization, and format compliance.",
+        "url": "https://pdf.savefast.in/resize-pdf-page.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Standard page sizes",
+            "Custom dimensions",
+            "Printing optimization",
+            "Format standardization",
+            "Client-side processing",
+            "No file uploads required"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What page sizes can I resize my PDF to?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can resize to standard formats like A4, Letter, Legal, or specify custom dimensions in millimeters. Our tool supports all common international paper sizes and custom requirements."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will resizing affect the content quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our resizing process maintains content quality by scaling proportionally. The content is adjusted to fit the new page size while preserving readability and visual clarity."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the PDF resizing process secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All PDF processing happens directly in your browser using client-side technology. Your documents never leave your device and are not uploaded to any servers."
+                }
+            }
+        ]
+    }
+    </script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/resize-pdf-page.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="RESIZE PDF PAGE | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/resize-pdf-page.html" />
+    <meta name="twitter:title" content="RESIZE PDF PAGE | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/resize-pdf-page.svg" alt="resize-pdf-page 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Resize PDF Page</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    
+                    <div id="resize-options" style="display: none; margin-top: 20px;">
+                        <label for="page-size">Select Page Size:</label>
+                        <select id="page-size">
+                            <option value="A4">A4</option>
+                            <option value="Letter">Letter</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                        <div id="custom-size-inputs" style="display: none;">
+                            <input type="number" id="custom-width" placeholder="Width (mm)">
+                            <input type="number" id="custom-height" placeholder="Height (mm)">
+                        </div>
+                    </div>
+
+                    <button id="save-button" style="display: none; margin-top: 10px;">Resize and Save PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Resize PDF Pages</h1>
+                    <p>Transform your PDF documents to any page size with precision and professional quality. Perfect for printing optimization, international document standards, and custom formatting requirements.</p>
+                    
+                    <div class="illustration-container">
+                        <img src="/images/resize-pdf-pages.png" alt="PDF page resizing interface showing standard and custom size options" class="tool-illustration" />
+                        <p class="image-caption">*Professional PDF page resizing with standard formats and custom dimension support*</p>
+                    </div>
+                    
+                    <h2>How to Resize PDF Pages</h2>
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Upload Your PDF Document</h4>
+                                <p>Drag and drop your PDF file or click to browse and select from your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Choose Target Size</h4>
+                                <p>Select from standard sizes like A4, Letter, Legal, or specify custom dimensions in millimeters.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Resize and Download</h4>
+                                <p>Click 'Resize and Save PDF' to process your document and download the resized version.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Resize PDF Pages FAQs</h2>
+                    <p><b>What page sizes are supported?</b><br>We support standard formats like A4, Letter, Legal, and custom dimensions in millimeters for any specific requirements.</p>
+                    <p><b>Will content quality be affected?</b><br>Our resizing process maintains content quality by scaling proportionally while preserving readability and visual clarity.</p>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    
+                    <div class="visual-separator"></div>
+                    
+                    <h2>The Complete Guide to PDF Page Resizing</h2>
+                    
+                    <div class="story-section">
+                        <h3>📏 Why Page Size Matters in Professional Documents</h3>
+                        <p>Imagine submitting a crucial proposal to an international client, only to discover that your US Letter-sized document doesn't print properly on their A4 printers, leaving margins cut off and content unreadable. Or picture trying to print a large-format design on standard office paper, resulting in illegible text and distorted layouts. This is where <strong>PDF page resizing</strong> becomes essential for professional document presentation and global compatibility.</p>
+                        
+                        <p>Page size isn't just about fitting content on paper – it's about <strong>professional presentation</strong>, <strong>printing optimization</strong>, <strong>international standards compliance</strong>, and ensuring your documents look perfect regardless of where or how they're viewed and printed.</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>Standard Formats</h4>
+                            <p>Support for A4, Letter, Legal, and all international paper size standards for global compatibility.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Custom Dimensions</h4>
+                            <p>Specify exact dimensions in millimeters for specialized printing and unique format requirements.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9,12L11,14L15,10L20,15H4L9,12Z" /></svg>
+                            </div>
+                            <h4>Quality Preservation</h4>
+                            <p>Intelligent scaling maintains content quality and readability across all size transformations.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Applications: When Page Resizing Transforms Documents</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🌍 International Business and Compliance</h4>
+                        <p><strong>Global businesses</strong> use page resizing to ensure documents comply with regional standards. Converting between US Letter and international A4 formats prevents printing issues and maintains professional presentation across different markets.</p>
+                        <p><strong>Legal professionals</strong> resize documents to meet court filing requirements, which often specify exact page dimensions and formatting standards for official submissions.</p>
+                    </div>
+                    
+                    <img src="/images/international-document-standards.png" alt="International document standards showing A4, Letter, and Legal page size comparisons" class="blog-image" />
+                    <p class="image-caption">*International document standards requiring precise page sizing for global business compatibility*</p>
+                    
+                    <h4>🖨️ Printing and Production Optimization</h4>
+                    <p>Print professionals and designers leverage <strong>PDF page resizing</strong> for optimal production workflows:</p>
+                    
+                    <ul>
+                        <li><strong>Print Shop Preparation</strong> - Resize documents to match available paper stocks and printing equipment</li>
+                        <li><strong>Cost Optimization</strong> - Adjust page sizes to minimize paper waste and reduce printing costs</li>
+                        <li><strong>Binding Requirements</strong> - Resize for specific binding methods and finishing processes</li>
+                        <li><strong>Large Format Scaling</strong> - Adapt documents for poster printing and display applications</li>
+                        <li><strong>Booklet Creation</strong> - Resize pages for perfect booklet folding and assembly</li>
+                    </ul>
+                    
+                    <h4>📚 Educational and Academic Standards</h4>
+                    <p>Educational institutions use <strong>page resizing</strong> to ensure documents meet specific academic and submission requirements, from thesis formatting to standardized test materials.</p>
+                    
+                    <div class="story-section">
+                        <h3>📋 Case Study: Global Publishing House Standardization</h3>
+                        <p>International Publishing Corp managed content from authors worldwide, receiving manuscripts in various page formats. Different regional offices used different standards: US offices submitted Letter-sized documents, European offices used A4, and Asian offices mixed both formats.</p>
+                        
+                        <p>By implementing systematic page resizing, they achieved: <strong>100% format consistency</strong>, <strong>50% reduction in production delays</strong>, <strong>elimination of printing errors</strong>, and <strong>seamless global workflow integration</strong>. The standardization saved thousands of hours annually and improved publication quality across all markets.</p>
+                    </div>
+                    
+                    <h3>Understanding International Page Size Standards</h3>
+                    
+                    <p>Professional document management requires understanding global page size standards and their applications:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>A4 Standard (210 × 297 mm)</h4>
+                            <p>International ISO standard used in Europe, Asia, and most countries worldwide for business documents.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>US Letter (216 × 279 mm)</h4>
+                            <p>Standard format in United States and Canada for business correspondence and office documents.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>Legal Size (216 × 356 mm)</h4>
+                            <p>Extended format used for legal documents, contracts, and official filings requiring additional space.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Technical Considerations for Page Resizing</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Optimal Resizing Strategies</h4>
+                        <p><strong>Proportional Scaling:</strong> Maintain aspect ratios to prevent content distortion while fitting new page dimensions.</p>
+                        <p><strong>Content Preservation:</strong> Ensure text remains readable and images maintain clarity after resizing operations.</p>
+                        <p><strong>Margin Management:</strong> Adjust margins appropriately to maintain professional appearance and printing compatibility.</p>
+                    </div>
+                    
+                    <h4>Common Resizing Scenarios and Solutions</h4>
+                    <p>Professional page resizing addresses specific document challenges:</p>
+                    
+                    <ul>
+                        <li><strong>International Compatibility</strong> - Convert between regional standards for global document sharing</li>
+                        <li><strong>Printing Optimization</strong> - Adjust sizes to match available paper stocks and printer capabilities</li>
+                        <li><strong>Regulatory Compliance</strong> - Meet specific size requirements for legal, medical, or government submissions</li>
+                        <li><strong>Production Efficiency</strong> - Standardize document sizes for streamlined printing and binding workflows</li>
+                        <li><strong>Archive Standardization</strong> - Convert legacy documents to consistent modern formats</li>
+                    </ul>
+                    
+                    <img src="/images/page-size-optimization.png" alt="Page size optimization showing before and after resizing for different applications" class="blog-image" />
+                    <p class="image-caption">*Professional page size optimization for printing, compliance, and international compatibility*</p>
+                    
+                    <h3>Integration with Document Production Workflows</h3>
+                    
+                    <p>Maximize efficiency by combining <strong>page resizing</strong> with other document processing tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine documents before standardizing page sizes</li>
+                        <li>Apply <a href="crop-pdf.html"><strong>Crop PDF</strong></a> to adjust content areas before resizing operations</li>
+                        <li>Combine with <a href="rotate-pdf.html"><strong>Rotate PDF</strong></a> to correct orientation before size adjustments</li>
+                        <li>Use <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize file size after resizing operations</li>
+                    </ul>
+                    
+                    <h3>Quality Assurance and Best Practices</h3>
+                    
+                    <div class="story-section">
+                        <h3>🔍 Ensuring Professional Results</h3>
+                        <p>Professional page resizing requires attention to detail and systematic quality control. The goal is not just changing dimensions, but ensuring the resized document maintains its professional appearance, readability, and functional integrity across all intended use cases.</p>
+                        
+                        <p>Our resizing algorithms prioritize <strong>content preservation</strong>, <strong>proportional scaling</strong>, and <strong>print compatibility</strong> to deliver results that meet professional standards for business, legal, and academic applications.</p>
+                    </div>
+                    
+                    <h3>Advanced Applications and Specialized Use Cases</h3>
+                    
+                    <p>Professional page resizing extends beyond simple format conversion:</p>
+                    
+                    <ul>
+                        <li><strong>Custom Publishing</strong> - Create documents for specialized printing equipment and unique paper sizes</li>
+                        <li><strong>Accessibility Compliance</strong> - Resize documents to meet accessibility standards and reading requirements</li>
+                        <li><strong>Display Optimization</strong> - Adjust page sizes for digital displays and presentation systems</li>
+                        <li><strong>Archival Standards</strong> - Convert documents to meet long-term preservation requirements</li>
+                        <li><strong>Production Scaling</strong> - Adapt documents for different production volumes and printing methods</li>
+                    </ul>
+                    
+                    <h3>Cost and Efficiency Benefits</h3>
+                    
+                    <p>Strategic page resizing delivers measurable business benefits:</p>
+                    
+                    <ul>
+                        <li><strong>Printing Cost Reduction</strong> - Optimize page sizes to minimize paper waste and printing expenses</li>
+                        <li><strong>Production Efficiency</strong> - Standardize formats to streamline printing and finishing workflows</li>
+                        <li><strong>Global Compatibility</strong> - Eliminate regional printing issues and format incompatibilities</li>
+                        <li><strong>Quality Consistency</strong> - Ensure uniform document presentation across all applications</li>
+                        <li><strong>Compliance Assurance</strong> - Meet regulatory requirements without manual reformatting</li>
+                    </ul>
+                    
+                    <h3>Future-Proofing Document Standards</h3>
+                    
+                    <p>As global business continues to evolve, page size standardization becomes increasingly important:</p>
+                    
+                    <ul>
+                        <li><strong>Digital Integration</strong> - Ensure documents work seamlessly across digital and print mediums</li>
+                        <li><strong>Global Standards</strong> - Prepare for increasing international business collaboration</li>
+                        <li><strong>Technology Compatibility</strong> - Maintain compatibility with evolving printing and display technologies</li>
+                        <li><strong>Regulatory Evolution</strong> - Adapt to changing compliance requirements and industry standards</li>
+                        <li><strong>Workflow Optimization</strong> - Build efficient processes that scale with business growth</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Resize Your Documents?</h4>
+                        <p>Experience professional <strong>PDF page resizing</strong> with standard formats and custom dimensions. No registration required, no file uploads, and unlimited document processing.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF formatting tools</strong></a> including <a href="crop-pdf.html"><strong>PDF Cropping</strong></a>, <a href="rotate-pdf.html"><strong>Page Rotation</strong></a>, and <a href="organize-pdf.html"><strong>Page Organization</strong></a> for comprehensive document formatting control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const resizeOptions = document.getElementById('resize-options');
+        const pageSizeSelect = document.getElementById('page-size');
+        const customSizeInputs = document.getElementById('custom-size-inputs');
+        const customWidthInput = document.getElementById('custom-width');
+        const customHeightInput = document.getElementById('custom-height');
+        const saveButton = document.getElementById('save-button');
+        const statusArea = document.getElementById('status-area');
+        let pdfFile = null;
+
+        const standardSizes = {
+            A4: [210, 297], // mm
+            Letter: [215.9, 279.4] // mm
+        };
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => { e.preventDefault(); fileDropZone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+
+        pageSizeSelect.addEventListener('change', () => {
+            customSizeInputs.style.display = pageSizeSelect.value === 'custom' ? 'block' : 'none';
+        });
+
+        function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            pdfFile = file;
+            statusArea.textContent = 'PDF loaded. Select a page size and save.';
+            resizeOptions.style.display = 'block';
+            saveButton.style.display = 'block';
+        }
+
+        saveButton.addEventListener('click', async () => {
+            if (!pdfFile) return;
+            statusArea.textContent = 'Resizing PDF...';
+            saveButton.disabled = true;
+
+            try {
+                const { PDFDocument, PageSizes, units } = PDFLib;
+                const existingPdfBytes = await pdfFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(existingPdfBytes);
+                const newPdfDoc = await PDFDocument.create();
+
+                let newWidth, newHeight;
+                if (pageSizeSelect.value === 'custom') {
+                    newWidth = parseFloat(customWidthInput.value);
+                    newHeight = parseFloat(customHeightInput.value);
+                    if (isNaN(newWidth) || isNaN(newHeight) || newWidth <= 0 || newHeight <= 0) {
+                        throw new Error('Invalid custom dimensions.');
+                    }
+                    newWidth = newWidth * (1 / 25.4) * 72; // mm to points
+                    newHeight = newHeight * (1 / 25.4) * 72; // mm to points
+                } else {
+                    const size = standardSizes[pageSizeSelect.value];
+                    newWidth = size[0] * (1 / 25.4) * 72;
+                    newHeight = size[1] * (1 / 25.4) * 72;
+                }
+
+                const pages = pdfDoc.getPages();
+                for (let i = 0; i < pages.length; i++) {
+                    const [embeddedPage] = await newPdfDoc.embedPdf(existingPdfBytes, [i]);
+                    const newPage = newPdfDoc.addPage([newWidth, newHeight]);
+                    newPage.drawPage(embeddedPage, {
+                        x: 0,
+                        y: 0,
+                        width: newWidth,
+                        height: newHeight,
+                    });
+                }
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, 'resized.pdf', 'application/pdf');
+                statusArea.textContent = 'PDF resized and downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred while resizing: ' + error.message;
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

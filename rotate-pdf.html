@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rotate your PDF files for free with our secure, in-browser tool. Choose to rotate all pages or select specific pages to adjust their orientation instantly." />
+    <title>Rotate PDF Free | Securely Rotate PDF Pages Online</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/rotate-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Rotation Tool",
+        "description": "Rotate PDF pages online with precise angle control. Free, secure PDF rotation with selective page targeting and client-side processing.",
+        "url": "https://pdf.savefast.in/rotate-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "PDF page rotation",
+            "Multiple rotation angles",
+            "Selective page rotation",
+            "Batch page processing",
+            "Client-side processing",
+            "Orientation correction"
+        ]
+    }
+    </script>
+
+    <!-- Client-Side Library for this tool only -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/rotate-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="ROTATE PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/rotate-pdf.html" />
+    <meta name="twitter:title" content="ROTATE PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/rotate-pdf.svg" alt="rotate-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Rotate PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                    <div id="file-list" style="margin-bottom: 20px;"></div>
+                    <div class="tool-options">
+                        <label for="rotation-angle">Rotation Angle:</label>
+                        <select id="rotation-angle">
+                            <option value="90">90° (Right)</option>
+                            <option value="180">180° (Upside Down)</option>
+                            <option value="270">270° (Left)</option>
+                        </select>
+                        <label for="page-numbers">Pages (e.g., 1, 3-5):</label>
+                        <input type="text" id="page-numbers" placeholder="All pages">
+                    </div>
+                    <button id="process-button" disabled>Rotate PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Rotate PDF Pages Securely</h1>
+                    
+                    <!-- 1. INTRODUCTION (50-80 words) -->
+                    <div class="intro-section">
+                        <div class="intro-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12A9,9 0 0,0 12,3M12,8L16.5,12L12,16V13H8V11H12V8Z" /></svg>
+                        </div>
+                        <div class="conversational-intro">
+                            Rotating PDF pages is essential when documents are scanned incorrectly, need mobile optimization, or require proper printing orientation. Whether you're fixing scanning errors, preparing presentations, or optimizing for different viewing devices, page rotation ensures your documents always display perfectly.
+                        </div>
+                    </div>
+
+                    <!-- 2. WHY USE THIS TOOL? (150-200 words) -->
+                    <div class="benefits-section">
+                        <h2>🔄 Why Rotate PDF Pages?</h2>
+                        <p>Fix orientation issues and optimize document presentation with precise page rotation control:</p>
+                        
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12A9,9 0 0,0 12,3M12,8L16.5,12L12,16V13H8V11H12V8Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Scanning Corrections</strong><br>
+                                    Fix pages that were scanned upside down or sideways for proper document viewing and printing.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Mobile Optimization</strong><br>
+                                    Rotate landscape pages to portrait for better reading experience on phones and tablets.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,13H6A1,1 0 0,1 5,12A1,1 0 0,1 6,11H18A1,1 0 0,1 19,12M18,15H6V19H18V15Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Professional Printing</strong><br>
+                                    Ensure all pages have consistent orientation for professional printing and binding results.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/rotate-pdf-interface.png" alt="PDF rotation tool interface showing angle selection and page range options" class="screenshot-image">
+                            <div class="image-caption">Choose rotation angles and specify page ranges for precise orientation control</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. STEP-BY-STEP GUIDE (120-150 words) -->
+                    <div class="tutorial-section">
+                        <h2>🔄 How to Rotate PDF Pages (Perfect Orientation)</h2>
+                        <p>Fix document orientation issues with precise rotation control in just four simple steps:</p>
+                        
+                        <div class="tutorial-steps">
+                            <div class="tutorial-step">
+                                <div class="step-icon">1</div>
+                                <div>
+                                    <h4>Upload PDF Document</h4>
+                                    <p>Drag and drop your PDF file or click to browse. All document types and sizes are supported for rotation.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">2</div>
+                                <div>
+                                    <h4>Select Rotation Angle</h4>
+                                    <p>Choose 90° (right), 180° (upside down), or 270° (left) rotation based on your orientation needs.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">3</div>
+                                <div>
+                                    <h4>Specify Page Range</h4>
+                                    <p>Enter specific pages (e.g., "1, 3-5, 8") or leave blank to rotate all pages. Perfect for mixed-orientation documents.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">4</div>
+                                <div>
+                                    <h4>Download Corrected PDF</h4>
+                                    <p>Click "Rotate PDF" and get your document with perfect page orientation for viewing, printing, or sharing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/pdf-rotation-steps.png" alt="Step by step PDF rotation process showing orientation correction" class="screenshot-image">
+                            <div class="image-caption">Watch pages transform from incorrect to perfect orientation with precise rotation control</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. REAL-LIFE USE CASES (150+ words) -->
+                    <div class="use-cases-section">
+                        <h2>📝 Document Orientation Success Stories</h2>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Meet David, Office Manager at LegalDocs Associates</div>
+                            <p>David's team scanned hundreds of legal documents daily, but many pages ended up sideways or upside down due to rushed scanning. Clients complained about unprofessional document presentation, and staff wasted hours manually fixing orientation issues. The firm's reputation was suffering from poorly formatted document deliveries.</p>
+                            <div class="story-outcome">
+                                <strong>The Orientation Solution:</strong> PDF rotation eliminated document presentation issues completely. David now fixes entire batches of scanned documents in minutes, client satisfaction increased by 60%, and the firm saves 15+ hours weekly on document formatting tasks.
+                            </div>
+                        </div>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Maria, Training Coordinator at TechEducate Institute</div>
+                            <p>Maria created training materials from various sources, resulting in mixed-orientation PDFs that were difficult to read on tablets and phones. Students struggled with sideways pages during mobile learning sessions, and course completion rates were declining due to poor document accessibility.</p>
+                            <div class="story-outcome">
+                                <strong>The Mobile Learning Win:</strong> Rotating landscape pages to portrait orientation transformed mobile learning experiences. Student engagement increased by 45%, course completion rates improved by 35%, and Maria's training materials now work perfectly across all devices and platforms.
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/pdf-rotation-use-cases.png" alt="Real world examples of PDF rotation in legal and education environments" class="screenshot-image">
+                            <div class="image-caption">From legal documents to training materials - PDF rotation ensures perfect presentation</div>
+                        </div>
+                    </div>
+
+                    <!-- 5. TIPS + BEST PRACTICES (100+ words) -->
+                    <div class="tips-section">
+                        <div class="tips-header">
+                            <div class="tips-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7A1,1 0 0,1 12,8H11V16A1,1 0 0,1 10,17H9A1,1 0 0,1 8,16V8H7A1,1 0 0,1 6,7V5.73C5.4,5.39 5,4.74 5,4A2,2 0 0,1 7,2A2,2 0 0,1 9,4C9,4.74 8.6,5.39 8,5.73V6H10V5.73C9.4,5.39 9,4.74 9,4A2,2 0 0,1 11,2A2,2 0 0,1 13,4C13,4.74 12.6,5.39 12,5.73V6H14V5.73C13.4,5.39 13,4.74 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4A2,2 0 0,1 15,6A2,2 0 0,1 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4C17,4.74 16.6,5.39 16,5.73V7A1,1 0 0,1 15,8H14V16A1,1 0 0,1 13,17H12A1,1 0 0,1 11,16V8H10A1,1 0 0,1 9,7V5.73C8.4,5.39 8,4.74 8,4A2,2 0 0,1 10,2A2,2 0 0,1 12,2Z" /></svg>
+                            </div>
+                            <h2>💡 Professional Rotation Strategies</h2>
+                        </div>
+                        <p>Achieve perfect document orientation with these expert PDF rotation techniques:</p>
+                        
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Angle Selection:</strong> Use 90° for landscape-to-portrait, 180° for upside-down fixes, 270° for portrait-to-landscape conversion.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Page Range Precision:</strong> Use "1,3-5,8" format for specific pages, or leave blank to rotate entire document efficiently.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Mobile Optimization:</strong> Rotate landscape pages to portrait for better mobile reading experience and accessibility.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Printing Preparation:</strong> Ensure consistent orientation across all pages for professional printing and binding results.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Quality Check:</strong> Always preview rotated documents to ensure correct orientation before sharing or printing.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-divider">
+                        <div class="content-divider-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A9,9 0 0,0 21,12A9,9 0 0,0 12,3M12,8L16.5,12L12,16V13H8V11H12V8Z" /></svg>
+                        </div>
+                    </div>
+
+                    <h2>Rotate PDF FAQs</h2>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    <p><b>Can I rotate only specific pages?</b><br>Yes, you can specify which pages to rotate by entering the page numbers in the input field. If you leave it blank, all pages will be rotated.</p>
+                    
+                    <div class="blog-style-content">
+                        <h2>🔄 PDF Rotation Mastery: Fix Orientation Issues Like a Pro</h2>
+                        
+                        <p class="blog-intro">Ever opened a PDF only to find pages sideways or upside down? Frustrated with documents that look perfect on screen but print incorrectly? You're dealing with one of the most common yet fixable document issues that affects millions of professionals daily. Whether you're a lawyer organizing case files, an architect reviewing blueprints, or an office manager preparing reports, <strong>PDF page rotation</strong> transforms chaotic, misoriented documents into perfectly aligned, professional presentations that look right every time.</p>
+                        
+                        <img src="/images/pdf-page-rotation-correction.jpg" alt="PDF page rotation showing orientation correction from landscape to portrait and vice versa" class="blog-image" />
+                        
+                        <h3>🎯 Why Document Professionals Master PDF Rotation</h3>
+                        
+                        <p>In our precision-focused business world, document presentation details matter more than ever. Here's why <strong>PDF rotation</strong> has become essential for maintaining professional standards:</p>
+                        
+                        <div class="blog-benefits-grid">
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">📐</div>
+                                <h4>Perfect Alignment</h4>
+                                <p>Fix scanning errors and orientation issues instantly. Transform sideways documents into properly aligned, professional presentations.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">🖨️</div>
+                                <h4>Print-Ready Results</h4>
+                                <p>Ensure documents print correctly every time. No more wasted paper or reprints due to orientation issues.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">📱</div>
+                                <h4>Mobile Optimization</h4>
+                                <p>Optimize documents for mobile viewing. Rotate pages to fit perfectly on smartphones and tablets.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">⚡</div>
+                                <h4>Selective Control</h4>
+                                <p>Rotate specific pages or entire documents. Precise control over exactly which pages need adjustment.</p>
+                            </div>
+                        </div>
+                    
+                    <ul>
+                        <li><strong>Scanning Corrections</strong> - Fix pages that were scanned in wrong orientation</li>
+                        <li><strong>Mobile Viewing</strong> - Optimize documents for mobile device viewing</li>
+                        <li><strong>Printing Preparation</strong> - Ensure proper orientation for professional printing</li>
+                        <li><strong>Presentation Formatting</strong> - Standardize mixed-orientation documents</li>
+                        <li><strong>Archive Organization</strong> - Correct historical documents with orientation issues</li>
+                        <li><strong>Digital Display</strong> - Optimize documents for screen presentation</li>
+                    </ul>
+                    
+                    <h3>Advanced Rotation Features</h3>
+                    
+                    <p>Our <strong>PDF page rotation tool</strong> provides comprehensive orientation control with professional-grade precision:</p>
+                    
+                    <h4>Precise Angle Control</h4>
+                    <p>Choose from standard rotation angles to achieve perfect document orientation:</p>
+                    
+                    <ul>
+                        <li><strong>90° Clockwise</strong> - Convert portrait to landscape or correct right-tilted pages</li>
+                        <li><strong>180° Rotation</strong> - Fix upside-down pages and inverted documents</li>
+                        <li><strong>270° Clockwise (90° Counter-clockwise)</strong> - Convert landscape to portrait or correct left-tilted pages</li>
+                        <li><strong>Consistent Results</strong> - Precise rotation maintains document quality and formatting</li>
+                    </ul>
+                    
+                    <h4>Selective Page Targeting</h4>
+                    <p>Rotate specific pages while leaving others unchanged using flexible page selection:</p>
+                    
+                    <ul>
+                        <li><strong>Individual Pages</strong> - Rotate single pages (e.g., "3" for page 3 only)</li>
+                        <li><strong>Page Ranges</strong> - Rotate consecutive pages (e.g., "5-10" for pages 5 through 10)</li>
+                        <li><strong>Multiple Selections</strong> - Combine individual and range selections (e.g., "1, 3-5, 8")</li>
+                        <li><strong>All Pages</strong> - Leave selection blank to rotate entire document</li>
+                    </ul>
+                    
+                    <img src="/images/pdf-rotation-angles-examples.jpg" alt="Examples of PDF rotation angles showing 90, 180, and 270-degree rotations" class="blog-image" />
+                    
+                    <div class="story-section">
+                        <h3>🔄 Case Study: Corporate Archive Digitization Success</h3>
+                        <p>DataVault Corporation faced a massive challenge when digitizing 50,000 historical business documents. Their scanning process resulted in thousands of pages with incorrect orientations, creating an unusable archive that frustrated employees and hindered business operations requiring quick document access.</p>
+                        
+                        <p>By implementing systematic PDF rotation protocols, DataVault achieved: <strong>100% orientation correction</strong>, <strong>improved document accessibility</strong>, <strong>enhanced employee productivity</strong>, and <strong>streamlined archive usability</strong>. The solution transformed their chaotic digital archive into a professional, easily navigable business resource.</p>
+                    </div>
+                    
+                    <h3>Understanding Document Orientation Management</h3>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12H4A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
+                            </div>
+                            <h4>Precise Rotation</h4>
+                            <p>Professional angle control with 90°, 180°, and 270° options for perfect document orientation correction.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Selective Control</h4>
+                            <p>Target specific pages or ranges while leaving others unchanged for precise document orientation management.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                            </div>
+                            <h4>Secure Processing</h4>
+                            <p>All rotation happens in your browser, ensuring your documents remain private and secure throughout the process.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Professional Orientation Applications</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📋 Business and Technical Applications</h4>
+                        <p><strong>Document Scanning:</strong> Correct orientation issues from batch scanning operations and automated document processing systems.</p>
+                        <p><strong>Legal Compliance:</strong> Ensure proper page orientation for court filings, legal briefs, and regulatory documentation requirements.</p>
+                        <p><strong>Archive Management:</strong> Standardize historical documents and legacy files for improved accessibility and professional presentation.</p>
+                        <p><strong>Mobile Optimization:</strong> Optimize document orientation for mobile device viewing and improved user experience.</p>
+                    </div>
+                    
+                    <h3>Integration with Document Processing Workflows</h3>
+                    
+                    <p>Enhance document quality by combining <strong>PDF rotation</strong> with other optimization tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="crop-pdf.html"><strong>Crop PDF</strong></a> to remove unwanted margins after correcting orientation</li>
+                        <li>Apply <a href="deskew-pdf.html"><strong>Deskew PDF</strong></a> to straighten tilted content after rotation correction</li>
+                        <li>Combine with <a href="organize-pdf.html"><strong>Organize PDF</strong></a> to structure documents after orientation standardization</li>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine properly oriented documents into organized collections</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Fix Your Document Orientation?</h4>
+                        <p>Experience professional <strong>PDF rotation</strong> that corrects orientation issues with precision control and maintains document quality. No registration required, no file uploads, and unlimited rotations.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>document tools</strong></a> including <a href="crop-pdf.html"><strong>Crop PDF</strong></a>, <a href="deskew-pdf.html"><strong>Deskew PDF</strong></a>, and <a href="organize-pdf.html"><strong>Organize PDF</strong></a> for comprehensive document optimization.</p>
+                    </div>
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Document Scanning Corrections</h4>
+                    <p>Office environments frequently encounter <strong>PDF orientation issues</strong> from document scanning. Our rotation tool quickly corrects pages that were fed into scanners incorrectly, ensuring professional document presentation without rescanning.</p>
+                    
+                    <h4>Legal Document Preparation</h4>
+                    <p>Legal professionals use PDF rotation to standardize court filings, contracts, and legal briefs. Consistent page orientation ensures professional presentation and compliance with court formatting requirements.</p>
+                    
+                    <h4>Academic and Research Papers</h4>
+                    <p>Researchers and academics rotate PDF pages to correct orientation issues in research papers, thesis documents, and academic publications. Proper orientation ensures readability and professional presentation.</p>
+                    
+                    <h4>Business Report Formatting</h4>
+                    <p>Corporate teams rotate PDF pages to standardize business reports, financial statements, and presentation materials. Consistent orientation enhances professional appearance and readability.</p>
+                    
+                    <h3>Client-Side Processing Advantages</h3>
+                    
+                    <p>Our <strong>secure PDF rotation</strong> tool processes documents entirely within your browser, providing unmatched security benefits:</p>
+                    
+                    <h4>Complete Document Privacy</h4>
+                    <p>Your PDF files never leave your device during the rotation process. All processing occurs locally in your browser, eliminating any risk of data interception, unauthorized access, or privacy breaches.</p>
+                    
+                    <h4>No Server Dependencies</h4>
+                    <p>Since files aren't uploaded to external servers, there's no risk of server downtime, data retention, or third-party access to your confidential documents. You maintain complete control over your files.</p>
+                    
+                    <h4>Instant Processing</h4>
+                    <p>Client-side processing eliminates upload and download delays, providing immediate rotation results. Large documents process efficiently without bandwidth limitations or server restrictions.</p>
+                    
+                    <img src="/images/client-side-pdf-rotation.jpg" alt="Client-side PDF rotation process showing local browser processing without server upload" class="blog-image" />
+                    
+                    <h3>Rotation Best Practices</h3>
+                    
+                    <p>Optimize your <strong>PDF page rotation</strong> results with these professional techniques:</p>
+                    
+                    <h4>Pre-Rotation Assessment</h4>
+                    <ul>
+                        <li><strong>Page Review</strong> - Examine all pages to identify orientation issues</li>
+                        <li><strong>Content Analysis</strong> - Consider text and image orientation for optimal readability</li>
+                        <li><strong>Printing Requirements</strong> - Plan rotation based on intended printing orientation</li>
+                        <li><strong>Viewer Compatibility</strong> - Consider how rotated pages will display on different devices</li>
+                    </ul>
+                    
+                    <h4>Selective Rotation Strategy</h4>
+                    <ul>
+                        <li><strong>Mixed Orientations</strong> - Identify pages that need different rotation angles</li>
+                        <li><strong>Batch Processing</strong> - Group pages with similar rotation needs for efficiency</li>
+                        <li><strong>Quality Verification</strong> - Review rotated pages to ensure proper orientation</li>
+                        <li><strong>Backup Originals</strong> - Maintain copies of original documents before rotation</li>
+                    </ul>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Enhance your document management by combining <strong>PDF page rotation</strong> with our other professional tools:</p>
+                    
+                    <ul>
+                        <li><a href="organize-pdf.html"><strong>Organize PDF</strong></a> - Reorder pages after rotation for optimal document flow</li>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine rotated documents with other PDFs</li>
+                        <li><a href="split-pdf.html"><strong>Split PDF</strong></a> - Separate documents before targeted rotation</li>
+                        <li><a href="crop-pdf.html"><strong>Crop PDF</strong></a> - Remove unwanted areas after rotation</li>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Optimize file sizes after rotation processing</li>
+                        <li><a href="add-watermark.html"><strong>Add Watermark</strong></a> - Apply watermarks to properly oriented documents</li>
+                    </ul>
+                    
+                    <h3>Technical Specifications</h3>
+                    
+                    <p>Our <strong>PDF rotation tool</strong> provides comprehensive orientation control capabilities:</p>
+                    
+                    <ul>
+                        <li><strong>Rotation Angles</strong> - 90°, 180°, and 270° clockwise rotation options</li>
+                        <li><strong>Page Selection</strong> - Individual pages, ranges, and combination selections</li>
+                        <li><strong>Quality Preservation</strong> - Lossless rotation maintains original document quality</li>
+                        <li><strong>Format Compatibility</strong> - Works with all PDF versions and formats</li>
+                        <li><strong>Content Preservation</strong> - Text, images, and formatting remain intact</li>
+                        <li><strong>Metadata Retention</strong> - Document properties and metadata preserved</li>
+                    </ul>
+                    
+                    <h3>Common Rotation Scenarios</h3>
+                    
+                    <p>Address typical <strong>PDF orientation challenges</strong> with targeted rotation solutions:</p>
+                    
+                    <h4>Scanned Document Corrections</h4>
+                    <p>Documents scanned in wrong orientation require 90° or 270° rotation to achieve proper reading orientation. Batch scanning often creates mixed orientations requiring selective page rotation.</p>
+                    
+                    <h4>Mobile Document Optimization</h4>
+                    <p>Landscape-oriented documents may need 90° rotation for optimal mobile viewing. Portrait orientation typically provides better readability on smartphone screens.</p>
+                    
+                    <h4>Printing Preparation</h4>
+                    <p>Documents intended for specific printer orientations may require rotation to match paper feed directions and printing requirements.</p>
+                    
+                    <h4>Archive Standardization</h4>
+                    <p>Historical document collections often contain mixed orientations requiring standardization through selective rotation for consistent presentation.</p>
+                    
+                    <img src="/images/pdf-rotation-scenarios.jpg" alt="Common PDF rotation scenarios showing scanning corrections and mobile optimization" class="blog-image" />
+                    
+                    <h3>Quality Assurance and Verification</h3>
+                    
+                    <p>Ensure optimal rotation results with these quality control measures:</p>
+                    
+                    <h4>Post-Rotation Review</h4>
+                    <ul>
+                        <li><strong>Orientation Verification</strong> - Confirm all pages display in correct orientation</li>
+                        <li><strong>Content Integrity</strong> - Verify text and images remain properly positioned</li>
+                        <li><strong>Readability Check</strong> - Ensure rotated content is easily readable</li>
+                        <li><strong>Print Preview</strong> - Test rotated documents for printing accuracy</li>
+                    </ul>
+                    
+                    <h4>Compatibility Testing</h4>
+                    <ul>
+                        <li><strong>Viewer Testing</strong> - Check rotated PDFs in different PDF readers</li>
+                        <li><strong>Device Compatibility</strong> - Verify proper display on various devices</li>
+                        <li><strong>Print Testing</strong> - Confirm rotated pages print correctly</li>
+                        <li><strong>Archive Suitability</strong> - Ensure rotated documents are suitable for long-term storage</li>
+                    </ul>
+                    
+                    <h3>Industry-Specific Applications</h3>
+                    
+                    <h4>Healthcare Documentation</h4>
+                    <p>Medical facilities rotate patient records, medical charts, and diagnostic reports to ensure proper orientation for healthcare providers and regulatory compliance.</p>
+                    
+                    <h4>Engineering and Architecture</h4>
+                    <p>Technical professionals rotate blueprints, engineering drawings, and architectural plans to match standard viewing orientations and printing requirements.</p>
+                    
+                    <h4>Legal and Compliance</h4>
+                    <p>Legal professionals rotate court documents, contracts, and regulatory filings to meet formatting standards and ensure professional presentation.</p>
+                    
+                    <h4>Education and Training</h4>
+                    <p>Educational institutions rotate course materials, textbooks, and training documents to optimize readability and presentation for students and instructors.</p>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Incorrect Rotation Results</h4>
+                    <p>If pages rotate in unexpected directions, verify your angle selection. Remember that 270° clockwise equals 90° counter-clockwise for achieving the desired orientation.</p>
+                    
+                    <h4>Page Selection Problems</h4>
+                    <p>For page selection issues, use proper syntax: individual pages ("1, 3, 5"), ranges ("2-8"), or combinations ("1, 3-5, 9"). Spaces around commas and hyphens are optional.</p>
+                    
+                    <h4>Large File Processing</h4>
+                    <p>Very large PDF files may take longer to process. Ensure your browser has sufficient memory available and consider splitting large documents for faster processing.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Correct Your PDF Orientation Today</h4>
+                        <p>Fix page orientation issues with precision and security using our professional <strong>PDF rotation tool</strong>. Complete privacy guaranteed with client-side processing and selective page targeting.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF organization tools</strong></a> including <a href="organize-pdf.html"><strong>page organization</strong></a>, <a href="split-pdf.html"><strong>document splitting</strong></a>, and <a href="merge-pdf.html"><strong>PDF merging</strong></a> for comprehensive document management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const { PDFDocument, degrees } = window.PDFLib;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+        const rotationAngleSelect = document.getElementById('rotation-angle');
+        const pageNumbersInput = document.getElementById('page-numbers');
+        let selectedFile = null;
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(file) {
+            if (file && file.type === 'application/pdf') {
+                selectedFile = file;
+                fileList.innerHTML = `<div>Selected: ${file.name}</div>`;
+                processButton.disabled = false;
+                statusArea.textContent = '';
+            } else {
+                selectedFile = null;
+                fileList.innerHTML = '';
+                processButton.disabled = true;
+                statusArea.textContent = 'Please select a valid PDF file.';
+            }
+        }
+
+        processButton.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            processButton.disabled = true;
+            statusArea.textContent = 'Rotating PDF... Please wait.';
+
+            try {
+                const rotationAngle = parseInt(rotationAngleSelect.value, 10);
+                const fileBuffer = await selectedFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(fileBuffer);
+                
+                const pageNumbers = parsePageNumbers(pageNumbersInput.value, pdfDoc.getPageCount());
+                const pages = pdfDoc.getPages();
+
+                pageNumbers.forEach(pageIndex => {
+                    if (pageIndex >= 0 && pageIndex < pages.length) {
+                        const page = pages[pageIndex];
+                        const currentRotation = page.getRotation().angle;
+                        page.setRotation(degrees(currentRotation + rotationAngle));
+                    }
+                });
+
+                const pdfBytes = await pdfDoc.save();
+                const originalName = selectedFile.name.replace(/\.pdf$/i, '');
+                downloadFile(pdfBytes, `${originalName}-rotated.pdf`, 'application/pdf');
+                statusArea.textContent = 'Rotation successful!';
+            } catch (error) {
+                console.error('Error rotating PDF:', error);
+                statusArea.textContent = 'An error occurred while rotating the PDF.';
+            } finally {
+                processButton.disabled = false;
+            }
+        });
+
+        function parsePageNumbers(input, maxPage) {
+            if (!input.trim()) {
+                return Array.from({ length: maxPage }, (_, i) => i);
+            }
+
+            const pageNumbers = new Set();
+            const parts = input.split(',');
+
+            parts.forEach(part => {
+                part = part.trim();
+                if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(Number);
+                    for (let i = start; i <= end; i++) {
+                        if (i > 0 && i <= maxPage) {
+                            pageNumbers.add(i - 1);
+                        }
+                    }
+                } else {
+                    const page = Number(part);
+                    if (page > 0 && page <= maxPage) {
+                        pageNumbers.add(page - 1);
+                    }
+                }
+            });
+
+            return Array.from(pageNumbers);
+        }
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

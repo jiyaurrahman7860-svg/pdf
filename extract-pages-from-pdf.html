@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Extract specific pages from your PDF document by selecting the ones you want to keep. Our free online tool works in your browser." />
+    <title>Extract Pages from PDF | Free PDF Page Extractor</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/extract-pages-from-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Page Extractor",
+        "description": "Extract specific pages from PDF documents by selecting pages visually. Free PDF page extraction with thumbnail preview and client-side processing.",
+        "url": "https://pdf.savefast.in/extract-pages-from-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "PDF page extraction",
+            "Visual page selection",
+            "Thumbnail preview",
+            "Multiple page selection",
+            "Client-side processing",
+            "Privacy protection"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I select pages to extract?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply click on the thumbnail images of the pages you want to extract. Selected pages will be highlighted with a blue border. You can select multiple pages by clicking on each one."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I extract pages in a different order?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The extracted pages will appear in the new PDF in the same order as they appear in the original document, regardless of the order you select them."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is PDF page extraction secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All processing happens directly in your browser using client-side technology. Your PDF files never leave your device."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <style>
+        #page-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .page-thumbnail { position: relative; cursor: pointer; border: 2px solid transparent; }
+        .page-thumbnail.selected { border-color: #007bff; }
+        .page-thumbnail canvas { display: block; }
+        .page-number { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 2px 5px; border-radius: 3px; font-size: 12px; }
+    </style>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/extract-pages-from-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="EXTRACT PAGES FROM PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/extract-pages-from-pdf.html" />
+    <meta name="twitter:title" content="EXTRACT PAGES FROM PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/extract-pages-from-pdf.svg" alt="extract-pages-from-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Extract Pages from PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    <div id="page-container"></div>
+                    <button id="save-button" style="display: none; margin-top: 10px;">Extract Pages and Save PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Extract Pages from PDF</h1>
+                    <p>Easily extract pages from your PDF document. Just click on the pages you want to keep and then save the new PDF.</p>
+                    <h2>How to Extract Pages from a PDF</h2>
+                    <ol>
+                        <li>Upload your PDF file.</li>
+                        <li>Click on the thumbnails of the pages you want to extract.</li>
+                        <li>Click 'Extract Pages and Save PDF' to download the new file with only the selected pages.</li>
+                    </ol>
+                    <h2>Extract Pages from PDF FAQs</h2>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    
+                    <h2>Professional PDF Page Extraction and Document Segmentation Guide</h2>
+                    
+                    <p>Extracting <strong>specific pages from PDF documents</strong> is crucial for document organization, content curation, and workflow optimization. Our <strong>free PDF page extractor</strong> provides visual page selection with thumbnail previews, enabling precise document segmentation while maintaining original quality through secure client-side processing.</p>
+                    
+                    <img src="/images/pdf-page-extraction-interface.jpg" alt="PDF page extraction interface showing visual page selection with thumbnail previews" class="blog-image" />
+                    
+                    <h3>Why Extract Pages from PDF?</h3>
+                    
+                    <p><strong>PDF page extraction</strong> serves multiple document management and content organization purposes:</p>
+                    
+                    <ul>
+                        <li><strong>Document Segmentation</strong> - Separate large documents into focused, manageable sections</li>
+                        <li><strong>Content Curation</strong> - Create targeted documents containing only relevant pages</li>
+                        <li><strong>Workflow Optimization</strong> - Distribute specific pages to appropriate team members or departments</li>
+                        <li><strong>Archive Organization</strong> - Organize document collections by extracting related content</li>
+                        <li><strong>Presentation Creation</strong> - Extract key pages for presentations and summaries</li>
+                        <li><strong>Compliance Documentation</strong> - Isolate specific pages for regulatory and audit requirements</li>
+                    </ul>
+                    
+                    <h3>Visual Page Selection Features</h3>
+                    
+                    <p>Our <strong>PDF page extraction tool</strong> provides intuitive visual selection with professional functionality:</p>
+                    
+                    <h4>Interactive Thumbnail Preview</h4>
+                    <p>Advanced visual interface for precise page selection:</p>
+                    
+                    <ul>
+                        <li><strong>Thumbnail Generation</strong> - High-quality page previews for easy content identification</li>
+                        <li><strong>Click Selection</strong> - Simple click-to-select interface with visual feedback</li>
+                        <li><strong>Multi-Page Selection</strong> - Select multiple pages simultaneously for batch extraction</li>
+                        <li><strong>Page Numbering</strong> - Clear page indicators for accurate content identification</li>
+                        <li><strong>Real-Time Preview</strong> - Immediate visual confirmation of selected pages</li>
+                        <li><strong>Quality Preservation</strong> - Maintains original page quality during extraction process</li>
+                    </ul>
+                    
+                    <h4>Professional Extraction Capabilities</h4>
+                    <p>Comprehensive page extraction functionality for efficient document management:</p>
+                    
+                    <ul>
+                        <li><strong>Selective Extraction</strong> - Extract any combination of pages from large documents</li>
+                        <li><strong>Order Preservation</strong> - Maintains original page sequence in extracted documents</li>
+                        <li><strong>Format Integrity</strong> - Preserves original formatting, fonts, and layout structure</li>
+                        <li><strong>Metadata Retention</strong> - Maintains document properties and embedded information</li>
+                        <li><strong>Instant Processing</strong> - Immediate extraction without upload delays or dependencies</li>
+                    </ul>
+                    
+                    <div class="story-section">
+                        <h3>📑 Case Study: Research Institute Content Organization</h3>
+                        <p>Scientific Research Institute faced overwhelming challenges managing massive research reports containing hundreds of pages. Their researchers needed to extract specific sections for focused analysis, collaboration, and publication, but manual document splitting was time-consuming and error-prone.</p>
+                        
+                        <p>By implementing systematic page extraction protocols, the Institute achieved: <strong>70% reduction in document preparation time</strong>, <strong>improved research collaboration</strong>, <strong>enhanced content organization</strong>, and <strong>streamlined publication workflows</strong>. The solution enabled researchers to focus on analysis rather than document management tasks.</p>
+                    </div>
+                    
+                    <h3>Understanding Document Segmentation Technology</h3>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13V3.5Z" /></svg>
+                            </div>
+                            <h4>Visual Selection</h4>
+                            <p>Intuitive thumbnail interface enables precise page selection with real-time preview and visual confirmation.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Quality Preservation</h4>
+                            <p>Advanced extraction maintains original page quality, formatting, and document integrity throughout the process.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                            </div>
+                            <h4>Secure Processing</h4>
+                            <p>All extraction happens in your browser, ensuring your documents remain private and secure throughout the process.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Document Management Applications</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📚 Professional and Academic Applications</h4>
+                        <p><strong>Research Documentation:</strong> Extract specific sections from research reports for focused analysis, collaboration, and publication preparation.</p>
+                        <p><strong>Legal Case Management:</strong> Isolate relevant pages from large legal documents for case preparation and client communication.</p>
+                        <p><strong>Business Reporting:</strong> Extract key sections from comprehensive reports for executive summaries and stakeholder presentations.</p>
+                        <p><strong>Educational Materials:</strong> Create focused study materials by extracting specific chapters or sections from textbooks and resources.</p>
+                    </div>
+                    
+                    <h3>Integration with Document Organization Workflows</h3>
+                    
+                    <p>Enhance document management by combining <strong>page extraction</strong> with other organization tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine extracted pages from multiple documents into organized collections</li>
+                        <li>Apply <a href="organize-pdf.html"><strong>Organize PDF</strong></a> to structure extracted pages for optimal presentation</li>
+                        <li>Combine with <a href="add-watermark.html"><strong>Add Watermark</strong></a> to brand extracted content for professional distribution</li>
+                        <li>Use <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize extracted documents for efficient storage and sharing</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Extract Your Pages?</h4>
+                        <p>Experience professional <strong>PDF page extraction</strong> that creates focused documents from large files with precision and quality preservation. No registration required, no file uploads, and unlimited extractions.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>organization tools</strong></a> including <a href="split-pdf.html"><strong>Split PDF</strong></a>, <a href="merge-pdf.html"><strong>Merge PDF</strong></a>, and <a href="organize-pdf.html"><strong>Organize PDF</strong></a> for comprehensive document management.</p>
+                    </div>
+                        <li><strong>Multiple Selection</strong> - Select any combination of pages from the document</li>
+                        <li><strong>Visual Indicators</strong> - Clear highlighting shows selected pages with blue borders</li>
+                    </ul>
+                    
+                    <h4>Professional Extraction Control</h4>
+                    <p>Comprehensive features for precise document segmentation:</p>
+                    
+                    <ul>
+                        <li><strong>Selective Extraction</strong> - Choose exactly which pages to include in the new document</li>
+                        <li><strong>Quality Preservation</strong> - Maintains original page quality and formatting</li>
+                        <li><strong>Order Maintenance</strong> - Extracted pages appear in original document order</li>
+                        <li><strong>Batch Processing</strong> - Extract multiple pages simultaneously for efficiency</li>
+                    </ul>
+                    
+                    <img src="/images/pdf-page-selection-demo.jpg" alt="PDF page selection demonstration showing thumbnail interface and visual selection process" class="blog-image" />
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Document Management Systems</h4>
+                    <p>Organizations use <strong>PDF page extraction</strong> to segment large documents into manageable components for different departments, projects, or archive categories. This improves document accessibility and workflow efficiency.</p>
+                    
+                    <h4>Legal Practice Management</h4>
+                    <p>Law firms extract relevant pages from case files, contracts, and legal documents to create focused materials for specific cases, clients, or court submissions while maintaining document integrity.</p>
+                    
+                    <h4>Academic Research</h4>
+                    <p>Researchers extract specific pages from academic papers, reports, and publications to create focused literature reviews, citation materials, and research compilations.</p>
+                    
+                    <h4>Business Report Creation</h4>
+                    <p>Companies extract key pages from comprehensive reports to create executive summaries, department-specific documents, and client presentations tailored to specific audiences.</p>
+                    
+                    <h3>Page Extraction Best Practices</h3>
+                    
+                    <p>Optimize your <strong>PDF page extraction</strong> results with these professional techniques:</p>
+                    
+                    <h4>Selection Strategy</h4>
+                    <ul>
+                        <li><strong>Content Analysis</strong> - Review document content to identify pages essential for specific purposes</li>
+                        <li><strong>Audience Consideration</strong> - Select pages appropriate for target audience and objectives</li>
+                        <li><strong>Logical Grouping</strong> - Extract pages that form coherent, self-contained sections</li>
+                        <li><strong>Context Preservation</strong> - Include supporting pages that provide necessary context</li>
+                    </ul>
+                    
+                    <h4>Quality Assurance</h4>
+                    <ul>
+                        <li><strong>Selection Verification</strong> - Double-check that all intended pages are selected</li>
+                        <li><strong>Content Completeness</strong> - Ensure extracted pages contain all necessary information</li>
+                        <li><strong>Format Consistency</strong> - Verify that extracted document maintains professional appearance</li>
+                        <li><strong>Navigation Testing</strong> - Check that extracted document flows logically</li>
+                    </ul>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Enhance your document processing by combining <strong>PDF page extraction</strong> with our other professional tools:</p>
+                    
+                    <ul>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine extracted pages with other documents</li>
+                        <li><a href="organize-pdf.html"><strong>Organize PDF</strong></a> - Reorder extracted pages for optimal presentation</li>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Optimize file sizes of extracted documents</li>
+                        <li><a href="add-watermark.html"><strong>Add Watermark</strong></a> - Brand extracted documents with professional watermarks</li>
+                        <li><a href="protect-pdf.html"><strong>Protect PDF</strong></a> - Secure extracted documents with password protection</li>
+                        <li><a href="add-page-numbers.html"><strong>Add Page Numbers</strong></a> - Add pagination to extracted document collections</li>
+                    </ul>
+                    
+                    <h3>Technical Specifications</h3>
+                    
+                    <p>Our <strong>PDF page extractor</strong> provides comprehensive document segmentation capabilities:</p>
+                    
+                    <ul>
+                        <li><strong>Visual Selection</strong> - Thumbnail-based page selection with interactive interface</li>
+                        <li><strong>Multiple Page Support</strong> - Extract any number of pages from source documents</li>
+                        <li><strong>Quality Preservation</strong> - Maintains original page quality and formatting</li>
+                        <li><strong>Order Maintenance</strong> - Preserves original page sequence in extracted documents</li>
+                        <li><strong>Format Compatibility</strong> - Works with all PDF versions and document types</li>
+                        <li><strong>Client-Side Processing</strong> - Complete browser-based extraction for maximum privacy</li>
+                    </ul>
+                    
+                    <h3>Common Page Extraction Scenarios</h3>
+                    
+                    <p>Address typical <strong>document segmentation challenges</strong> with strategic page extraction:</p>
+                    
+                    <h4>Report Summarization</h4>
+                    <p>Extract executive summary pages, key findings, and conclusions from comprehensive reports to create focused documents for leadership review and decision-making.</p>
+                    
+                    <h4>Compliance Documentation</h4>
+                    <p>Extract specific regulatory pages, compliance sections, and audit materials from larger documents to create focused compliance packages for regulatory submissions.</p>
+                    
+                    <h4>Educational Material Creation</h4>
+                    <p>Extract relevant pages from textbooks, research papers, and educational resources to create focused study materials and course-specific reading assignments.</p>
+                    
+                    <h4>Client Presentation Development</h4>
+                    <p>Extract key pages from proposals, reports, and presentations to create client-specific materials tailored to individual needs and interests.</p>
+                    
+                    <img src="/images/pdf-extraction-applications.jpg" alt="PDF page extraction applications showing document segmentation, report creation, and content curation" class="blog-image" />
+                    
+                    <h3>Advanced Extraction Techniques</h3>
+                    
+                    <p>Master professional document segmentation with these advanced strategies:</p>
+                    
+                    <h4>Strategic Content Selection</h4>
+                    <ul>
+                        <li><strong>Thematic Grouping</strong> - Extract pages based on content themes and subject matter</li>
+                        <li><strong>Audience Targeting</strong> - Select pages appropriate for specific audience needs</li>
+                        <li><strong>Information Hierarchy</strong> - Prioritize pages based on information importance</li>
+                        <li><strong>Context Preservation</strong> - Include supporting pages that provide necessary background</li>
+                    </ul>
+                    
+                    <h4>Workflow Integration</h4>
+                    <ul>
+                        <li><strong>Systematic Processing</strong> - Develop consistent approaches for document segmentation</li>
+                        <li><strong>Quality Standards</strong> - Establish criteria for page selection and extraction</li>
+                        <li><strong>Template Creation</strong> - Develop reusable extraction patterns for similar documents</li>
+                        <li><strong>Review Procedures</strong> - Implement systematic review processes for extracted documents</li>
+                    </ul>
+                    
+                    <h3>Privacy and Security Features</h3>
+                    
+                    <p>Our <strong>secure PDF page extractor</strong> prioritizes document security and user privacy:</p>
+                    
+                    <h4>Client-Side Processing</h4>
+                    <p>All page extraction happens directly in your browser using advanced JavaScript libraries. Your PDF files never leave your device, ensuring complete privacy and eliminating data breach risks.</p>
+                    
+                    <h4>No Server Dependencies</h4>
+                    <p>Unlike cloud-based extraction services, our tool doesn't upload, store, or transmit your PDF files to external servers. This approach guarantees that sensitive documents remain under your complete control.</p>
+                    
+                    <h4>Temporary Processing</h4>
+                    <p>Extracted PDF files exist only in your browser's temporary memory and are automatically cleared when you close the tab or navigate away from the page.</p>
+                    
+                    <h3>Quality Assurance and Verification</h3>
+                    
+                    <p>Ensure optimal page extraction results with these quality control measures:</p>
+                    
+                    <h4>Pre-Extraction Planning</h4>
+                    <ul>
+                        <li><strong>Document Review</strong> - Thoroughly review source document to identify extraction targets</li>
+                        <li><strong>Purpose Definition</strong> - Clearly define the purpose and audience for extracted content</li>
+                        <li><strong>Content Mapping</strong> - Map which pages contain essential information</li>
+                        <li><strong>Selection Strategy</strong> - Plan systematic approach for page selection</li>
+                    </ul>
+                    
+                    <h4>Post-Extraction Verification</h4>
+                    <ul>
+                        <li><strong>Content Completeness</strong> - Verify all necessary pages are included in extracted document</li>
+                        <li><strong>Quality Assessment</strong> - Check that page quality is maintained during extraction</li>
+                        <li><strong>Flow Verification</strong> - Ensure extracted document flows logically and coherently</li>
+                        <li><strong>Purpose Alignment</strong> - Confirm extracted document meets intended objectives</li>
+                    </ul>
+                    
+                    <h3>Industry-Specific Applications</h3>
+                    
+                    <h4>Healthcare Documentation</h4>
+                    <p>Medical facilities extract relevant pages from patient records, treatment protocols, and medical research to create focused documentation for specific cases and procedures.</p>
+                    
+                    <h4>Financial Services</h4>
+                    <p>Financial institutions extract specific pages from reports, compliance documents, and client materials to create targeted documentation for regulatory submissions and client communications.</p>
+                    
+                    <h4>Government and Public Sector</h4>
+                    <p>Government agencies extract relevant pages from policy documents, reports, and public records to create focused materials for specific departments and public distribution.</p>
+                    
+                    <h4>Engineering and Construction</h4>
+                    <p>Engineering firms extract specific pages from technical specifications, blueprints, and project documentation to create focused materials for different project phases and stakeholders.</p>
+                    
+                    <h3>Collaborative Document Management</h3>
+                    
+                    <p>Enhance team collaboration through strategic <strong>PDF page extraction</strong>:</p>
+                    
+                    <h4>Team-Specific Distribution</h4>
+                    <ul>
+                        <li><strong>Department Segmentation</strong> - Extract pages relevant to specific departments or teams</li>
+                        <li><strong>Role-Based Access</strong> - Create role-specific documents with appropriate content</li>
+                        <li><strong>Project Phases</strong> - Extract pages relevant to different project phases and milestones</li>
+                        <li><strong>Stakeholder Communication</strong> - Create stakeholder-specific materials from comprehensive documents</li>
+                    </ul>
+                    
+                    <h4>Workflow Efficiency</h4>
+                    <ul>
+                        <li><strong>Focused Distribution</strong> - Distribute only relevant pages to reduce information overload</li>
+                        <li><strong>Parallel Processing</strong> - Enable teams to work on different document sections simultaneously</li>
+                        <li><strong>Version Control</strong> - Maintain different extracted versions for various purposes</li>
+                        <li><strong>Review Streamlining</strong> - Focus review processes on relevant content sections</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Selection Problems</h4>
+                    <p>If pages don't select properly, ensure you're clicking directly on the thumbnail images. The blue border indicates successful selection.</p>
+                    
+                    <h4>Extraction Errors</h4>
+                    <p>If extraction fails, verify that at least one page is selected and the source PDF is not corrupted or password-protected.</p>
+                    
+                    <h4>Quality Issues</h4>
+                    <p>If extracted pages show quality problems, check the source document quality and ensure adequate system resources are available for processing.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Extract Your PDF Pages Today</h4>
+                        <p>Create focused documents by extracting specific pages with visual selection and professional quality preservation. Optimize your document workflows with precise page extraction and complete privacy.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF management tools</strong></a> including <a href="merge-pdf.html"><strong>document merging</strong></a>, <a href="organize-pdf.html"><strong>page organization</strong></a>, and <a href="compress-pdf.html"><strong>file optimization</strong></a> for comprehensive document management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const pageContainer = document.getElementById('page-container');
+        const saveButton = document.getElementById('save-button');
+        const statusArea = document.getElementById('status-area');
+        let pdfFile = null;
+        let pagesToExtract = new Set();
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => { e.preventDefault(); fileDropZone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+
+        async function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            pdfFile = file;
+            statusArea.textContent = 'Loading PDF...';
+            pageContainer.innerHTML = '';
+            pagesToExtract.clear();
+
+            const fileReader = new FileReader();
+            fileReader.onload = async function() {
+                const typedarray = new Uint8Array(this.result);
+                const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                statusArea.textContent = `PDF loaded. Click on pages to select them for extraction.`;
+                saveButton.style.display = 'block';
+
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 0.3 });
+                    const thumbnailDiv = document.createElement('div');
+                    thumbnailDiv.className = 'page-thumbnail';
+                    thumbnailDiv.dataset.pageNumber = i;
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const pageNumberSpan = document.createElement('span');
+                    pageNumberSpan.className = 'page-number';
+                    pageNumberSpan.textContent = i;
+
+                    thumbnailDiv.appendChild(canvas);
+                    thumbnailDiv.appendChild(pageNumberSpan);
+                    pageContainer.appendChild(thumbnailDiv);
+
+                    await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+                    thumbnailDiv.addEventListener('click', () => {
+                        thumbnailDiv.classList.toggle('selected');
+                        if (pagesToExtract.has(i)) {
+                            pagesToExtract.delete(i);
+                        } else {
+                            pagesToExtract.add(i);
+                        }
+                    });
+                }
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        saveButton.addEventListener('click', async () => {
+            if (!pdfFile || pagesToExtract.size === 0) {
+                statusArea.textContent = 'Please select at least one page to extract.';
+                return;
+            }
+            statusArea.textContent = 'Extracting pages...';
+            saveButton.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const existingPdfBytes = await pdfFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(existingPdfBytes);
+                
+                const newPdfDoc = await PDFDocument.create();
+                const pageIndices = Array.from(pagesToExtract).sort((a, b) => a - b).map(p => p - 1);
+                const copiedPages = await newPdfDoc.copyPages(pdfDoc, pageIndices);
+                copiedPages.forEach(page => newPdfDoc.addPage(page));
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, 'extracted-pages.pdf', 'application/pdf');
+                statusArea.textContent = 'Pages extracted and PDF downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred: ' + error.message;
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

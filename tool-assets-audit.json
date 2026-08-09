@@ -1,0 +1,353 @@
+{
+  "totalToolsFound": 57,
+  "pdfToolsCount": 52,
+  "imageToolsCount": 11,
+  "converterToolsCount": 24,
+  "utilityToolsCount": 9,
+  "status": "COMPLETE",
+  "assetDirectory": "/tool-icons/",
+  "tools": [
+    {
+      "slug": "jpg-to-pdf",
+      "title": "JPG to PDF",
+      "assetPath": "/tool-icons/jpg-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "png-to-pdf",
+      "title": "PNG to PDF",
+      "assetPath": "/tool-icons/png-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "gif-to-pdf",
+      "title": "GIF to PDF",
+      "assetPath": "/tool-icons/gif-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "tiff-to-pdf",
+      "title": "TIFF to PDF",
+      "assetPath": "/tool-icons/tiff-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "bmp-to-pdf",
+      "title": "BMP to PDF",
+      "assetPath": "/tool-icons/bmp-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "svg-to-pdf",
+      "title": "SVG to PDF",
+      "assetPath": "/tool-icons/svg-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "word-to-pdf",
+      "title": "Word to PDF",
+      "assetPath": "/tool-icons/word-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "powerpoint-to-pdf",
+      "title": "PowerPoint to PDF",
+      "assetPath": "/tool-icons/powerpoint-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "excel-to-pdf",
+      "title": "Excel to PDF",
+      "assetPath": "/tool-icons/excel-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "text-to-pdf",
+      "title": "Text to PDF",
+      "assetPath": "/tool-icons/text-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "markdown-to-pdf",
+      "title": "Markdown to PDF",
+      "assetPath": "/tool-icons/markdown-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "heic-to-pdf",
+      "title": "HEIC/HEIF to PDF",
+      "assetPath": "/tool-icons/heic-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "webp-to-pdf",
+      "title": "WebP to PDF",
+      "assetPath": "/tool-icons/webp-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-jpg",
+      "title": "PDF to JPG",
+      "assetPath": "/tool-icons/pdf-to-jpg.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-word",
+      "title": "PDF to Word",
+      "assetPath": "/tool-icons/pdf-to-word.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-powerpoint",
+      "title": "PDF to PowerPoint",
+      "assetPath": "/tool-icons/pdf-to-powerpoint.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-excel",
+      "title": "PDF to Excel",
+      "assetPath": "/tool-icons/pdf-to-excel.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-png",
+      "title": "PDF to PNG",
+      "assetPath": "/tool-icons/pdf-to-png.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-gif",
+      "title": "PDF to GIF",
+      "assetPath": "/tool-icons/pdf-to-gif.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "pdf-to-tiff",
+      "title": "PDF to TIFF",
+      "assetPath": "/tool-icons/pdf-to-tiff.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "merge-pdf",
+      "title": "Merge PDF",
+      "assetPath": "/tool-icons/merge-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "split-pdf",
+      "title": "Split PDF",
+      "assetPath": "/tool-icons/split-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "remove-pages-from-pdf",
+      "title": "Remove Pages",
+      "assetPath": "/tool-icons/remove-pages-from-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "extract-pages-from-pdf",
+      "title": "Extract Pages",
+      "assetPath": "/tool-icons/extract-pages-from-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "organize-pdf",
+      "title": "Organize PDF",
+      "assetPath": "/tool-icons/organize-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "reorder-pages-in-pdf",
+      "title": "Reorder Pages",
+      "assetPath": "/tool-icons/reorder-pages-in-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "copy-pages-from-pdf",
+      "title": "Copy Pages",
+      "assetPath": "/tool-icons/copy-pages-from-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "mix-pdfs",
+      "title": "Mix PDFs",
+      "assetPath": "/tool-icons/mix-pdfs.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "auto-detect-and-remove-blank-pages",
+      "title": "Remove Blank Pages",
+      "assetPath": "/tool-icons/auto-detect-and-remove-blank-pages.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-blank-pages-to-pdf",
+      "title": "Add Blank Pages",
+      "assetPath": "/tool-icons/add-blank-pages-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "create-pdf-booklet",
+      "title": "Create Booklet",
+      "assetPath": "/tool-icons/create-pdf-booklet.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "n-up-pdf",
+      "title": "N-Up PDF",
+      "assetPath": "/tool-icons/n-up-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "deskew-pdf",
+      "title": "Deskew PDF",
+      "assetPath": "/tool-icons/deskew-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "edit-pdf",
+      "title": "Add Text to PDF",
+      "assetPath": "/tool-icons/edit-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "edit-pdf-text",
+      "title": "Edit PDF Text",
+      "assetPath": "/tool-icons/edit-pdf-text.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "edit-pdf-metadata",
+      "title": "Edit Metadata",
+      "assetPath": "/tool-icons/edit-pdf-metadata.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "annotate-pdf",
+      "title": "Annotate PDF",
+      "assetPath": "/tool-icons/annotate-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "highlight-pdf-text",
+      "title": "Highlight Text",
+      "assetPath": "/tool-icons/highlight-pdf-text.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-shapes-to-pdf",
+      "title": "Add Shapes",
+      "assetPath": "/tool-icons/add-shapes-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-hyperlinks-to-pdf",
+      "title": "Add Hyperlinks",
+      "assetPath": "/tool-icons/add-hyperlinks-to-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "sign-pdf",
+      "title": "Sign PDF",
+      "assetPath": "/tool-icons/sign-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "fill-pdf-forms",
+      "title": "Fill PDF Forms",
+      "assetPath": "/tool-icons/fill-pdf-forms.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "create-fillable-pdf",
+      "title": "Create Fillable PDF",
+      "assetPath": "/tool-icons/create-fillable-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "redact-pdf",
+      "title": "Redact PDF",
+      "assetPath": "/tool-icons/redact-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "replace-text-in-pdf",
+      "title": "Replace Text",
+      "assetPath": "/tool-icons/replace-text-in-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "compress-pdf",
+      "title": "Compress PDF",
+      "assetPath": "/tool-icons/compress-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "image-compress",
+      "title": "Compress Image",
+      "assetPath": "/tool-icons/image-compress.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "rotate-pdf",
+      "title": "Rotate PDF",
+      "assetPath": "/tool-icons/rotate-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-page-numbers",
+      "title": "Add Page Numbers",
+      "assetPath": "/tool-icons/add-page-numbers.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-header-and-footer",
+      "title": "Header & Footer",
+      "assetPath": "/tool-icons/add-header-and-footer.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "add-watermark",
+      "title": "Add Watermark",
+      "assetPath": "/tool-icons/add-watermark.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "crop-pdf",
+      "title": "Crop PDF",
+      "assetPath": "/tool-icons/crop-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "flatten-pdf",
+      "title": "Flatten PDF",
+      "assetPath": "/tool-icons/flatten-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "resize-pdf-page",
+      "title": "Resize Page",
+      "assetPath": "/tool-icons/resize-pdf-page.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "change-pdf-page-size",
+      "title": "Change Page Size",
+      "assetPath": "/tool-icons/change-pdf-page-size.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "protect-pdf",
+      "title": "Protect PDF",
+      "assetPath": "/tool-icons/protect-pdf.svg",
+      "status": "COMPLETE"
+    },
+    {
+      "slug": "unlock-pdf",
+      "title": "Unlock PDF",
+      "assetPath": "/tool-icons/unlock-pdf.svg",
+      "status": "COMPLETE"
+    }
+  ]
+}

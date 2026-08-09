@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Easily remove unwanted pages from PDF documents with visual page selection. Perfect for cleaning up documents, removing blank pages, and optimizing file content. Free online PDF page remover." />
+    <title>Remove PDF Pages | Delete Unwanted Pages Free Online Tool</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/remove-pages-from-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Remove PDF Pages Tool",
+        "description": "Easily remove unwanted pages from PDF documents with visual page selection. Perfect for cleaning up documents, removing blank pages, and optimizing file content.",
+        "url": "https://pdf.savefast.in/remove-pages-from-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Visual page selection",
+            "Bulk page removal",
+            "Document optimization",
+            "Blank page elimination",
+            "Client-side processing",
+            "No file uploads required"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can I remove multiple pages at once?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can select multiple pages by clicking on their thumbnails. All selected pages will be removed when you process the document, making bulk page removal quick and efficient."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will removing pages affect document quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, removing pages maintains the original quality of remaining pages. The process only eliminates selected pages while preserving the formatting and quality of the content you keep."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the page removal process secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All PDF processing happens directly in your browser using client-side technology. Your documents never leave your device and are not uploaded to any servers."
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        #page-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .page-thumbnail { position: relative; cursor: pointer; border: 2px solid transparent; }
+        .page-thumbnail.selected { border-color: red; }
+        .page-thumbnail canvas { display: block; }
+        .page-number { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 2px 5px; border-radius: 3px; font-size: 12px; }
+    </style>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/remove-pages-from-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="REMOVE PAGES FROM PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/remove-pages-from-pdf.html" />
+    <meta name="twitter:title" content="REMOVE PAGES FROM PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/remove-pages-from-pdf.svg" alt="remove-pages-from-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Remove Pages from PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    <div id="page-container"></div>
+                    <button id="save-button" style="display: none; margin-top: 10px;">Remove Pages and Save PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Remove Pages from PDF</h1>
+                    <p>Effortlessly clean up your PDF documents by removing unwanted, blank, or irrelevant pages. Perfect for optimizing file size, improving document flow, and creating focused, professional documents.</p>
+                    
+                    <div class="illustration-container">
+                        <img src="/images/remove-pdf-pages.png" alt="Visual page selection interface for removing unwanted PDF pages" class="tool-illustration" />
+                        <p class="image-caption">*Intuitive visual interface for selecting and removing unwanted pages from PDF documents*</p>
+                    </div>
+                    
+                    <h2>How to Remove Pages from a PDF</h2>
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Upload Your PDF Document</h4>
+                                <p>Drag and drop your PDF file or click to browse and select from your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Select Pages to Remove</h4>
+                                <p>Click on the thumbnails of pages you want to delete. Selected pages will be highlighted for easy identification.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Generate Clean PDF</h4>
+                                <p>Click 'Remove Pages and Save PDF' to download your optimized document without the unwanted pages.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Remove Pages from PDF FAQs</h2>
+                    <p><b>Can I remove multiple pages at once?</b><br>Yes, you can select multiple pages by clicking on their thumbnails. All selected pages will be removed when you process the document.</p>
+                    <p><b>Will this affect document quality?</b><br>No, removing pages maintains the original quality of remaining pages while optimizing your document.</p>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    
+                    <div class="visual-separator"></div>
+                    
+                    <h2>The Complete Guide to PDF Page Management</h2>
+                    
+                    <div class="story-section">
+                        <h3>📄 Why Page Removal is Essential for Document Optimization</h3>
+                        <p>Picture this: You've just received a 50-page research report, but only 30 pages are relevant to your project. Or imagine scanning a document that accidentally captured blank pages, advertisements, or irrelevant content. This is where <strong>PDF page removal</strong> becomes your document optimization superpower.</p>
+                        
+                        <p>Effective document management isn't just about having the right content – it's about presenting <strong>focused</strong>, <strong>professional</strong>, and <strong>streamlined</strong> information that serves your specific needs. Removing unnecessary pages transforms cluttered documents into polished, purposeful resources.</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
+                            </div>
+                            <h4>Document Cleanup</h4>
+                            <p>Remove blank pages, advertisements, cover pages, and irrelevant content to create focused documents.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>File Optimization</h4>
+                            <p>Reduce file size and improve loading times by eliminating unnecessary pages and content.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9,12L11,14L15,10L20,15H4L9,12Z" /></svg>
+                            </div>
+                            <h4>Professional Presentation</h4>
+                            <p>Create polished documents that contain only relevant, high-quality content for your audience.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Applications: When Page Removal Transforms Documents</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📚 Academic and Research Applications</h4>
+                        <p><strong>Students and researchers</strong> use page removal to create focused study materials from lengthy academic papers. Extract only the relevant chapters, remove bibliography pages, or eliminate unrelated sections to create customized learning resources.</p>
+                        <p><strong>Educators</strong> optimize textbooks and course materials by removing outdated content, irrelevant chapters, or administrative pages to create streamlined educational resources.</p>
+                    </div>
+                    
+                    <img src="/images/academic-page-removal.png" alt="Academic document optimization through strategic page removal" class="blog-image" />
+                    <p class="image-caption">*Academic documents optimized through strategic page removal for focused learning and research*</p>
+                    
+                    <h4>🏢 Business and Professional Use</h4>
+                    <p>Business professionals leverage <strong>PDF page removal</strong> for creating targeted presentations and reports:</p>
+                    
+                    <ul>
+                        <li><strong>Executive Summaries</strong> - Extract key pages from lengthy reports for C-suite presentations</li>
+                        <li><strong>Client Proposals</strong> - Remove internal notes and create client-ready documents</li>
+                        <li><strong>Training Materials</strong> - Customize training documents for specific roles or departments</li>
+                        <li><strong>Compliance Reports</strong> - Remove sensitive sections while maintaining regulatory content</li>
+                        <li><strong>Marketing Materials</strong> - Extract relevant product pages from comprehensive catalogs</li>
+                    </ul>
+                    
+                    <h4>📝 Document Scanning and Digitization</h4>
+                    <p>Digital archiving projects benefit enormously from <strong>page removal capabilities</strong> when dealing with scanned documents that contain unwanted elements like blank pages, cover sheets, or scanning artifacts.</p>
+                    
+                    <div class="story-section">
+                        <h3>📁 Case Study: Legal Document Preparation</h3>
+                        <p>Martinez & Associates law firm was preparing for a major litigation case involving thousands of pages of discovery documents. Many documents contained irrelevant cover pages, blank sheets, and administrative content that would confuse the jury and waste court time.</p>
+                        
+                        <p>Using systematic page removal, they transformed 2,000 pages of mixed content into 800 pages of focused, relevant evidence. The result: <strong>60% reduction in document volume</strong>, <strong>improved jury comprehension</strong>, and <strong>significant cost savings</strong> in printing and case preparation time.</p>
+                    </div>
+                    
+                    <h3>Advanced Techniques: Strategic Page Selection</h3>
+                    
+                    <p>Effective page removal requires strategic thinking about document purpose and audience needs:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Content Analysis</h4>
+                            <p>Review document purpose and identify pages that don't contribute to your specific objectives.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7Z" /></svg>
+                            </div>
+                            <h4>Audience Consideration</h4>
+                            <p>Remove pages that might confuse, overwhelm, or distract your intended audience from key messages.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>Flow Optimization</h4>
+                            <p>Ensure remaining pages create logical progression and smooth reading experience.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Common Page Removal Scenarios</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Typical Pages to Remove</h4>
+                        <p><strong>Blank Pages:</strong> Often created during scanning or document conversion processes.</p>
+                        <p><strong>Cover Pages:</strong> Remove when creating internal documents or combining multiple sources.</p>
+                        <p><strong>Administrative Content:</strong> Legal disclaimers, terms of service, or internal notes not relevant to end users.</p>
+                        <p><strong>Outdated Information:</strong> Previous versions, superseded data, or time-sensitive content that's no longer relevant.</p>
+                    </div>
+                    
+                    <h4>Quality Assurance Best Practices</h4>
+                    <p>Ensure optimal results when removing pages from your documents:</p>
+                    
+                    <ul>
+                        <li><strong>Preview Before Removal</strong> - Review page thumbnails to confirm you're removing the correct content</li>
+                        <li><strong>Check Page Numbering</strong> - Consider how page removal affects document navigation and references</li>
+                        <li><strong>Maintain Context</strong> - Ensure remaining pages still provide complete, understandable information</li>
+                        <li><strong>Save Original</strong> - Keep a backup of the original document before making modifications</li>
+                        <li><strong>Test Functionality</strong> - Verify that links, bookmarks, and references still work correctly</li>
+                    </ul>
+                    
+                    <img src="/images/page-removal-workflow.png" alt="Professional workflow for PDF page removal and document optimization" class="blog-image" />
+                    <p class="image-caption">*Professional workflow for strategic page removal and document optimization*</p>
+                    
+                    <h3>Integration with Document Management Workflow</h3>
+                    
+                    <p>Maximize efficiency by combining <strong>page removal</strong> with other document processing tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="split-pdf.html"><strong>Split PDF</strong></a> to separate documents before selective page removal</li>
+                        <li>Apply <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine cleaned documents from multiple sources</li>
+                        <li>Combine with <a href="reorder-pages-in-pdf.html"><strong>Reorder Pages</strong></a> to optimize document flow after removal</li>
+                        <li>Use <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize file size after page removal</li>
+                    </ul>
+                    
+                    <h3>Environmental and Economic Benefits</h3>
+                    
+                    <div class="story-section">
+                        <h3>🌱 Sustainable Document Practices</h3>
+                        <p>Beyond efficiency, strategic page removal contributes to environmental sustainability. A consulting firm reduced their annual printing costs by 40% and paper consumption by 35% simply by removing unnecessary pages from client reports and internal documentation.</p>
+                        
+                        <p>This approach not only saves money but also aligns with corporate sustainability goals and demonstrates environmental responsibility to clients and stakeholders.</p>
+                    </div>
+                    
+                    <h3>Advanced Use Cases and Professional Applications</h3>
+                    
+                    <p>Professional document management extends beyond simple page removal:</p>
+                    
+                    <ul>
+                        <li><strong>Version Control</strong> - Remove outdated pages when updating documents while preserving relevant content</li>
+                        <li><strong>Compliance Management</strong> - Eliminate pages containing sensitive information for public disclosure</li>
+                        <li><strong>Training Customization</strong> - Create role-specific training materials from comprehensive manuals</li>
+                        <li><strong>Client Deliverables</strong> - Remove internal notes and create professional client-ready documents</li>
+                        <li><strong>Archive Optimization</strong> - Reduce storage requirements by eliminating redundant or obsolete content</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Optimize Your Documents?</h4>
+                        <p>Experience efficient <strong>PDF page removal</strong> with visual selection and instant results. No registration required, no file uploads, and unlimited document optimization.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF management tools</strong></a> including <a href="reorder-pages-in-pdf.html"><strong>Page Reordering</strong></a>, <a href="merge-pdf.html"><strong>PDF Merging</strong></a>, and <a href="split-pdf.html"><strong>PDF Splitting</strong></a> for comprehensive document control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const pageContainer = document.getElementById('page-container');
+        const saveButton = document.getElementById('save-button');
+        const statusArea = document.getElementById('status-area');
+        let pdfFile = null;
+        let pagesToDelete = new Set();
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => { e.preventDefault(); fileDropZone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+
+        async function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            pdfFile = file;
+            statusArea.textContent = 'Loading PDF...';
+            pageContainer.innerHTML = '';
+            pagesToDelete.clear();
+
+            const fileReader = new FileReader();
+            fileReader.onload = async function() {
+                const typedarray = new Uint8Array(this.result);
+                const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                statusArea.textContent = `PDF loaded. Click on pages to select them for deletion.`;
+                saveButton.style.display = 'block';
+
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 0.3 });
+                    const thumbnailDiv = document.createElement('div');
+                    thumbnailDiv.className = 'page-thumbnail';
+                    thumbnailDiv.dataset.pageNumber = i;
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const pageNumberSpan = document.createElement('span');
+                    pageNumberSpan.className = 'page-number';
+                    pageNumberSpan.textContent = i;
+
+                    thumbnailDiv.appendChild(canvas);
+                    thumbnailDiv.appendChild(pageNumberSpan);
+                    pageContainer.appendChild(thumbnailDiv);
+
+                    await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+                    thumbnailDiv.addEventListener('click', () => {
+                        thumbnailDiv.classList.toggle('selected');
+                        if (pagesToDelete.has(i)) {
+                            pagesToDelete.delete(i);
+                        } else {
+                            pagesToDelete.add(i);
+                        }
+                    });
+                }
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        saveButton.addEventListener('click', async () => {
+            if (!pdfFile || pagesToDelete.size === 0) {
+                statusArea.textContent = 'Please select at least one page to remove.';
+                return;
+            }
+            statusArea.textContent = 'Removing pages...';
+            saveButton.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const existingPdfBytes = await pdfFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(existingPdfBytes);
+                
+                const pagesToKeep = Array.from({ length: pdfDoc.getPageCount() }, (_, i) => i + 1)
+                                       .filter(p => !pagesToDelete.has(p));
+                
+                const newPdfDoc = await PDFDocument.create();
+                const copiedPages = await newPdfDoc.copyPages(pdfDoc, pagesToKeep.map(p => p - 1));
+                copiedPages.forEach(page => newPdfDoc.addPage(page));
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, 'removed-pages.pdf', 'application/pdf');
+                statusArea.textContent = 'Pages removed and PDF downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred: ' + error.message;
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

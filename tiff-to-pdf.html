@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Convert TIFF images to high-quality PDF documents with multi-page support. Perfect for archival documents, professional photography, and technical imaging. Free online TIFF to PDF converter." />
+    <title>TIFF to PDF Converter | Multi-Page TIFF to PDF Free Online</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/tiff-to-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TIFF to PDF Converter",
+        "description": "Convert TIFF images to high-quality PDF documents with multi-page support. Perfect for archival documents, professional photography, and technical imaging.",
+        "url": "https://pdf.savefast.in/tiff-to-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Multi-page TIFF support",
+            "High-quality image preservation",
+            "Archival document conversion",
+            "Professional photography support",
+            "Client-side processing",
+            "No file uploads required"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does it work with multi-page TIFF files?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool converts each page of a multi-page TIFF into a separate page in the PDF, preserving the complete document structure and maintaining image quality throughout."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will the image quality be preserved?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. Our conversion process maintains the original TIFF image quality, ensuring that high-resolution images and fine details are preserved in the resulting PDF document."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the TIFF to PDF conversion process secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Completely secure. All TIFF processing happens directly in your browser using client-side technology. Your images never leave your device and are not uploaded to any servers."
+                }
+            }
+        ]
+    }
+    </script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/tiff-to-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="TIFF TO PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/tiff-to-pdf.html" />
+    <meta name="twitter:title" content="TIFF TO PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/tiff-to-pdf.svg" alt="tiff-to-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>TIFF to PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop TIFF files here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept=".tif,.tiff" multiple hidden>
+                    <div id="file-list" style="margin-bottom: 20px;"></div>
+                    <button id="process-button" disabled>Convert to PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">TIFF to PDF Converter</h1>
+                    <p>Convert TIFF images to professional PDF documents with exceptional quality preservation. Ideal for archival documents, professional photography, medical imaging, and technical documentation requiring the highest image fidelity.</p>
+                    
+                    <div class="illustration-container">
+                        <img src="/images/tiff-to-pdf-conversion.png" alt="TIFF to PDF conversion showing high-quality image preservation" class="tool-illustration" />
+                        <p class="image-caption">*Professional TIFF to PDF conversion maintaining exceptional image quality for archival and professional applications*</p>
+                    </div>
+                    
+                    <h2>How to Convert TIFF to PDF</h2>
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Upload Your TIFF Files</h4>
+                                <p>Drag and drop your TIFF images or click to browse and select from your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Process High-Quality Images</h4>
+                                <p>Click 'Convert to PDF' to transform your TIFF files into a professional PDF document.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Download Premium PDF</h4>
+                                <p>Get your high-quality PDF document with preserved image fidelity and professional presentation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>TIFF to PDF FAQs</h2>
+                    <p><b>Does it work with multi-page TIFFs?</b><br>Yes, our tool converts each page of a multi-page TIFF into separate PDF pages, preserving complete document structure.</p>
+                    <p><b>Will image quality be preserved?</b><br>Absolutely. Our conversion maintains original TIFF quality, ensuring high-resolution images and fine details are preserved.</p>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    
+                    <div class="visual-separator"></div>
+                    
+                    <h2>The Complete Guide to TIFF to PDF Conversion</h2>
+                    
+                    <div class="story-section">
+                        <h3>🖼️ Why TIFF Format Matters in Professional Imaging</h3>
+                        <p>Picture this: A medical research facility has thousands of high-resolution microscopy images stored in TIFF format, each containing critical diagnostic information that must be preserved with absolute fidelity. When these images need to be compiled into research reports or shared with colleagues, the quality cannot be compromised. This is where <strong>TIFF to PDF conversion</strong> becomes essential for maintaining the integrity of professional imaging data.</p>
+                        
+                        <p>TIFF (Tagged Image File Format) represents the gold standard for <strong>lossless image storage</strong>, offering <strong>uncompressed quality</strong>, <strong>multi-page support</strong>, and <strong>professional-grade color accuracy</strong>. Converting these images to PDF format preserves these qualities while making them suitable for document distribution and professional presentation.</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9,12L11,14L15,10L20,15H4L9,12Z" /></svg>
+                            </div>
+                            <h4>Lossless Quality</h4>
+                            <p>Preserve the original TIFF image quality without any compression artifacts or quality degradation.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Multi-Page Support</h4>
+                            <p>Handle complex multi-page TIFF documents with automatic page separation and organization.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7Z" /></svg>
+                            </div>
+                            <h4>Professional Standards</h4>
+                            <p>Meet the highest standards for archival, medical, and professional imaging applications.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Applications: When TIFF to PDF Conversion is Critical</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🏥 Medical and Scientific Imaging</h4>
+                        <p><strong>Medical professionals</strong> use TIFF to PDF conversion for creating comprehensive diagnostic reports that include high-resolution medical images, X-rays, and microscopy data. The lossless quality ensures critical diagnostic details are preserved.</p>
+                        <p><strong>Research scientists</strong> convert laboratory imaging data to PDF format for publication in scientific journals and research papers, maintaining the integrity of experimental results.</p>
+                    </div>
+                    
+                    <img src="/images/medical-imaging-tiff-pdf.png" alt="Medical imaging converted from TIFF to PDF for diagnostic reports" class="blog-image" />
+                    <p class="image-caption">*Medical imaging data converted from TIFF to PDF maintaining diagnostic quality for professional healthcare applications*</p>
+                    
+                    <h4>📚 Archival and Document Management</h4>
+                    <p>Institutions and organizations rely on <strong>TIFF to PDF conversion</strong> for long-term document preservation:</p>
+                    
+                    <ul>
+                        <li><strong>Historical Documents</strong> - Convert digitized historical records and manuscripts for accessible archival storage</li>
+                        <li><strong>Legal Records</strong> - Transform scanned legal documents into searchable PDF archives</li>
+                        <li><strong>Government Archives</strong> - Preserve official documents and records in standardized PDF format</li>
+                        <li><strong>Library Collections</strong> - Convert rare books and manuscripts for digital preservation and access</li>
+                        <li><strong>Corporate Records</strong> - Archive business documents and records in professional PDF format</li>
+                    </ul>
+                    
+                    <h4>📷 Professional Photography and Art</h4>
+                    <p>Creative professionals use <strong>TIFF to PDF conversion</strong> for portfolio creation and client presentation while maintaining artistic integrity and color accuracy.</p>
+                    
+                    <div class="story-section">
+                        <h3>📈 Case Study: National Archives Digital Preservation Project</h3>
+                        <p>The National Historical Society faced the challenge of preserving thousands of historical documents and photographs stored in TIFF format. While TIFF provided excellent quality, the files were difficult to share with researchers and the public, limiting access to valuable historical resources.</p>
+                        
+                        <p>By implementing systematic TIFF to PDF conversion, they achieved: <strong>100% quality preservation</strong>, <strong>universal accessibility</strong>, <strong>streamlined research workflows</strong>, and <strong>enhanced public access</strong>. The project enabled global access to historical resources while maintaining archival quality standards.</p>
+                    </div>
+                    
+                    <h3>Understanding TIFF Format and PDF Integration</h3>
+                    
+                    <p>Professional TIFF to PDF conversion requires understanding the technical aspects that ensure optimal results:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Color Depth Preservation</h4>
+                            <p>Maintain the full color depth and dynamic range of professional TIFF images in PDF format.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7Z" /></svg>
+                            </div>
+                            <h4>Metadata Preservation</h4>
+                            <p>Retain important image metadata and technical information essential for professional applications.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>Resolution Integrity</h4>
+                            <p>Preserve the original resolution and pixel density for applications requiring precise image detail.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Common TIFF to PDF Conversion Scenarios</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Professional Use Cases</h4>
+                        <p><strong>Medical Reports:</strong> Include high-resolution medical images in patient reports and diagnostic documentation.</p>
+                        <p><strong>Scientific Publications:</strong> Incorporate research imaging data into academic papers and journal submissions.</p>
+                        <p><strong>Archival Documents:</strong> Convert historical records and manuscripts for digital preservation and access.</p>
+                        <p><strong>Technical Documentation:</strong> Include detailed technical images and diagrams in professional documentation.</p>
+                    </div>
+                    
+                    <h4>Best Practices for TIFF to PDF Conversion</h4>
+                    <p>Ensure optimal results when converting your TIFF images:</p>
+                    
+                    <ul>
+                        <li><strong>Verify Image Quality</strong> - Check that original TIFF files are of the highest quality before conversion</li>
+                        <li><strong>Organize Multi-Page Files</strong> - Ensure multi-page TIFF documents are properly structured and ordered</li>
+                        <li><strong>Consider File Size</strong> - Balance quality preservation with practical file size requirements</li>
+                        <li><strong>Test Compatibility</strong> - Verify that converted PDFs display correctly across different viewers and systems</li>
+                        <li><strong>Preserve Metadata</strong> - Ensure important technical information and image data are retained</li>
+                    </ul>
+                    
+                    <img src="/images/tiff-pdf-workflow.png" alt="Professional workflow for TIFF to PDF conversion with quality preservation" class="blog-image" />
+                    <p class="image-caption">*Professional workflow for TIFF to PDF conversion ensuring optimal quality and compatibility for archival applications*</p>
+                    
+                    <h3>Integration with Professional Imaging Workflows</h3>
+                    
+                    <p>Maximize efficiency by combining <strong>TIFF to PDF conversion</strong> with other document processing tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine converted TIFF documents with other PDF content</li>
+                        <li>Apply <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize file size while maintaining image quality</li>
+                        <li>Combine with <a href="add-watermark.html"><strong>Add Watermark</strong></a> to protect valuable imaging data and intellectual property</li>
+                        <li>Use <a href="protect-pdf.html"><strong>Protect PDF</strong></a> to secure sensitive medical or research imaging data</li>
+                    </ul>
+                    
+                    <h3>Technical Excellence and Quality Assurance</h3>
+                    
+                    <div class="story-section">
+                        <h3>🔍 Maintaining Professional Standards</h3>
+                        <p>Professional TIFF to PDF conversion requires meticulous attention to quality preservation and technical accuracy. Our conversion process prioritizes maintaining the original image characteristics while ensuring compatibility with professional PDF standards.</p>
+                        
+                        <p>This approach ensures that converted documents meet the stringent requirements of medical, scientific, and archival applications where image quality and accuracy are paramount.</p>
+                    </div>
+                    
+                    <h3>Advanced Applications and Specialized Requirements</h3>
+                    
+                    <p>Professional TIFF to PDF conversion serves specialized industries with unique requirements:</p>
+                    
+                    <ul>
+                        <li><strong>Medical Imaging</strong> - Convert diagnostic images for patient records and medical documentation</li>
+                        <li><strong>Scientific Research</strong> - Transform laboratory and research imaging for publication and analysis</li>
+                        <li><strong>Digital Archiving</strong> - Preserve historical documents and records in accessible PDF format</li>
+                        <li><strong>Legal Documentation</strong> - Convert evidence and legal imaging for court proceedings and case files</li>
+                        <li><strong>Engineering Documentation</strong> - Include technical imaging in professional engineering reports</li>
+                    </ul>
+                    
+                    <h3>Quality Control and Validation</h3>
+                    
+                    <p>Professional TIFF to PDF conversion requires systematic quality assurance:</p>
+                    
+                    <ul>
+                        <li><strong>Image Integrity</strong> - Verify that converted images maintain original quality and detail</li>
+                        <li><strong>Color Accuracy</strong> - Ensure color reproduction matches the original TIFF files</li>
+                        <li><strong>Resolution Verification</strong> - Confirm that image resolution and clarity are preserved</li>
+                        <li><strong>Multi-Page Testing</strong> - Check that multi-page TIFF files are correctly separated and organized</li>
+                        <li><strong>Compatibility Assessment</strong> - Test PDFs across different viewers and professional applications</li>
+                    </ul>
+                    
+                    <h3>Future-Proofing Professional Imaging</h3>
+                    
+                    <p>Strategic TIFF to PDF conversion supports long-term imaging asset management:</p>
+                    
+                    <ul>
+                        <li><strong>Archive Standards</strong> - Create PDF/A compliant files for long-term preservation and accessibility</li>
+                        <li><strong>Universal Compatibility</strong> - Ensure imaging data remains accessible across all systems and platforms</li>
+                        <li><strong>Professional Integration</strong> - Maintain compatibility with professional imaging and documentation workflows</li>
+                        <li><strong>Quality Preservation</strong> - Protect valuable imaging data from format obsolescence and quality degradation</li>
+                        <li><strong>Workflow Optimization</strong> - Build efficient processes that scale with institutional imaging needs</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Convert Your TIFF Images?</h4>
+                        <p>Experience professional <strong>TIFF to PDF conversion</strong> with exceptional quality preservation and multi-page support. No registration required, no file uploads, and unlimited conversions.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>image conversion tools</strong></a> including <a href="png-to-pdf.html"><strong>PNG to PDF</strong></a>, <a href="jpg-to-pdf.html"><strong>JPG to PDF</strong></a>, and <a href="svg-to-pdf.html"><strong>SVG to PDF</strong></a> for comprehensive image-to-document conversion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/tiff.js/tiff.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+        let selectedFiles = [];
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            selectedFiles = Array.from(files).filter(file => file.type === 'image/tiff');
+            if (selectedFiles.length > 0) {
+                fileList.innerHTML = `<div>Selected: ${selectedFiles.length} file(s)</div>`;
+                processButton.disabled = false;
+            } else {
+                fileList.innerHTML = '';
+                processButton.disabled = true;
+                statusArea.textContent = 'Please select valid TIFF files.';
+            }
+        }
+
+        async function convertTiffToPng(arrayBuffer) {
+            const tiff = new Tiff({ buffer: arrayBuffer });
+            const canvas = tiff.toCanvas();
+            return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        }
+
+        processButton.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) {
+                statusArea.textContent = 'Please select one or more TIFF files.';
+                return;
+            }
+
+            processButton.disabled = true;
+            statusArea.textContent = 'Creating your PDF...';
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+
+                for (const file of selectedFiles) {
+                    const tiffBytes = await file.arrayBuffer();
+                    const tiff = new Tiff({buffer: tiffBytes});
+                    for (let i = 0, len = tiff.countDirectory(); i < len; ++i) {
+                        tiff.setDirectory(i);
+                        const canvas = tiff.toCanvas();
+                        const pngBlob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+                        const pngBytes = await pngBlob.arrayBuffer();
+                        const pngImage = await pdfDoc.embedPng(pngBytes);
+                        const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
+                        page.drawImage(pngImage, {
+                            x: 0,
+                            y: 0,
+                            width: pngImage.width,
+                            height: pngImage.height,
+                        });
+                    }
+                }
+
+                const pdfBytes = await pdfDoc.save();
+
+                downloadFile(pdfBytes, `converted-images.pdf`, 'application/pdf');
+                statusArea.textContent = 'Your PDF has been created and downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred during PDF creation: ' + error.message;
+            } finally {
+                processButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

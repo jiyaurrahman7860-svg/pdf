@@ -1,0 +1,5 @@
+# Permanent 301 Redirects from legacy mytoolspdf.com to pdf.savefast.in
+https://mytoolspdf.com/* https://pdf.savefast.in/:splat 301!
+http://mytoolspdf.com/* https://pdf.savefast.in/:splat 301!
+https://www.mytoolspdf.com/* https://pdf.savefast.in/:splat 301!
+http://www.mytoolspdf.com/* https://pdf.savefast.in/:splat 301!

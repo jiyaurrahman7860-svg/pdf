@@ -1,0 +1,68 @@
+const tools = [
+    // Convert to PDF
+    { href: "jpg-to-pdf.html", title: "JPG to PDF", description: "Convert JPG images to PDF documents.", category: "Convert to PDF" },
+    { href: "png-to-pdf.html", title: "PNG to PDF", description: "Convert PNG images to PDF documents.", category: "Convert to PDF" },
+    { href: "gif-to-pdf.html", title: "GIF to PDF", description: "Convert GIF images to PDF documents.", category: "Convert to PDF" },
+    { href: "tiff-to-pdf.html", title: "TIFF to PDF", description: "Convert TIFF images to PDF documents.", category: "Convert to PDF" },
+    { href: "bmp-to-pdf.html", title: "BMP to PDF", description: "Convert BMP images to PDF documents.", category: "Convert to PDF" },
+    { href: "svg-to-pdf.html", title: "SVG to PDF", description: "Convert SVG vector graphics to PDF.", category: "Convert to PDF" },
+    { href: "word-to-pdf.html", title: "Word to PDF", description: "Convert Microsoft Word files to PDF.", category: "Convert to PDF" },
+    { href: "powerpoint-to-pdf.html", title: "PowerPoint to PDF", description: "Convert PowerPoint presentations to PDF.", category: "Convert to PDF" },
+    { href: "excel-to-pdf.html", title: "Excel to PDF", description: "Convert Excel spreadsheets to PDF.", category: "Convert to PDF" },
+    { href: "text-to-pdf.html", title: "Text to PDF", description: "Convert plain text to a PDF file.", category: "Convert to PDF" },
+    { href: "markdown-to-pdf.html", title: "Markdown to PDF", description: "Convert Markdown files to PDF.", category: "Convert to PDF" },
+    { href: "heic-to-pdf.html", title: "HEIC/HEIF to PDF", description: "Convert HEIC/HEIF images to PDF.", category: "Convert to PDF" },
+    { href: "webp-to-pdf.html", title: "WebP to PDF", description: "Convert WebP images to PDF.", category: "Convert to PDF" },
+
+    // Convert from PDF
+    { href: "pdf-to-jpg.html", title: "PDF to JPG", description: "Convert PDF pages to JPG images.", category: "Convert from PDF" },
+    { href: "pdf-to-word.html", title: "PDF to Word", description: "Convert PDF to editable Word documents.", category: "Convert from PDF" },
+    { href: "pdf-to-powerpoint.html", title: "PDF to PowerPoint", description: "Convert PDF to PowerPoint presentations.", category: "Convert from PDF" },
+    { href: "pdf-to-excel.html", title: "PDF to Excel", description: "Convert PDF to Excel spreadsheets.", category: "Convert from PDF" },
+    { href: "pdf-to-png.html", title: "PDF to PNG", description: "Convert PDF pages to PNG images.", category: "Convert from PDF" },
+    { href: "pdf-to-gif.html", title: "PDF to GIF", description: "Convert PDF pages to animated GIFs.", category: "Convert from PDF" },
+    { href: "pdf-to-tiff.html", title: "PDF to TIFF", description: "Convert PDF pages to TIFF images.", category: "Convert from PDF" },
+
+    // Organize & Modify Pages
+    { href: "merge-pdf.html", title: "Merge PDF", description: "Combine multiple PDF files into one.", category: "Organize & Modify Pages" },
+    { href: "split-pdf.html", title: "Split PDF", description: "Extract pages or split a PDF into multiple files.", category: "Organize & Modify Pages" },
+    { href: "remove-pages-from-pdf.html", title: "Remove Pages", description: "Delete specific pages from a PDF.", category: "Organize & Modify Pages" },
+    { href: "extract-pages-from-pdf.html", title: "Extract Pages", description: "Create a new PDF from selected pages.", category: "Organize & Modify Pages" },
+    { href: "organize-pdf.html", title: "Organize PDF", description: "Visually reorder, delete, or add pages.", category: "Organize & Modify Pages" },
+    { href: "reorder-pages-in-pdf.html", title: "Reorder Pages", description: "Change the page order in a PDF.", category: "Organize & Modify Pages" },
+    { href: "copy-pages-from-pdf.html", title: "Copy Pages", description: "Copy pages from one PDF to another.", category: "Organize & Modify Pages" },
+    { href: "mix-pdfs.html", title: "Mix PDFs", description: "Alternate pages from two PDFs.", category: "Organize & Modify Pages" },
+    { href: "auto-detect-and-remove-blank-pages.html", title: "Remove Blank Pages", description: "Automatically find and remove blank pages.", category: "Organize & Modify Pages" },
+    { href: "add-blank-pages-to-pdf.html", title: "Add Blank Pages", description: "Insert blank pages into a PDF.", category: "Organize & Modify Pages" },
+    { href: "create-pdf-booklet.html", title: "Create Booklet", description: "Arrange PDF pages into a booklet format.", category: "Organize & Modify Pages" },
+    { href: "n-up-pdf.html", title: "N-Up PDF", description: "Place multiple pages on a single PDF page.", category: "Organize & Modify Pages" },
+    { href: "deskew-pdf.html", title: "Deskew PDF", description: "Straighten scanned pages in a PDF.", category: "Organize & Modify Pages" },
+
+    // Edit, Annotate & Sign
+    { href: "edit-pdf.html", title: "Add Text to PDF", description: "Add and edit text in a PDF document.", category: "Edit, Annotate & Sign" },
+    { href: "edit-pdf-text.html", title: "Edit PDF Text", description: "Modify existing text in a PDF.", category: "Edit, Annotate & Sign" },
+    { href: "edit-pdf-metadata.html", title: "Edit Metadata", description: "Change PDF metadata like author and title.", category: "Edit, Annotate & Sign" },
+    { href: "annotate-pdf.html", title: "Annotate PDF", description: "Add comments and annotations to a PDF.", category: "Edit, Annotate & Sign" },
+    { href: "highlight-pdf-text.html", title: "Highlight Text", description: "Highlight important text in a PDF.", category: "Edit, Annotate & Sign" },
+    { href: "add-shapes-to-pdf.html", title: "Add Shapes", description: "Add shapes like rectangles and circles to a PDF.", category: "Edit, Annotate & Sign" },
+    { href: "add-hyperlinks-to-pdf.html", title: "Add Hyperlinks", description: "Add clickable links to a PDF.", category: "Edit, Annotate & Sign" },
+    { href: "sign-pdf.html", title: "Sign PDF", description: "Sign a PDF document electronically.", category: "Edit, Annotate & Sign" },
+    { href: "fill-pdf-forms.html", title: "Fill PDF Forms", description: "Fill out and save PDF forms.", category: "Edit, Annotate & Sign" },
+    { href: "create-fillable-pdf.html", title: "Create Fillable PDF", description: "Create a PDF form with fillable fields.", category: "Edit, Annotate & Sign" },
+    { href: "redact-pdf.html", title: "Redact PDF", description: "Permanently remove sensitive information.", category: "Edit, Annotate & Sign" },
+    { href: "replace-text-in-pdf.html", title: "Replace Text", description: "Find and replace text in a PDF.", category: "Edit, Annotate & Sign" },
+
+    // Optimize & Secure
+    { href: "compress-pdf.html", title: "Compress PDF", description: "Reduce the file size of a PDF.", category: "Optimize & Secure" },
+    { href: "image-compress.html", title: "Compress Image", description: "Reduce the file size of images.", category: "Optimize & Secure" },
+    { href: "rotate-pdf.html", title: "Rotate PDF", description: "Rotate pages in a PDF document.", category: "Optimize & Secure" },
+    { href: "add-page-numbers.html", title: "Add Page Numbers", description: "Add page numbers to a PDF.", category: "Optimize & Secure" },
+    { href: "add-header-and-footer.html", title: "Header & Footer", description: "Add headers and footers to a PDF.", category: "Optimize & Secure" },
+    { href: "add-watermark.html", title: "Add Watermark", description: "Add a text or image watermark to a PDF.", category: "Optimize & Secure" },
+    { href: "crop-pdf.html", title: "Crop PDF", description: "Crop the pages of a PDF.", category: "Optimize & Secure" },
+    { href: "flatten-pdf.html", title: "Flatten PDF", description: "Flatten PDF forms and annotations.", category: "Optimize & Secure" },
+    { href: "resize-pdf-page.html", title: "Resize Page", description: "Change the page size of a PDF.", category: "Optimize & Secure" },
+    { href: "change-pdf-page-size.html", title: "Change Page Size", description: "Alter the dimensions of PDF pages.", category: "Optimize & Secure" },
+    { href: "protect-pdf.html", title: "Protect PDF", description: "Add a password to protect a PDF.", category: "Optimize & Secure" },
+    { href: "unlock-pdf.html", title: "Unlock PDF", description: "Remove a password from a PDF.", category: "Optimize & Secure" }
+];

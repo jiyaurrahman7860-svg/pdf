@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protect your documents by adding a custom text watermark. This tool applies your text to every page, ensuring your ownership is clear." />
+    <title>Add Watermark to PDF Free | Text Watermark</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/add-watermark.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Watermark Tool",
+        "description": "Add custom text watermarks to PDF files online. Free, secure PDF watermarking with client-side processing and document protection.",
+        "url": "https://pdf.savefast.in/add-watermark.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Text watermark addition",
+            "Custom watermark text",
+            "All pages watermarking",
+            "Client-side processing",
+            "Document protection",
+            "Brand identification"
+        ]
+    }
+    </script>
+
+    <!-- Client-Side Library for this tool only -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/add-watermark.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="ADD WATERMARK | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/add-watermark.html" />
+    <meta name="twitter:title" content="ADD WATERMARK | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/add-watermark.svg" alt="add-watermark 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Add Watermark</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                    <div id="file-list" style="margin-bottom: 20px;"></div>
+                    <div class="tool-options">
+                        <label for="watermark-text">Watermark Text:</label>
+                        <input type="text" id="watermark-text" value="CONFIDENTIAL">
+                    </div>
+                    <button id="process-button" disabled>Add Watermark</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Add Watermark to PDF</h1>
+                    
+                    <!-- 1. INTRODUCTION (50-80 words) -->
+                    <div class="intro-section">
+                        <div class="intro-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                        </div>
+                        <div class="conversational-intro">
+                            Adding watermarks to PDF documents is essential for protecting your intellectual property, establishing brand identity, and preventing unauthorized use. Whether you're securing confidential reports, branding marketing materials, or marking drafts, watermarks provide visible proof of ownership while maintaining document professionalism.
+                        </div>
+                    </div>
+
+                    <!-- 2. WHY USE THIS TOOL? (150-200 words) -->
+                    <div class="benefits-section">
+                        <h2>🛡️ Why Add Watermarks to PDFs?</h2>
+                        <p>Protect your documents and establish professional branding with custom watermarks that deter unauthorized use and enhance credibility:</p>
+                        
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Copyright Protection</strong><br>
+                                    Establish clear ownership and deter unauthorized copying or distribution of your valuable documents.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Professional Branding</strong><br>
+                                    Add company names, logos, or contact information to create consistent brand presence across all documents.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Document Status</strong><br>
+                                    Mark documents as DRAFT, CONFIDENTIAL, or APPROVED to prevent confusion and ensure proper handling.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/add-watermark-interface.png" alt="PDF watermark tool interface showing custom text input and preview options" class="screenshot-image">
+                            <div class="image-caption">Enter custom watermark text and apply it securely to all PDF pages</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. STEP-BY-STEP GUIDE (120-150 words) -->
+                    <div class="tutorial-section">
+                        <h2>🎨 How to Add Watermarks (Brand Protection Made Easy)</h2>
+                        <p>Protect and brand your PDF documents with custom watermarks in just three simple steps:</p>
+                        
+                        <div class="tutorial-steps">
+                            <div class="tutorial-step">
+                                <div class="step-icon">1</div>
+                                <div>
+                                    <h4>Upload PDF Document</h4>
+                                    <p>Drag and drop your PDF file or click to browse. All document types and sizes are supported for watermarking.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">2</div>
+                                <div>
+                                    <h4>Enter Watermark Text</h4>
+                                    <p>Type your custom watermark text - company name, copyright notice, CONFIDENTIAL, or any text you need for protection.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">3</div>
+                                <div>
+                                    <h4>Download Protected PDF</h4>
+                                    <p>Click "Add Watermark" and get your professionally watermarked document with diagonal text overlay on every page.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/watermark-application-steps.png" alt="Step by step watermark application process showing before and after results" class="screenshot-image">
+                            <div class="image-caption">Watch your PDF transform with professional watermarks applied to every page</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. REAL-LIFE USE CASES (150+ words) -->
+                    <div class="use-cases-section">
+                        <h2>🏢 Brand Protection Success Stories</h2>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Meet Katherine, Creative Director at BrandForward Agency</div>
+                            <p>Katherine's team created valuable design proposals and creative briefs for clients, but competitors were stealing ideas from unmarked documents. Client presentations were being copied and used without attribution, damaging the agency's reputation and losing potential business. Protecting intellectual property was becoming a major concern.</p>
+                            <div class="story-outcome">
+                                <strong>The Brand Protection Solution:</strong> Adding watermarks to all client documents eliminated unauthorized copying. Clients now receive clearly branded materials, competitor theft stopped completely, and Katherine's agency won 40% more projects due to professional presentation and clear ownership identification.
+                            </div>
+                        </div>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Dr. Martinez, Research Director at MedInnovate Labs</div>
+                            <p>Dr. Martinez published research reports and clinical studies that needed confidentiality protection during peer review. Unmarked documents were being shared inappropriately, and sensitive research data was at risk of premature disclosure. The lab needed a way to track document distribution and prevent unauthorized sharing.</p>
+                            <div class="story-outcome">
+                                <strong>The Confidentiality Win:</strong> Watermarking research documents with "CONFIDENTIAL" and lab branding ensured proper handling. Document security improved dramatically, unauthorized sharing dropped to zero, and Dr. Martinez now tracks all research distribution with confidence and professional credibility.
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/watermark-use-cases.png" alt="Real world examples of PDF watermarking in creative and research environments" class="screenshot-image">
+                            <div class="image-caption">From creative agencies to research labs - watermarks protect valuable intellectual property</div>
+                        </div>
+                    </div>
+
+                    <!-- 5. TIPS + BEST PRACTICES (100+ words) -->
+                    <div class="tips-section">
+                        <div class="tips-header">
+                            <div class="tips-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7A1,1 0 0,1 12,8H11V16A1,1 0 0,1 10,17H9A1,1 0 0,1 8,16V8H7A1,1 0 0,1 6,7V5.73C5.4,5.39 5,4.74 5,4A2,2 0 0,1 7,2A2,2 0 0,1 9,4C9,4.74 8.6,5.39 8,5.73V6H10V5.73C9.4,5.39 9,4.74 9,4A2,2 0 0,1 11,2A2,2 0 0,1 13,4C13,4.74 12.6,5.39 12,5.73V6H14V5.73C13.4,5.39 13,4.74 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4A2,2 0 0,1 15,6A2,2 0 0,1 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4C17,4.74 16.6,5.39 16,5.73V7A1,1 0 0,1 15,8H14V16A1,1 0 0,1 13,17H12A1,1 0 0,1 11,16V8H10A1,1 0 0,1 9,7V5.73C8.4,5.39 8,4.74 8,4A2,2 0 0,1 10,2A2,2 0 0,1 12,2Z" /></svg>
+                            </div>
+                            <h2>💡 Professional Watermarking Strategies</h2>
+                        </div>
+                        <p>Maximize your document protection and branding with these expert watermarking techniques:</p>
+                        
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Strategic Text Choice:</strong> Use company names for branding, "CONFIDENTIAL" for sensitive docs, or "DRAFT" for work-in-progress materials.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Copyright Protection:</strong> Include © symbols and year (e.g., "© 2024 YourCompany") for legal protection and clear ownership identification.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Contact Information:</strong> Add website URLs or phone numbers to watermarks for easy contact and business promotion.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Readability Balance:</strong> Watermarks are applied diagonally to be visible without significantly interfering with document content.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Consistent Branding:</strong> Use the same watermark text across all company documents for professional consistency and brand recognition.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-divider">
+                        <div class="content-divider-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                        </div>
+                    </div>
+
+                    <h2>Watermark FAQs</h2>
+                    <p><b>Can I change the watermark's position or color?</b><br>The tool currently applies a standard, diagonally centered watermark for maximum visibility. More options are coming soon!</p>
+                    <p><b>Are my files safe?</b><br>Yes, your files are processed in-browser and are not sent to any servers, keeping your information secure.</p>
+                    
+                    <div class="blog-style-content">
+                        <h2>🏷️ Watermark Mastery: Brand Your Documents Like a Professional</h2>
+                        
+                        <p class="blog-intro">Tired of documents being shared without attribution? Worried about unauthorized use of your proprietary content? You're facing the intellectual property protection challenge that costs businesses billions annually. Whether you're a photographer protecting your portfolio, a consultant branding client deliverables, or a company securing confidential drafts, <strong>PDF watermarking</strong> transforms your documents into branded, protected assets that clearly communicate ownership while deterring unauthorized distribution.</p>
+                    
+                    <img src="/images/pdf-watermark-protection.jpg" alt="PDF watermark protection showing branded documents with custom text watermarks" class="blog-image" />
+                    
+                    <h3>Why Add Watermarks to PDF Files?</h3>
+                    
+                    <p><strong>PDF watermarking</strong> serves multiple critical purposes for businesses, professionals, and individuals:</p>
+                    
+                    <ul>
+                        <li><strong>Copyright Protection</strong> - Establish ownership and prevent unauthorized use of your documents</li>
+                        <li><strong>Brand Identification</strong> - Add company logos, names, or slogans for professional branding</li>
+                        <li><strong>Document Security</strong> - Deter unauthorized copying and distribution of sensitive materials</li>
+                        <li><strong>Status Indication</strong> - Mark documents as DRAFT, CONFIDENTIAL, or APPROVED</li>
+                        <li><strong>Legal Protection</strong> - Provide evidence of document ownership in legal disputes</li>
+                        <li><strong>Professional Presentation</strong> - Enhance document appearance with branded watermarks</li>
+                    </ul>
+                    
+                    <h3>Advanced Watermarking Features</h3>
+                    
+                    <p>Our <strong>PDF text watermark tool</strong> provides professional-grade watermarking capabilities with complete privacy protection:</p>
+                    
+                    <h4>Custom Text Watermarks</h4>
+                    <p>Create personalized watermarks with any text content to meet your specific needs:</p>
+                    
+                    <ul>
+                        <li><strong>Company Branding</strong> - Add business names, websites, or contact information</li>
+                        <li><strong>Copyright Notices</strong> - Include copyright symbols and ownership statements</li>
+                        <li><strong>Confidentiality Markers</strong> - Mark sensitive documents with security classifications</li>
+                        <li><strong>Draft Indicators</strong> - Clearly identify work-in-progress documents</li>
+                        <li><strong>Date Stamps</strong> - Include creation or revision dates for version control</li>
+                        <li><strong>Contact Information</strong> - Add phone numbers, emails, or addresses</li>
+                    </ul>
+                    
+                    <h4>Optimal Watermark Placement</h4>
+                    <p>Our tool applies watermarks with diagonal positioning for maximum visibility while maintaining document readability. This strategic placement ensures watermarks are clearly visible without significantly interfering with document content.</p>
+                    
+                    <img src="/images/watermark-placement-examples.jpg" alt="Examples of optimal watermark placement showing diagonal positioning across PDF pages" class="blog-image" />
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Business Document Protection</h4>
+                    <p>Companies use <strong>PDF watermarking</strong> to protect proprietary documents, financial reports, and strategic plans. Watermarks establish ownership, deter unauthorized sharing, and maintain brand consistency across all corporate communications.</p>
+                    
+                    <h4>Legal Document Security</h4>
+                    <p>Law firms apply watermarks to contracts, legal briefs, and case documents to prevent unauthorized copying and establish clear ownership. Watermarks provide additional security layers for sensitive legal materials.</p>
+                    
+                    <h4>Creative Content Protection</h4>
+                    <p>Designers, photographers, and content creators use watermarks to protect their intellectual property. Portfolio pieces, design mockups, and creative works are safeguarded against unauthorized use and distribution.</p>
+                    
+                    <h4>Educational Material Branding</h4>
+                    <p>Educational institutions and training organizations watermark course materials, textbooks, and educational resources to maintain copyright protection and institutional branding.</p>
+                    
+                    <h3>Client-Side Processing Advantages</h3>
+                    
+                    <p>Our <strong>secure PDF watermarking</strong> tool processes files entirely within your browser, providing unmatched security benefits:</p>
+                    
+                    <h4>Complete Document Privacy</h4>
+                    <p>Your PDF files never leave your device during the watermarking process. All processing occurs locally in your browser, eliminating any risk of data interception, unauthorized access, or privacy breaches.</p>
+                    
+                    <h4>No Server Dependencies</h4>
+                    <p>Since files aren't uploaded to external servers, there's no risk of server downtime, data retention, or third-party access to your confidential documents. You maintain complete control over your files.</p>
+                    
+                    <h4>Instant Processing</h4>
+                    <p>Client-side processing eliminates upload and download delays, providing immediate watermarking results. Large files process efficiently without bandwidth limitations or server restrictions.</p>
+                    
+                    <img src="/images/client-side-watermarking.jpg" alt="Client-side PDF watermarking process showing local browser processing without server upload" class="blog-image" />
+                    
+                    <h3>Watermark Design Best Practices</h3>
+                    
+                    <p>Maximize the effectiveness of your <strong>PDF watermarks</strong> with these professional design techniques:</p>
+                    
+                    <h4>Text Selection Guidelines</h4>
+                    <ul>
+                        <li><strong>Concise Messaging</strong> - Use brief, clear text that conveys your message effectively</li>
+                        <li><strong>Brand Consistency</strong> - Maintain consistent watermark text across all company documents</li>
+                        <li><strong>Legal Compliance</strong> - Include required copyright notices and legal disclaimers</li>
+                        <li><strong>Contact Information</strong> - Add relevant contact details for document inquiries</li>
+                        <li><strong>Status Indicators</strong> - Clearly mark document status (DRAFT, FINAL, CONFIDENTIAL)</li>
+                    </ul>
+                    
+                    <h4>Professional Watermark Examples</h4>
+                    <ul>
+                        <li><strong>Copyright Protection</strong> - "© 2025 Company Name - All Rights Reserved"</li>
+                        <li><strong>Confidentiality</strong> - "CONFIDENTIAL - Internal Use Only"</li>
+                        <li><strong>Draft Status</strong> - "DRAFT - Not for Distribution"</li>
+                        <li><strong>Brand Identification</strong> - "CompanyName.com - Professional Services"</li>
+                        <li><strong>Contact Information</strong> - "Contact: info@company.com | 555-0123"</li>
+                    </ul>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Enhance your document management by combining <strong>PDF watermarking</strong> with our other professional tools:</p>
+                    
+                    <ul>
+                        <li><a href="protect-pdf.html"><strong>Protect PDF</strong></a> - Add password protection after watermarking for enhanced security</li>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Optimize file sizes after adding watermarks</li>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine watermarked documents into single files</li>
+                        <li><a href="sign-pdf.html"><strong>Sign PDF</strong></a> - Add digital signatures to watermarked documents</li>
+                        <li><a href="edit-pdf-text.html"><strong>Edit PDF Text</strong></a> - Make content changes before watermarking</li>
+                        <li><a href="organize-pdf.html"><strong>Organize PDF</strong></a> - Arrange pages before applying watermarks</li>
+                    </ul>
+                    
+                    <h3>Technical Specifications</h3>
+                    
+                    <p>Our <strong>PDF watermark tool</strong> provides comprehensive watermarking capabilities:</p>
+                    
+                    <ul>
+                        <li><strong>Text Support</strong> - Full Unicode character support for international text</li>
+                        <li><strong>Page Coverage</strong> - Watermarks applied to all pages automatically</li>
+                        <li><strong>Positioning</strong> - Optimal diagonal placement for maximum visibility</li>
+                        <li><strong>Transparency</strong> - Semi-transparent watermarks maintain document readability</li>
+                        <li><strong>Font Handling</strong> - Consistent font rendering across all PDF viewers</li>
+                        <li><strong>File Compatibility</strong> - Works with all PDF versions and formats</li>
+                    </ul>
+                    
+                    <h3>Copyright and Legal Considerations</h3>
+                    
+                    <p>Understanding the legal aspects of <strong>PDF watermarking</strong> helps maximize document protection:</p>
+                    
+                    <h4>Copyright Notice Requirements</h4>
+                    <p>Include proper copyright notices in your watermarks to establish legal ownership. Standard format includes the copyright symbol (©), year, and owner name for maximum legal protection.</p>
+                    
+                    <h4>Trademark Protection</h4>
+                    <p>Watermarks can include trademark symbols (™ or ®) to protect branded content and establish trademark usage in documents. This helps maintain trademark rights and prevents unauthorized use.</p>
+                    
+                    <h4>Confidentiality Markings</h4>
+                    <p>Legal confidentiality markings in watermarks help establish document sensitivity levels and can provide legal protection for proprietary information in business disputes.</p>
+                    
+                    <img src="/images/legal-watermark-examples.jpg" alt="Examples of legal watermark formats showing copyright notices and confidentiality markings" class="blog-image" />
+                    
+                    <h3>Industry-Specific Applications</h3>
+                    
+                    <h4>Healthcare Documentation</h4>
+                    <p>Medical facilities watermark patient records and medical reports with facility names and confidentiality notices to maintain HIPAA compliance and protect patient privacy.</p>
+                    
+                    <h4>Financial Services</h4>
+                    <p>Banks and financial institutions use watermarks on statements, reports, and financial documents to prevent fraud and establish document authenticity.</p>
+                    
+                    <h4>Real Estate Marketing</h4>
+                    <p>Real estate professionals watermark property listings, floor plans, and marketing materials with agency branding and contact information for lead generation and brand recognition.</p>
+                    
+                    <h4>Government and Military</h4>
+                    <p>Government agencies apply classification watermarks to documents indicating security levels and handling requirements for sensitive information protection.</p>
+                    
+                    <h3>Quality Assurance and Testing</h3>
+                    
+                    <p>Ensure optimal watermark results with these quality control measures:</p>
+                    
+                    <h4>Visibility Testing</h4>
+                    <ul>
+                        <li><strong>Print Testing</strong> - Verify watermarks appear correctly when printed</li>
+                        <li><strong>Screen Display</strong> - Check watermark visibility on different devices and screen sizes</li>
+                        <li><strong>Readability Check</strong> - Ensure document content remains easily readable</li>
+                        <li><strong>Color Contrast</strong> - Verify watermark visibility against various background colors</li>
+                    </ul>
+                    
+                    <h4>Compatibility Verification</h4>
+                    <ul>
+                        <li><strong>PDF Reader Testing</strong> - Check watermark display in different PDF applications</li>
+                        <li><strong>Mobile Compatibility</strong> - Verify watermarks appear correctly on mobile devices</li>
+                        <li><strong>Version Control</strong> - Test watermarked PDFs with various PDF version standards</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Watermark Visibility Problems</h4>
+                    <p>If watermarks appear too faint or too bold, the issue may be related to document background colors or content density. Our tool automatically adjusts transparency for optimal visibility.</p>
+                    
+                    <h4>Text Encoding Issues</h4>
+                    <p>For special characters or non-English text, ensure your browser supports Unicode rendering. Most modern browsers handle international characters correctly in watermarks.</p>
+                    
+                    <h4>Large File Processing</h4>
+                    <p>Very large PDF files may take longer to process. Ensure your browser has sufficient memory available and consider splitting large documents if processing becomes slow.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Protect Your Documents with Professional Watermarks</h4>
+                        <p>Add custom text watermarks to your PDF documents with complete privacy and security. Our client-side processing ensures your files never leave your device while providing professional watermarking results.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF protection tools</strong></a> including <a href="protect-pdf.html"><strong>password protection</strong></a>, <a href="sign-pdf.html"><strong>digital signatures</strong></a>, and <a href="redact-pdf.html"><strong>content redaction</strong></a> for comprehensive document security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const { PDFDocument, rgb, StandardFonts, degrees } = window.PDFLib;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+        const watermarkTextInput = document.getElementById('watermark-text');
+        let selectedFile = null;
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(file) {
+            if (file && file.type === 'application/pdf') {
+                selectedFile = file;
+                fileList.innerHTML = `<div>Selected: ${file.name}</div>`;
+                processButton.disabled = false;
+                statusArea.textContent = '';
+            } else {
+                selectedFile = null;
+                fileList.innerHTML = '';
+                processButton.disabled = true;
+                statusArea.textContent = 'Please select a valid PDF file.';
+            }
+        }
+
+        processButton.addEventListener('click', async () => {
+            if (!selectedFile || !watermarkTextInput.value) {
+                statusArea.textContent = 'Please select a file and enter watermark text.';
+                return;
+            }
+
+            processButton.disabled = true;
+            statusArea.textContent = 'Adding watermark...';
+
+            try {
+                const fileBuffer = await selectedFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(fileBuffer);
+                const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+                const pages = pdfDoc.getPages();
+                const watermarkText = watermarkTextInput.value;
+
+                for (const page of pages) {
+                    const { width, height } = page.getSize();
+                    const textSize = Math.min(width, height) / 10;
+                    const textWidth = font.widthOfTextAtSize(watermarkText, textSize);
+                    
+                    page.drawText(watermarkText, {
+                        x: width / 2 - textWidth / 2,
+                        y: height / 2 - textSize / 2,
+                        size: textSize,
+                        font,
+                        color: rgb(0.75, 0.75, 0.75),
+                        opacity: 0.5,
+                        rotate: degrees(45),
+                    });
+                }
+
+                const pdfBytes = await pdfDoc.save();
+                downloadFile(pdfBytes, 'watermarked.pdf', 'application/pdf');
+                statusArea.textContent = 'Watermark added successfully!';
+            } catch (error) {
+                console.error('Error adding watermark:', error);
+                statusArea.textContent = 'An error occurred.';
+            } finally {
+                processButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

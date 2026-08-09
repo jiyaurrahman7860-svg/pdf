@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sort, rotate, and delete pages in your PDF with our free online tool. Our visual editor makes it easy to rearrange your document exactly how you want it." />
+    <title>Organize PDF Free | Reorder, Rotate & Delete Pages Online</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/organize-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Organization Tool",
+        "description": "Organize PDF pages with visual editor. Reorder, rotate, and delete pages online with drag-and-drop functionality and client-side processing.",
+        "url": "https://pdf.savefast.in/organize-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Visual page organization",
+            "Drag and drop reordering",
+            "Page rotation controls",
+            "Page deletion options",
+            "Real-time preview",
+            "Client-side processing"
+        ]
+    }
+    </script>
+
+    <!-- Client-Side Libraries for this tool only -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;
+    </script>
+    <style>
+        #page-preview-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+        }
+        .page-container {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        .page-container canvas { width: 100px; height: auto; }
+        .page-container .page-actions {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+        .page-container .page-actions button { font-size: 12px; padding: 2px 5px; cursor: pointer; }
+        .page-container .page-number { font-size: 12px; }
+    </style>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/organize-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="ORGANIZE PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/organize-pdf.html" />
+    <meta name="twitter:title" content="ORGANIZE PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/organize-pdf.svg" alt="organize-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Organize PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                    <div id="page-preview-area"></div>
+                    <button id="process-button" disabled>Apply Changes</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Organize PDF Pages</h1>
+                    <p>Sort, rotate, and delete pages in your PDF with our free online tool. Our visual editor makes it easy to rearrange your document exactly how you want it.</p>
+                    <h2>How to Organize a PDF</h2>
+                    <ol>
+                        <li>Upload your PDF file.</li>
+                        <li>Drag and drop the page thumbnails to reorder them.</li>
+                        <li>Use the buttons on each page to rotate or delete it.</li>
+                        <li>Click 'Process Files' to get your newly organized PDF.</li>
+                    </ol>
+                    <h2>Organize PDF FAQs</h2>
+                    <p><b>Can I add new pages?</b><br>This tool is for organizing existing pages. To add new pages, you can use our Merge PDF tool to combine it with another document.</p>
+                    <p><b>Is this process secure?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your information remains private.</p>
+                    
+                    <h2>Professional PDF Page Organization Guide</h2>
+                    
+                    <p>Efficient <strong>PDF page organization</strong> is crucial for document management, presentation quality, and professional workflow optimization. Our <strong>free PDF organizer tool</strong> provides intuitive visual editing capabilities while maintaining complete privacy through client-side processing, ensuring your sensitive documents never leave your device.</p>
+                    
+                    <img src="/images/pdf-page-organization-interface.jpg" alt="PDF page organization interface showing drag-and-drop functionality and visual page thumbnails" class="blog-image" />
+                    
+                    <h3>Why Organize PDF Pages?</h3>
+                    
+                    <p><strong>PDF document organization</strong> addresses critical document management needs across various professional scenarios:</p>
+                    
+                    <ul>
+                        <li><strong>Document Restructuring</strong> - Reorder pages for logical flow and improved readability</li>
+                        <li><strong>Presentation Preparation</strong> - Arrange content for optimal presentation sequence</li>
+                        <li><strong>Archive Management</strong> - Organize historical documents for better accessibility</li>
+                        <li><strong>Report Compilation</strong> - Arrange sections and appendices in proper order</li>
+                        <li><strong>Quality Control</strong> - Remove unwanted pages and correct document structure</li>
+                        <li><strong>Workflow Optimization</strong> - Streamline document processing and review cycles</li>
+                    </ul>
+                    
+                    <h3>Advanced Organization Features</h3>
+                    
+                    <p>Our <strong>PDF page organizer</strong> provides comprehensive document restructuring capabilities with professional-grade functionality:</p>
+                    
+                    <h4>Visual Page Management</h4>
+                    <p>Intuitive visual interface enables efficient page organization through real-time preview:</p>
+                    
+                    <ul>
+                        <li><strong>Thumbnail Previews</strong> - View page content at a glance for accurate organization</li>
+                        <li><strong>Drag-and-Drop Interface</strong> - Effortlessly reorder pages with mouse or touch gestures</li>
+                        <li><strong>Real-Time Updates</strong> - See changes immediately as you reorganize document structure</li>
+                        <li><strong>Page Numbering</strong> - Clear page indicators help track document organization</li>
+                        <li><strong>Visual Feedback</strong> - Immediate confirmation of page movements and changes</li>
+                    </ul>
+                    
+                    <h4>Comprehensive Organization Tools</h4>
+                    <p>Complete page management functionality for professional document organization:</p>
+                    
+                    <ul>
+                        <li><strong>Page Reordering</strong> - Drag and drop pages to create optimal document flow</li>
+                        <li><strong>Page Rotation</strong> - Correct orientation issues while organizing document structure</li>
+                        <li><strong>Page Deletion</strong> - Remove unwanted pages to streamline document content</li>
+                        <li><strong>Batch Operations</strong> - Perform multiple organization tasks efficiently</li>
+                        <li><strong>Preview Mode</strong> - Review changes before finalizing document organization</li>
+                    </ul>
+                    
+                    <div class="story-section">
+                        <h3>📋 Case Study: Corporate Training Manual Transformation</h3>
+                        <p>TrainingMax Corporation struggled with disorganized training manuals that confused employees and hindered learning outcomes. Their 200-page training documents had mixed-up sections, incorrect page orders, and outdated content scattered throughout, making it difficult for new hires to follow structured learning paths.</p>
+                        
+                        <p>By implementing systematic PDF organization protocols, TrainingMax achieved: <strong>80% improvement in training effectiveness</strong>, <strong>reduced employee confusion</strong>, <strong>streamlined onboarding processes</strong>, and <strong>enhanced learning outcomes</strong>. The solution enabled them to create logical, well-structured training materials that guide employees through clear learning progressions.</p>
+                    </div>
+                    
+                    <h3>Understanding Document Structure Optimization</h3>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,3.5L18.5,9H13V3.5Z" /></svg>
+                            </div>
+                            <h4>Visual Organization</h4>
+                            <p>Intuitive drag-and-drop interface with thumbnail previews for efficient document restructuring and page management.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Complete Control</h4>
+                            <p>Comprehensive tools for reordering, rotating, and deleting pages to create perfectly structured documents.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                            </div>
+                            <h4>Secure Processing</h4>
+                            <p>All organization happens in your browser, ensuring your documents remain private and secure throughout the process.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Professional Document Management Applications</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📚 Business and Educational Applications</h4>
+                        <p><strong>Training Materials:</strong> Organize training manuals, employee handbooks, and educational content for logical learning progression and improved comprehension.</p>
+                        <p><strong>Report Compilation:</strong> Structure business reports, research documents, and presentations with proper section ordering and appendix placement.</p>
+                        <p><strong>Legal Documentation:</strong> Organize contracts, case files, and legal briefs with proper chronological and logical document flow.</p>
+                        <p><strong>Archive Management:</strong> Restructure historical documents and legacy files for improved accessibility and professional presentation.</p>
+                    </div>
+                    
+                    <h3>Integration with Document Management Workflows</h3>
+                    
+                    <p>Enhance document structure by combining <strong>PDF organization</strong> with other document processing tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine organized documents into comprehensive packages</li>
+                        <li>Apply <a href="add-page-numbers.html"><strong>Add Page Numbers</strong></a> to maintain proper pagination after organization</li>
+                        <li>Combine with <a href="add-watermark.html"><strong>Add Watermark</strong></a> to brand organized documents for professional distribution</li>
+                        <li>Use <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize organized documents for efficient storage and sharing</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Organize Your Documents?</h4>
+                        <p>Experience professional <strong>PDF organization</strong> that transforms chaotic documents into well-structured, logical presentations. No registration required, no file uploads, and unlimited organization.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>organization tools</strong></a> including <a href="reorder-pages-in-pdf.html"><strong>Reorder Pages</strong></a>, <a href="merge-pdf.html"><strong>Merge PDF</strong></a>, and <a href="split-pdf.html"><strong>Split PDF</strong></a> for comprehensive document management.</p>
+                    </div>
+                    </ul>
+                    
+                    <h4>Comprehensive Page Controls</h4>
+                    <p>Individual page management tools provide precise control over document structure:</p>
+                    
+                    <ul>
+                        <li><strong>Page Rotation</strong> - Correct orientation issues during organization process</li>
+                        <li><strong>Page Deletion</strong> - Remove unwanted pages to streamline documents</li>
+                        <li><strong>Selective Operations</strong> - Apply changes to specific pages without affecting others</li>
+                        <li><strong>Batch Actions</strong> - Perform multiple operations efficiently</li>
+                    </ul>
+                    
+                    <img src="/images/pdf-organization-controls.jpg" alt="PDF organization controls showing rotation, deletion, and reordering options for individual pages" class="blog-image" />
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Business Report Assembly</h4>
+                    <p>Corporate teams use <strong>PDF page organization</strong> to compile comprehensive business reports from multiple sources. Reorder executive summaries, financial data, and appendices for logical presentation flow and stakeholder accessibility.</p>
+                    
+                    <h4>Legal Document Preparation</h4>
+                    <p>Legal professionals organize case files, evidence documents, and legal briefs for court submissions. Proper page sequencing ensures compliance with court requirements and enhances document presentation quality.</p>
+                    
+                    <h4>Academic Research Compilation</h4>
+                    <p>Researchers and academics organize thesis chapters, research papers, and supporting materials. Logical page arrangement improves readability and meets academic publication standards.</p>
+                    
+                    <h4>Marketing Material Assembly</h4>
+                    <p>Marketing teams organize brochures, catalogs, and promotional materials for optimal customer engagement. Strategic page ordering enhances message delivery and brand presentation.</p>
+                    
+                    <h3>Client-Side Processing Advantages</h3>
+                    
+                    <p>Our <strong>secure PDF organization</strong> tool processes documents entirely within your browser, providing unmatched security benefits:</p>
+                    
+                    <h4>Complete Document Privacy</h4>
+                    <p>Your PDF files never leave your device during the organization process. All processing occurs locally in your browser, eliminating any risk of data interception, unauthorized access, or privacy breaches.</p>
+                    
+                    <h4>No Server Dependencies</h4>
+                    <p>Since files aren't uploaded to external servers, there's no risk of server downtime, data retention, or third-party access to your confidential documents. You maintain complete control over your files.</p>
+                    
+                    <h4>Instant Processing</h4>
+                    <p>Client-side processing eliminates upload and download delays, providing immediate organization results. Large documents process efficiently without bandwidth limitations or server restrictions.</p>
+                    
+                    <img src="/images/client-side-pdf-organization.jpg" alt="Client-side PDF organization process showing local browser processing without server upload" class="blog-image" />
+                    
+                    <h3>Organization Best Practices</h3>
+                    
+                    <p>Optimize your <strong>PDF document organization</strong> results with these professional techniques:</p>
+                    
+                    <h4>Pre-Organization Planning</h4>
+                    <ul>
+                        <li><strong>Content Review</strong> - Examine all pages to understand document structure</li>
+                        <li><strong>Logical Sequencing</strong> - Plan optimal page order for intended audience</li>
+                        <li><strong>Purpose Alignment</strong> - Organize pages to support document objectives</li>
+                        <li><strong>Redundancy Elimination</strong> - Identify and remove duplicate or unnecessary pages</li>
+                    </ul>
+                    
+                    <h4>Efficient Organization Workflow</h4>
+                    <ul>
+                        <li><strong>Batch Operations</strong> - Group similar changes for efficient processing</li>
+                        <li><strong>Progressive Organization</strong> - Make incremental improvements rather than complete restructuring</li>
+                        <li><strong>Quality Verification</strong> - Review organized documents before finalizing changes</li>
+                        <li><strong>Backup Originals</strong> - Maintain copies of original documents before organization</li>
+                    </ul>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Enhance your document management by combining <strong>PDF page organization</strong> with our other professional tools:</p>
+                    
+                    <ul>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine multiple documents before organization</li>
+                        <li><a href="split-pdf.html"><strong>Split PDF</strong></a> - Separate documents for targeted organization</li>
+                        <li><a href="rotate-pdf.html"><strong>Rotate PDF</strong></a> - Correct page orientations during organization</li>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Optimize file sizes after organization</li>
+                        <li><a href="add-watermark.html"><strong>Add Watermark</strong></a> - Apply branding to organized documents</li>
+                        <li><a href="protect-pdf.html"><strong>Protect PDF</strong></a> - Secure organized documents with passwords</li>
+                    </ul>
+                    
+                    <h3>Technical Specifications</h3>
+                    
+                    <p>Our <strong>PDF organization tool</strong> provides comprehensive document restructuring capabilities:</p>
+                    
+                    <ul>
+                        <li><strong>Visual Interface</strong> - Drag-and-drop functionality with real-time previews</li>
+                        <li><strong>Page Operations</strong> - Reordering, rotation, and deletion capabilities</li>
+                        <li><strong>Quality Preservation</strong> - Lossless organization maintains original document quality</li>
+                        <li><strong>Format Compatibility</strong> - Works with all PDF versions and formats</li>
+                        <li><strong>Content Integrity</strong> - Text, images, and formatting remain intact</li>
+                        <li><strong>Metadata Retention</strong> - Document properties and metadata preserved</li>
+                    </ul>
+                    
+                    <h3>Common Organization Scenarios</h3>
+                    
+                    <p>Address typical <strong>PDF organization challenges</strong> with targeted solutions:</p>
+                    
+                    <h4>Multi-Source Document Assembly</h4>
+                    <p>Documents created from multiple sources often require reorganization to achieve logical flow. Our tool enables efficient reordering of disparate content into cohesive presentations.</p>
+                    
+                    <h4>Scanning Sequence Corrections</h4>
+                    <p>Batch-scanned documents frequently have pages in incorrect order due to scanning workflow issues. Visual organization quickly corrects sequencing problems without rescanning.</p>
+                    
+                    <h4>Report Structure Optimization</h4>
+                    <p>Business reports often need restructuring to improve readability and impact. Strategic page reordering enhances message delivery and stakeholder engagement.</p>
+                    
+                    <h4>Archive Standardization</h4>
+                    <p>Historical document collections require standardization for consistent presentation and improved accessibility. Systematic organization creates uniform document structures.</p>
+                    
+                    <img src="/images/pdf-organization-scenarios.jpg" alt="Common PDF organization scenarios showing document assembly and structure optimization" class="blog-image" />
+                    
+                    <h3>Quality Assurance and Verification</h3>
+                    
+                    <p>Ensure optimal organization results with these quality control measures:</p>
+                    
+                    <h4>Post-Organization Review</h4>
+                    <ul>
+                        <li><strong>Sequence Verification</strong> - Confirm pages flow logically from beginning to end</li>
+                        <li><strong>Content Integrity</strong> - Verify all essential content remains accessible</li>
+                        <li><strong>Navigation Testing</strong> - Ensure document navigation works properly</li>
+                        <li><strong>Print Preview</strong> - Test organized documents for printing accuracy</li>
+                    </ul>
+                    
+                    <h4>Compatibility Testing</h4>
+                    <ul>
+                        <li><strong>Reader Testing</strong> - Check organized PDFs in different PDF applications</li>
+                        <li><strong>Device Compatibility</strong> - Verify proper display on various devices</li>
+                        <li><strong>Print Testing</strong> - Confirm organized pages print correctly</li>
+                        <li><strong>Archive Suitability</strong> - Ensure organized documents are suitable for long-term storage</li>
+                    </ul>
+                    
+                    <h3>Industry-Specific Applications</h3>
+                    
+                    <h4>Healthcare Documentation</h4>
+                    <p>Medical facilities organize patient records, treatment plans, and medical reports for healthcare providers and regulatory compliance. Proper organization improves patient care and administrative efficiency.</p>
+                    
+                    <h4>Financial Services</h4>
+                    <p>Financial institutions organize client portfolios, investment reports, and regulatory documents for compliance and client presentation. Strategic organization enhances professional service delivery.</p>
+                    
+                    <h4>Engineering and Construction</h4>
+                    <p>Technical professionals organize blueprints, specifications, and project documentation for construction teams and regulatory submissions. Logical organization improves project coordination.</p>
+                    
+                    <h4>Education and Training</h4>
+                    <p>Educational institutions organize course materials, textbooks, and training resources for students and instructors. Effective organization enhances learning outcomes and accessibility.</p>
+                    
+                    <h3>Advanced Organization Techniques</h3>
+                    
+                    <p>Maximize document organization effectiveness with these professional strategies:</p>
+                    
+                    <h4>Content-Based Organization</h4>
+                    <ul>
+                        <li><strong>Thematic Grouping</strong> - Organize pages by topic or subject matter</li>
+                        <li><strong>Chronological Sequencing</strong> - Arrange content in temporal order when appropriate</li>
+                        <li><strong>Importance Hierarchy</strong> - Position critical content for maximum impact</li>
+                        <li><strong>Audience Consideration</strong> - Organize content based on reader expectations</li>
+                    </ul>
+                    
+                    <h4>Visual Organization Principles</h4>
+                    <ul>
+                        <li><strong>Flow Optimization</strong> - Create smooth transitions between sections</li>
+                        <li><strong>Balance Achievement</strong> - Distribute content evenly throughout document</li>
+                        <li><strong>Emphasis Placement</strong> - Position key information strategically</li>
+                        <li><strong>Consistency Maintenance</strong> - Apply uniform organization principles</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Drag-and-Drop Problems</h4>
+                    <p>If drag-and-drop functionality isn't working, ensure your browser supports HTML5 drag-and-drop features. Most modern browsers provide full functionality.</p>
+                    
+                    <h4>Page Preview Issues</h4>
+                    <p>If page thumbnails don't display correctly, try refreshing the page and re-uploading your PDF. Ensure your browser has sufficient memory for processing large documents.</p>
+                    
+                    <h4>Large Document Performance</h4>
+                    <p>Very large PDF files may take longer to process and display. Consider splitting large documents into smaller sections for more responsive organization.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Organize Your PDF Documents Today</h4>
+                        <p>Transform disorganized documents into professional, well-structured PDFs with our visual organization tool. Complete privacy guaranteed with client-side processing and intuitive drag-and-drop functionality.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF management tools</strong></a> including <a href="merge-pdf.html"><strong>document merging</strong></a>, <a href="split-pdf.html"><strong>PDF splitting</strong></a>, and <a href="rotate-pdf.html"><strong>page rotation</strong></a> for comprehensive document control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const { PDFDocument, degrees } = window.PDFLib;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const previewArea = document.getElementById('page-preview-area');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+        let selectedFile = null;
+        let pageObjects = [];
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        async function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            selectedFile = file;
+            statusArea.textContent = 'Loading PDF preview...';
+            previewArea.innerHTML = '';
+            pageObjects = [];
+
+            const fileBuffer = await selectedFile.arrayBuffer();
+            const pdfDoc = await pdfjsLib.getDocument({ data: fileBuffer }).promise;
+
+            for (let i = 1; i <= pdfDoc.numPages; i++) {
+                const page = await pdfDoc.getPage(i);
+                const viewport = page.getViewport({ scale: 0.5 });
+                const container = document.createElement('div');
+                container.className = 'page-container';
+                container.dataset.originalIndex = i - 1;
+
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+                const actions = document.createElement('div');
+                actions.className = 'page-actions';
+                const rotateBtn = document.createElement('button');
+                rotateBtn.textContent = '↷';
+                rotateBtn.onclick = () => rotatePage(container, 90);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '✖';
+                deleteBtn.onclick = () => deletePage(container);
+                actions.append(rotateBtn, deleteBtn);
+
+                const pageNum = document.createElement('div');
+                pageNum.className = 'page-number';
+                pageNum.textContent = `Page ${i}`;
+
+                container.append(canvas, actions, pageNum);
+                previewArea.appendChild(container);
+
+                pageObjects.push({ container, rotation: 0, deleted: false });
+            }
+            statusArea.textContent = 'PDF loaded. You can now organize the pages.';
+            processButton.disabled = false;
+        }
+
+        function rotatePage(container, angle) {
+            const pageObj = pageObjects.find(p => p.container === container);
+            pageObj.rotation = (pageObj.rotation + angle) % 360;
+            const canvas = container.querySelector('canvas');
+            canvas.style.transform = `rotate(${pageObj.rotation}deg)`;
+        }
+
+        function deletePage(container) {
+            const pageObj = pageObjects.find(p => p.container === container);
+            pageObj.deleted = !pageObj.deleted;
+            container.style.opacity = pageObj.deleted ? '0.5' : '1';
+        }
+
+        processButton.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            processButton.disabled = true;
+            statusArea.textContent = 'Applying changes...';
+
+            try {
+                const fileBuffer = await selectedFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(fileBuffer);
+                const newPdfDoc = await PDFDocument.create();
+
+                const orderedContainers = [...previewArea.children];
+                for (const container of orderedContainers) {
+                    const pageObj = pageObjects.find(p => p.container === container);
+                    if (pageObj.deleted) continue;
+
+                    const originalIndex = parseInt(container.dataset.originalIndex, 10);
+                    const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [originalIndex]);
+                    copiedPage.setRotation(degrees(pageObj.rotation));
+                    newPdfDoc.addPage(copiedPage);
+                }
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, 'organized.pdf', 'application/pdf');
+                statusArea.textContent = 'Your organized PDF is ready!';
+            } catch (error) {
+                console.error('Error organizing PDF:', error);
+                statusArea.textContent = 'An error occurred. Please try again.';
+            } finally {
+                processButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

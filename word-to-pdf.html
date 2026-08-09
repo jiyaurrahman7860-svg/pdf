@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Convert your Word documents (DOC, DOCX) to PDF with our free online tool. Choose page orientation (portrait or landscape) for a perfectly formatted, high-quality PDF every time." />
+    <title>Word to PDF Converter | Free & Secure Online Tool</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/word-to-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Word to PDF Converter",
+        "description": "Convert Word documents (DOC, DOCX) to PDF format online. Free, secure, and professional document conversion with formatting preservation.",
+        "url": "https://pdf.savefast.in/word-to-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "DOC to PDF conversion",
+            "DOCX to PDF conversion",
+            "Formatting preservation",
+            "Page orientation options",
+            "Secure file processing",
+            "Professional quality output"
+        ]
+    }
+    </script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/word-to-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="WORD TO PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/word-to-pdf.html" />
+    <meta name="twitter:title" content="WORD TO PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/word-to-pdf.svg" alt="word-to-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Word to PDF</h2>
+                    <form id="upload-form" action="https://my-pdf-backend.onrender.com/word-to-pdf" method="POST" enctype="multipart/form-data">
+                        <div id="file-drop-zone"><p><b>Drag & Drop a Word file here</b><br>or click to select</p></div>
+                        <input type="file" id="file-input" name="file" accept=".doc,.docx" required hidden>
+                        <div id="file-list" style="margin-bottom: 20px;"></div>
+                        <div class="tool-options">
+                            <label for="orientation">Page Orientation:</label>
+                            <select id="orientation" name="orientation">
+                                <option value="portrait" selected>Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="process-button" disabled>Convert to PDF</button>
+                    </form>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Convert Word to PDF Securely</h1>
+                    
+                    <!-- 1. INTRODUCTION (50-80 words) -->
+                    <div class="intro-section">
+                        <div class="intro-icon">
+                            <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" /></svg>
+                        </div>
+                        <div class="conversational-intro">
+                            Converting Word documents to PDF is essential when you need to share professional documents that look identical on every device. Whether you're submitting reports, sharing proposals, or archiving documents, PDF conversion ensures your formatting stays perfect and your content remains secure.
+                        </div>
+                    </div>
+
+                    <!-- 2. WHY USE THIS TOOL? (150-200 words) -->
+                    <div class="benefits-section">
+                        <h2>📄 Why Convert Word to PDF?</h2>
+                        <p>Transform your Word documents into professional, universally compatible files that maintain perfect formatting everywhere. Here's why millions trust PDF conversion:</p>
+                        
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Perfect Formatting</strong><br>
+                                    Your documents look identical on every device - no more broken layouts or missing fonts.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Professional Security</strong><br>
+                                    Prevent accidental edits and protect your content with PDF's built-in security features.
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M17,3H7A2,2 0 0,0 5,5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V5A2,2 0 0,0 17,3M17,19H7V5H17V19Z" /></svg>
+                                </div>
+                                <div>
+                                    <strong>Universal Compatibility</strong><br>
+                                    PDFs work on phones, tablets, computers, and printers without any special software.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/word-to-pdf-interface.png" alt="Word to PDF converter interface showing document upload and conversion options" class="screenshot-image">
+                            <div class="image-caption">Simple interface preserves all your document formatting during conversion</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. STEP-BY-STEP GUIDE (120-150 words) -->
+                    <div class="tutorial-section">
+                        <h2>🔄 How to Convert Word to PDF (Simple Steps)</h2>
+                        <p>Transform your Word documents into professional PDFs in under 30 seconds:</p>
+                        
+                        <div class="tutorial-steps">
+                            <div class="tutorial-step">
+                                <div class="step-icon">1</div>
+                                <div>
+                                    <h4>Upload Word Document</h4>
+                                    <p>Drag and drop your DOC or DOCX file, or click to browse. Both old and new Word formats are fully supported.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">2</div>
+                                <div>
+                                    <h4>Choose Orientation</h4>
+                                    <p>Select Portrait for standard documents or Landscape for wide tables and presentations. Preview shows your choice.</p>
+                                </div>
+                            </div>
+                            <div class="tutorial-step">
+                                <div class="step-icon">3</div>
+                                <div>
+                                    <h4>Download Your PDF</h4>
+                                    <p>Click "Convert to PDF" and your document processes instantly. Download begins automatically with perfect formatting preserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/word-pdf-conversion-steps.png" alt="Step by step Word to PDF conversion process" class="screenshot-image">
+                            <div class="image-caption">Watch your Word document transform into a professional PDF in seconds</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. REAL-LIFE USE CASES (150+ words) -->
+                    <div class="use-cases-section">
+                        <h2>🎯 Success Stories from Real Users</h2>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Meet Lisa, Project Manager at InnovateTech</div>
+                            <p>Lisa's team created detailed project proposals in Word, but clients complained about formatting issues when opening files on different devices. Important tables looked broken, and custom fonts were missing. Client presentations were becoming unprofessional.</p>
+                            <div class="story-outcome">
+                                <strong>The Game Changer:</strong> Converting proposals to PDF eliminated all formatting issues. Clients now receive perfectly formatted documents every time. Lisa's team won 35% more projects due to professional presentation, and client feedback improved dramatically.
+                            </div>
+                        </div>
+                        
+                        <div class="use-case-story">
+                            <div class="story-character">Mark, University Professor</div>
+                            <p>Mark needed to share course materials with 200+ students using different devices and software versions. Word documents looked different on each platform, causing confusion about assignments and requirements. Students were frustrated with inconsistent formatting.</p>
+                            <div class="story-outcome">
+                                <strong>The Solution:</strong> Converting all course materials to PDF ensured every student sees identical content. Student confusion dropped by 80%, and Mark saves 5+ hours weekly by eliminating formatting questions and issues.
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-container">
+                            <img src="/images/word-pdf-use-cases.png" alt="Real world applications of Word to PDF conversion in business and education" class="screenshot-image">
+                            <div class="image-caption">From business proposals to academic materials - PDF conversion works everywhere</div>
+                        </div>
+                    </div>
+
+                    <!-- 5. TIPS + BEST PRACTICES (100+ words) -->
+                    <div class="tips-section">
+                        <div class="tips-header">
+                            <div class="tips-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7A1,1 0 0,1 12,8H11V16A1,1 0 0,1 10,17H9A1,1 0 0,1 8,16V8H7A1,1 0 0,1 6,7V5.73C5.4,5.39 5,4.74 5,4A2,2 0 0,1 7,2A2,2 0 0,1 9,4C9,4.74 8.6,5.39 8,5.73V6H10V5.73C9.4,5.39 9,4.74 9,4A2,2 0 0,1 11,2A2,2 0 0,1 13,4C13,4.74 12.6,5.39 12,5.73V6H14V5.73C13.4,5.39 13,4.74 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4A2,2 0 0,1 15,6A2,2 0 0,1 13,4A2,2 0 0,1 15,2A2,2 0 0,1 17,4C17,4.74 16.6,5.39 16,5.73V7A1,1 0 0,1 15,8H14V16A1,1 0 0,1 13,17H12A1,1 0 0,1 11,16V8H10A1,1 0 0,1 9,7V5.73C8.4,5.39 8,4.74 8,4A2,2 0 0,1 10,2A2,2 0 0,1 12,2Z" /></svg>
+                            </div>
+                            <h2>💡 Pro Conversion Tips</h2>
+                        </div>
+                        <p>Get perfect PDF results every time with these expert recommendations:</p>
+                        
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Check Before Converting:</strong> Review your Word document for any formatting issues before conversion - what you see is what you'll get in PDF.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Font Compatibility:</strong> Use standard fonts (Arial, Times New Roman, Calibri) for best results across all devices and platforms.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Image Quality:</strong> High-resolution images in Word will remain sharp in PDF, but may increase file size significantly.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Page Breaks:</strong> Use proper page breaks in Word to control exactly where pages split in your final PDF document.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-bullet"></div>
+                            <div>
+                                <strong>Final Review:</strong> Always check your PDF after conversion to ensure tables, images, and formatting appear exactly as intended.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-divider">
+                        <div class="content-divider-icon">
+                            <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" /></svg>
+                        </div>
+                    </div>
+
+                    <h2>Word to PDF FAQs</h2>
+                    <p><b>Is my data safe?</b><br>Yes, we use secure HTTPS connections. Your files are encrypted during transfer and automatically deleted from our servers after one hour.</p>
+                    <p><b>Will my formatting be preserved?</b><br>Our tool strives to maintain your original formatting, but complex layouts may have minor differences. The PDF will be a static, non-editable version of your document.</p>
+                    
+                    <div class="blog-style-content">
+                        <h2>📄 Master Document Conversion: The Complete Word to PDF Guide</h2>
+                        
+                        <p class="blog-intro">Tired of documents looking different on every device? Frustrated when your carefully formatted Word document gets mangled when shared? You're experiencing one of the most common professional document challenges. Whether you're a business executive sharing reports, a lawyer distributing contracts, or a student submitting assignments, <strong>Word to PDF conversion</strong> ensures your documents look exactly as intended, everywhere, every time.</p>
+                        
+                        <img src="/images/word-to-pdf-conversion-process.jpg" alt="Professional Word to PDF conversion process showing document transformation" class="blog-image" />
+                        
+                        <h3>🎯 Why Document Professionals Choose PDF Over Word</h3>
+                        
+                        <p>In our multi-device, multi-platform world, document consistency isn't just nice to have—it's essential for professional credibility. Here's why <strong>Word to PDF conversion</strong> has become the gold standard:</p>
+                        
+                        <div class="blog-benefits-grid">
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">🔒</div>
+                                <h4>Format Protection</h4>
+                                <p>Your document looks identical on every device, every platform, every time. No more formatting surprises or layout disasters.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">🌐</div>
+                                <h4>Universal Access</h4>
+                                <p>Anyone can open your PDF without needing Microsoft Word. Perfect compatibility across all devices and operating systems.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">🛡️</div>
+                                <h4>Document Security</h4>
+                                <p>Prevent unauthorized editing while maintaining professional presentation. Your content stays exactly as you intended.</p>
+                            </div>
+                            <div class="blog-benefit-card">
+                                <div class="benefit-emoji">📱</div>
+                                <h4>Mobile-Ready</h4>
+                                <p>PDFs display perfectly on smartphones and tablets, making your documents truly accessible anywhere.</p>
+                            </div>
+                        </div>
+                    
+                    <ul>
+                        <li><strong>Universal Compatibility</strong> - PDF files display identically across all devices and operating systems</li>
+                        <li><strong>Formatting Protection</strong> - Prevent accidental edits and maintain document integrity</li>
+                        <li><strong>Professional Presentation</strong> - Create polished documents for business and academic use</li>
+                        <li><strong>Print Consistency</strong> - Ensure documents print exactly as intended</li>
+                        <li><strong>File Security</strong> - Add password protection and access controls</li>
+                        <li><strong>Reduced File Size</strong> - Optimize documents for email and web sharing</li>
+                    </ul>
+                    
+                    <h3>Advanced Document Conversion Features</h3>
+                    
+                    <p>Our <strong>DOC to PDF converter</strong> and <strong>DOCX to PDF tool</strong> provide professional-grade conversion capabilities:</p>
+                    
+                    <h4>Comprehensive Format Support</h4>
+                    <p>Convert both legacy DOC files and modern DOCX documents with full compatibility. Our converter handles complex documents including:</p>
+                    
+                    <ul>
+                        <li>Multi-page documents with headers and footers</li>
+                        <li>Tables, charts, and embedded graphics</li>
+                        <li>Custom fonts and typography</li>
+                        <li>Hyperlinks and cross-references</li>
+                        <li>Comments and tracked changes</li>
+                        <li>Mathematical equations and symbols</li>
+                    </ul>
+                    
+                    <h4>Layout Preservation Technology</h4>
+                    <p>Our advanced conversion engine maintains document structure and visual appearance, ensuring your <strong>PDF output</strong> matches your original Word document's professional appearance.</p>
+                    
+                    <img src="/images/word-pdf-formatting-comparison.jpg" alt="Side-by-side comparison of Word document and converted PDF showing formatting preservation" class="blog-image" />
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Business Documentation</h4>
+                    <p>Transform business reports, proposals, and contracts into professional PDF documents. <strong>Word to PDF conversion</strong> ensures consistent presentation for client communications and internal documentation.</p>
+                    
+                    <h4>Academic and Research</h4>
+                    <p>Convert research papers, theses, and academic submissions to PDF format. Maintain citation formatting, bibliography structure, and academic standards required by institutions.</p>
+                    
+                    <h4>Legal Documents</h4>
+                    <p>Legal professionals rely on <strong>PDF conversion</strong> to create tamper-evident documents for court filings, contracts, and official correspondence. PDF format provides document integrity and professional presentation.</p>
+                    
+                    <h4>Marketing Materials</h4>
+                    <p>Convert brochures, flyers, and marketing documents to PDF for consistent brand presentation across digital and print media. Maintain color accuracy and layout precision.</p>
+                    
+                    <h3>Conversion Quality and Optimization</h3>
+                    
+                    <p>Our <strong>Word to PDF converter</strong> employs intelligent optimization techniques to balance file size and quality:</p>
+                    
+                    <h4>Image Optimization</h4>
+                    <p>Embedded images are optimized for web and print use while maintaining visual quality. Our system automatically adjusts compression settings based on image content and usage context.</p>
+                    
+                    <h4>Font Embedding</h4>
+                    <p>Custom fonts are embedded in the PDF to ensure consistent display across all devices. This prevents font substitution issues that can affect document appearance.</p>
+                    
+                    <h4>Hyperlink Preservation</h4>
+                    <p>Internal and external hyperlinks remain functional in the converted PDF, maintaining document interactivity and navigation features.</p>
+                    
+                    <img src="/images/pdf-optimization-features.jpg" alt="PDF optimization features including image compression, font embedding, and hyperlink preservation" class="blog-image" />
+                    
+                    <h3>Security and Privacy Protection</h3>
+                    
+                    <p>Document security is paramount when processing sensitive business or personal documents. Our <strong>secure Word to PDF conversion</strong> implements comprehensive protection measures:</p>
+                    
+                    <h4>Encrypted File Transfer</h4>
+                    <p>All file uploads and downloads use HTTPS encryption to protect your documents during transmission. This ensures that sensitive information remains secure throughout the conversion process.</p>
+                    
+                    <h4>Automatic File Deletion</h4>
+                    <p>Uploaded Word documents and converted PDFs are automatically deleted from our servers within one hour of processing. This policy ensures that your confidential documents don't remain on external systems.</p>
+                    
+                    <h4>No Data Collection</h4>
+                    <p>We don't collect, store, or analyze the content of your documents. The conversion process is purely functional, focusing on document transformation without content inspection.</p>
+                    
+                    <h3>Best Practices for Word to PDF Conversion</h3>
+                    
+                    <p>Optimize your <strong>document conversion</strong> results with these professional techniques:</p>
+                    
+                    <h4>Document Preparation</h4>
+                    <ul>
+                        <li><strong>Review Formatting</strong> - Check document layout and formatting before conversion</li>
+                        <li><strong>Update Links</strong> - Ensure all hyperlinks are current and functional</li>
+                        <li><strong>Optimize Images</strong> - Use appropriate image resolution for intended use</li>
+                        <li><strong>Check Fonts</strong> - Verify that custom fonts display correctly</li>
+                        <li><strong>Proofread Content</strong> - Final review before conversion to PDF</li>
+                    </ul>
+                    
+                    <h4>Conversion Settings</h4>
+                    <ul>
+                        <li><strong>Page Orientation</strong> - Choose portrait for standard documents, landscape for wide tables</li>
+                        <li><strong>Quality Settings</strong> - Balance file size and visual quality based on intended use</li>
+                        <li><strong>Compatibility</strong> - Consider target audience's PDF reader capabilities</li>
+                    </ul>
+                    
+                    <h3>Integration with Other PDF Tools</h3>
+                    
+                    <p>Enhance your document workflow by combining <strong>Word to PDF conversion</strong> with our other professional PDF tools:</p>
+                    
+                    <ul>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine converted Word documents with other PDFs</li>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Reduce file sizes for email and web sharing</li>
+                        <li><a href="protect-pdf.html"><strong>Protect PDF</strong></a> - Add password protection to sensitive documents</li>
+                        <li><a href="add-watermark.html"><strong>Add Watermark</strong></a> - Brand your converted documents with custom watermarks</li>
+                        <li><a href="sign-pdf.html"><strong>Sign PDF</strong></a> - Add digital signatures to converted documents</li>
+                        <li><a href="edit-pdf-text.html"><strong>Edit PDF Text</strong></a> - Make final adjustments to converted documents</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Formatting Discrepancies</h4>
+                    <p>If converted PDFs show formatting differences, check your original Word document for complex layouts, custom styles, or embedded objects that may require adjustment.</p>
+                    
+                    <h4>Large File Sizes</h4>
+                    <p>Documents with many high-resolution images may produce large PDF files. Consider optimizing images in Word before conversion or use our <a href="compress-pdf.html"><strong>PDF compression tool</strong></a> afterward.</p>
+                    
+                    <h4>Font Issues</h4>
+                    <p>If fonts appear different in the PDF, ensure you're using standard fonts or that custom fonts are properly installed on your system during conversion.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Convert Your Word Documents Today</h4>
+                        <p>Transform your Word documents into professional PDF files with our secure, free <strong>Word to PDF converter</strong>. Maintain formatting, preserve quality, and ensure universal compatibility.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF tools</strong></a> including <a href="excel-to-pdf.html"><strong>Excel to PDF</strong></a>, <a href="powerpoint-to-pdf.html"><strong>PowerPoint to PDF</strong></a>, and <a href="jpg-to-pdf.html"><strong>image to PDF conversion</strong></a> for all your document processing needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('upload-form');
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(file) {
+            if (file) {
+                fileList.innerHTML = `<div>Selected: ${file.name}</div>`;
+                processButton.disabled = false;
+            } else {
+                fileList.innerHTML = '';
+                processButton.disabled = true;
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            processButton.disabled = true;
+            statusArea.textContent = 'Converting your file... Please wait.';
+
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text || 'Network response was not ok') });
+                }
+                const contentDisposition = response.headers.get('Content-Disposition');
+                let filename = 'converted.pdf';
+                if (contentDisposition && contentDisposition.indexOf('attachment') !== -1) {
+                    const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    const matches = filenameRegex.exec(contentDisposition);
+                    if (matches != null && matches[1]) {
+                        filename = matches[1].replace(/['"]/g, '');
+                    }
+                }
+                return response.blob().then(blob => ({ blob, filename }));
+            })
+            .then(({ blob, filename }) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                statusArea.textContent = 'Your file has been converted and downloaded.';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred: ' + error.message;
+            })
+            .finally(() => {
+                processButton.disabled = false;
+            });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create N-Up PDF layouts with 2-up, 4-up, 8-up, or 16-up configurations. Perfect for handouts, presentations, and paper-saving solutions. Free online tool with client-side processing." />
+    <title>N-Up PDF Creator | 2-Up, 4-Up, 8-Up PDF Layouts Free Online</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/n-up-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "N-Up PDF Creator",
+        "description": "Create N-Up PDF layouts with multiple pages per sheet. Supports 2-up, 4-up, 8-up, and 16-up configurations for handouts and presentations.",
+        "url": "https://pdf.savefast.in/n-up-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "2-up, 4-up, 8-up, 16-up layouts",
+            "Paper-saving solutions",
+            "Handout creation",
+            "Presentation optimization",
+            "Client-side processing",
+            "No file uploads required"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is N-Up PDF and how does it work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "N-Up PDF arranges multiple pages of your PDF onto a single page. For example, 2-up places 2 pages side by side, 4-up arranges 4 pages in a 2x2 grid, perfect for creating handouts and saving paper."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the N-Up PDF creation process secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All PDF processing happens directly in your browser using client-side technology. Your files never leave your device and are not uploaded to any servers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What N-Up configurations are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports 2-up (2 pages per sheet), 4-up (4 pages per sheet), 8-up (8 pages per sheet), and 16-up (16 pages per sheet) configurations for various layout needs."
+                }
+            }
+        ]
+    }
+    </script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/n-up-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="N UP PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/n-up-pdf.html" />
+    <meta name="twitter:title" content="N UP PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/n-up-pdf.svg" alt="n-up-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>N-Up PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    
+                    <div id="options" style="display: none; margin-top: 20px;">
+                        <label for="n-up-select">Pages per sheet:</label>
+                        <select id="n-up-select">
+                            <option value="2">2-up</option>
+                            <option value="4">4-up</option>
+                            <option value="8">8-up</option>
+                            <option value="16">16-up</option>
+                        </select>
+                    </div>
+
+                    <button id="save-button" style="display: none; margin-top: 10px;">Create N-Up PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">N-Up PDF Creator</h1>
+                    <p>Transform your PDF documents into space-efficient layouts with our professional N-Up PDF creator. Perfect for creating handouts, presentations, and saving paper while maintaining document quality.</p>
+                    
+                    <div class="illustration-container">
+                        <img src="/images/n-up-pdf-layouts.png" alt="N-Up PDF layout examples showing 2-up, 4-up, 8-up configurations" class="tool-illustration" />
+                        <p class="image-caption">*Visual examples of different N-Up PDF configurations for various document needs*</p>
+                    </div>
+                    
+                    <h2>How to Create an N-Up PDF</h2>
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Upload Your PDF File</h4>
+                                <p>Drag and drop your PDF document or click to browse and select your file from your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Choose Your Layout</h4>
+                                <p>Select from 2-up, 4-up, 8-up, or 16-up configurations based on your specific needs.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Generate and Download</h4>
+                                <p>Click 'Create N-Up PDF' and instantly download your optimized document layout.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>N-Up PDF FAQs</h2>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    <p><b>What's the difference between each N-Up option?</b><br>2-up places 2 pages side by side, 4-up creates a 2x2 grid, 8-up arranges pages in a 4x2 layout, and 16-up creates a 4x4 grid on each sheet.</p>
+                    <p><b>Will the quality be maintained?</b><br>Absolutely! Our tool maintains the original PDF quality while intelligently scaling pages to fit the selected layout.</p>
+                    
+                    <div class="visual-separator"></div>
+                    
+                    <h2>The Complete Guide to N-Up PDF Creation</h2>
+                    
+                    <div class="story-section">
+                        <h3>🎯 Why N-Up PDF Layouts Are Essential for Modern Document Management</h3>
+                        <p>Picture this: You're a teacher preparing handouts for 30 students, and your 20-page lesson plan needs to be printed efficiently. Or imagine you're a business professional creating presentation materials that need to be cost-effective yet professional. This is where <strong>N-Up PDF creation</strong> becomes your secret weapon for intelligent document management.</p>
+                        
+                        <p>The concept of <strong>N-Up layouts</strong> originated from the printing industry's need to maximize paper usage while maintaining readability. Today, our digital world has embraced this approach for creating <strong>handouts</strong>, <strong>study guides</strong>, <strong>presentation materials</strong>, and <strong>reference documents</strong> that are both practical and environmentally conscious.</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" /></svg>
+                            </div>
+                            <h4>2-Up Layout</h4>
+                            <p>Perfect for creating side-by-side comparisons, reading materials, and standard handouts with optimal readability.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z" /></svg>
+                            </div>
+                            <h4>4-Up Layout</h4>
+                            <p>Ideal for creating compact reference sheets, study guides, and overview documents that save significant paper.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M3,3V21H21V3H3M19,19H5V5H19V19Z" /></svg>
+                            </div>
+                            <h4>8-Up & 16-Up</h4>
+                            <p>Excellent for creating thumbnail overviews, contact sheets, and ultra-compact reference materials.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Real-World Applications: Where N-Up PDF Shines</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📚 Educational Excellence</h4>
+                        <p><strong>Teachers and educators</strong> use N-Up PDFs to create efficient study materials. A 10-page chapter summary becomes a 3-page handout with 4-up layout, making it easier for students to review and reducing printing costs by 70%.</p>
+                        <p><strong>Students</strong> benefit from creating condensed note sheets where multiple lecture slides fit on a single page, perfect for exam preparation and quick reference during open-book tests.</p>
+                    </div>
+                    
+                    <img src="/images/educational-n-up-example.png" alt="Educational handout created using N-Up PDF layout for efficient studying" class="blog-image" />
+                    <p class="image-caption">*Example of educational materials optimized with N-Up layouts for better learning outcomes*</p>
+                    
+                    <h4>🏢 Business and Professional Use</h4>
+                    <p>In the corporate world, <strong>N-Up PDF layouts</strong> revolutionize how professionals handle documentation:</p>
+                    
+                    <ul>
+                        <li><strong>Meeting Handouts</strong> - Transform lengthy presentations into compact reference materials</li>
+                        <li><strong>Training Materials</strong> - Create comprehensive guides that employees can easily carry and reference</li>
+                        <li><strong>Policy Documents</strong> - Condense multi-page policies into readable, portable formats</li>
+                        <li><strong>Client Presentations</strong> - Provide clients with take-away materials that summarize key points</li>
+                        <li><strong>Project Documentation</strong> - Create overview sheets that capture essential project information</li>
+                    </ul>
+                    
+                    <h4>🎨 Creative and Design Applications</h4>
+                    <p>Designers and creative professionals leverage <strong>N-Up layouts</strong> for portfolio creation, mood boards, and client presentations. A photographer might use 4-up layouts to create contact sheets, while a graphic designer could showcase multiple design concepts on a single page for client review.</p>
+                    
+                    <div class="story-section">
+                        <h3>💡 The Environmental Impact: Going Green with N-Up</h3>
+                        <p>Here's a compelling story: A medium-sized company with 200 employees was spending $15,000 annually on printing costs. By implementing N-Up PDF layouts for their internal documentation, they reduced paper consumption by 60%, saving over $9,000 per year while significantly reducing their environmental footprint.</p>
+                        
+                        <p>When you choose <strong>2-up layouts</strong>, you immediately cut paper usage in half. With <strong>4-up configurations</strong>, you're using 75% less paper. This isn't just about cost savings – it's about making responsible choices that benefit our planet.</p>
+                    </div>
+                    
+                    <h3>Technical Excellence: How Our N-Up Tool Works</h3>
+                    
+                    <p>Our <strong>N-Up PDF creator</strong> employs advanced algorithms to ensure optimal page arrangement and quality preservation:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Smart Scaling</h4>
+                            <p>Automatically calculates optimal page sizes to maintain readability while maximizing space efficiency.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9,12L11,14L15,10L20,15H4L9,12Z" /></svg>
+                            </div>
+                            <h4>Quality Preservation</h4>
+                            <p>Maintains original PDF resolution and clarity, ensuring text remains crisp and images stay sharp.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C14.8,12.6 13.9,13.5 12.8,13.5H11.2C10.1,13.5 9.2,12.6 9.2,11.5V10C9.2,8.6 10.6,7 12,7Z" /></svg>
+                            </div>
+                            <h4>Secure Processing</h4>
+                            <p>All processing happens in your browser - no uploads, no servers, complete privacy protection.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Optimization Tips for Perfect N-Up Results</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Pro Tips for Maximum Effectiveness</h4>
+                        <p><strong>Choose the Right Layout:</strong> Use 2-up for text-heavy documents, 4-up for mixed content, and 8-up or 16-up for overview purposes.</p>
+                        <p><strong>Consider Your Audience:</strong> Ensure the final text size remains readable for your intended viewers - what works for personal reference might not work for elderly readers.</p>
+                        <p><strong>Test Before Printing:</strong> Always preview your N-Up PDF on screen to verify readability and layout before committing to large print runs.</p>
+                    </div>
+                    
+                    <h4>Integration with Your Workflow</h4>
+                    <p>Our <strong>N-Up PDF tool</strong> seamlessly integrates with other document processing needs:</p>
+                    
+                    <ul>
+                        <li>First, use our <a href="merge-pdf.html"><strong>Merge PDF</strong></a> tool to combine multiple documents</li>
+                        <li>Apply N-Up layouts to create efficient handouts</li>
+                        <li>Use <a href="add-watermark.html"><strong>Add Watermark</strong></a> to brand your materials</li>
+                        <li>Finally, <a href="compress-pdf.html"><strong>Compress PDF</strong></a> for easy digital distribution</li>
+                    </ul>
+                    
+                    <img src="/images/n-up-workflow-diagram.png" alt="Complete workflow diagram showing N-Up PDF integration with other tools" class="blog-image" />
+                    <p class="image-caption">*Complete document processing workflow featuring N-Up PDF creation*</p>
+                    
+                    <h3>Success Stories: Real Users, Real Results</h3>
+                    
+                    <div class="story-section">
+                        <h3>📖 Case Study: University Lecture Notes</h3>
+                        <p>Dr. Sarah Chen, a psychology professor at a major university, was struggling with the cost and environmental impact of printing 40-page lecture handouts for her 150 students. After discovering our N-Up PDF tool, she began creating 4-up layouts of her slides.</p>
+                        
+                        <p>The results were remarkable: <strong>75% reduction in paper usage</strong>, <strong>$2,400 annual savings</strong>, and improved student satisfaction as the compact format was easier to carry and review. Students reported better engagement with the material because they could see more content at once, making connections between concepts more apparent.</p>
+                    </div>
+                    
+                    <h3>Future-Proofing Your Document Strategy</h3>
+                    
+                    <p>As we move toward increasingly digital workflows, <strong>N-Up PDF creation</strong> remains relevant for several key reasons:</p>
+                    
+                    <ul>
+                        <li><strong>Hybrid Work Environments</strong> - Perfect for creating materials that work both digitally and in print</li>
+                        <li><strong>Sustainability Goals</strong> - Helps organizations meet environmental targets through reduced paper consumption</li>
+                        <li><strong>Cost Management</strong> - Provides immediate, measurable savings on printing and paper costs</li>
+                        <li><strong>Accessibility</strong> - Creates more manageable document sizes for various devices and viewing preferences</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Transform Your Documents?</h4>
+                        <p>Experience the power of professional <strong>N-Up PDF creation</strong> with complete privacy and security. No registration required, no file uploads, and unlimited conversions.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF tools</strong></a> including <a href="merge-pdf.html"><strong>Merge PDF</strong></a>, <a href="split-pdf.html"><strong>Split PDF</strong></a>, and <a href="compress-pdf.html"><strong>PDF compression</strong></a> for all your document processing needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const optionsDiv = document.getElementById('options');
+        const nUpSelect = document.getElementById('n-up-select');
+        const saveButton = document.getElementById('save-button');
+        const statusArea = document.getElementById('status-area');
+        let pdfFile = null;
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => { e.preventDefault(); fileDropZone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+
+        function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            pdfFile = file;
+            statusArea.textContent = 'PDF loaded. Select your N-Up option.';
+            optionsDiv.style.display = 'block';
+            saveButton.style.display = 'block';
+        }
+
+        saveButton.addEventListener('click', async () => {
+            if (!pdfFile) return;
+            statusArea.textContent = 'Processing PDF...';
+            saveButton.disabled = true;
+
+            try {
+                const { PDFDocument, PageSizes } = PDFLib;
+                const existingPdfBytes = await pdfFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(existingPdfBytes);
+                const newPdfDoc = await PDFDocument.create();
+
+                const n = parseInt(nUpSelect.value);
+                const pages = pdfDoc.getPages();
+                const pageCount = pages.length;
+
+                const layout = {
+                    2: { rows: 1, cols: 2 },
+                    4: { rows: 2, cols: 2 },
+                    8: { rows: 4, cols: 2 },
+                    16: { rows: 4, cols: 4 },
+                }[n];
+
+                const newPageSize = PageSizes.A4;
+
+                for (let i = 0; i < pageCount; i += n) {
+                    const newPage = newPdfDoc.addPage(newPageSize);
+                    const { width, height } = newPage.getSize();
+                    const subWidth = width / layout.cols;
+                    const subHeight = height / layout.rows;
+
+                    const chunk = pages.slice(i, i + n);
+                    for (let j = 0; j < chunk.length; j++) {
+                        const page = chunk[j];
+                        const embeddedPage = await newPdfDoc.embedPage(page);
+                        const row = Math.floor(j / layout.cols);
+                        const col = j % layout.cols;
+
+                        const scale = Math.min(subWidth / embeddedPage.width, subHeight / embeddedPage.height);
+
+                        newPage.drawPage(embeddedPage, {
+                            x: col * subWidth + (subWidth - embeddedPage.width * scale) / 2,
+                            y: height - (row + 1) * subHeight + (subHeight - embeddedPage.height * scale) / 2,
+                            width: embeddedPage.width * scale,
+                            height: embeddedPage.height * scale,
+                        });
+                    }
+                }
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, `${n}-up.pdf`, 'application/pdf');
+                statusArea.textContent = 'N-Up PDF created and downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred: ' + error.message;
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>

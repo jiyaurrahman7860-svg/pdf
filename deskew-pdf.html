@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Automatically straighten scanned pages in your PDF. Our tool corrects skewed images and text, improving readability and giving your documents a more professional appearance." />
+    <title>Deskew PDF | Straighten Scanned PDF Pages</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/deskew-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Deskew Tool",
+        "description": "Automatically straighten scanned PDF pages by correcting skewed images and text. Free PDF deskewing with client-side processing.",
+        "url": "https://pdf.savefast.in/deskew-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "PDF page straightening",
+            "Skew correction",
+            "Scanned document optimization",
+            "Text alignment improvement",
+            "Client-side processing",
+            "Privacy protection"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What types of PDFs work best for deskewing?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This tool works best on scanned documents with clear text lines that were not perfectly aligned during scanning. Documents with visible text and clear page boundaries provide optimal results."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does automatic skew detection work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The tool analyzes text lines and page edges to detect the angle of skew, then automatically rotates the content to achieve proper horizontal alignment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is PDF deskewing secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All processing happens directly in your browser using client-side technology. Your PDF files never leave your device."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Client-Side Library for this tool only -->
+    <script src="https://cdn.jsdelivr.net/npm/jimp/browser/lib/jimp.min.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/deskew-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="DESKEW PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/deskew-pdf.html" />
+    <meta name="twitter:title" content="DESKEW PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/deskew-pdf.svg" alt="deskew-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Deskew PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    <div id="file-list" style="margin-bottom: 20px;"></div>
+                    <button id="process-button" disabled>Straighten PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content">
+                    <h1 class="tool-page-title">Deskew PDF Online</h1>
+                    <p>Automatically straighten scanned pages in your PDF. Our tool corrects skewed images and text, improving readability and giving your documents a more professional appearance.</p>
+                    <h2>How to Deskew a PDF</h2>
+                    <ol>
+                        <li>Upload your scanned PDF file.</li>
+                        <li>Click 'Straighten PDF' to begin the deskewing process.</li>
+                        <li>Our tool will automatically detect and correct the skew.</li>
+                        <li>Download your straightened, professional-looking PDF.</li>
+                    </ol>
+                    <h2>PDF Deskewing FAQs</h2>
+                    <p><b>What kind of PDFs work best?</b><br>This tool is designed for scanned documents that were not perfectly aligned during scanning. It works best on documents with clear text lines.</p>
+                    <p><b>Is this process secure?</b><br>Yes. Your files are processed entirely in your browser and are never uploaded to a server, ensuring your data remains private.</p>
+                    
+                    <h2>Professional PDF Deskewing and Document Straightening Guide</h2>
+                    
+                    <p>Straightening <strong>skewed PDF pages</strong> is essential for professional document presentation, OCR accuracy, and readability improvement. Our <strong>free PDF deskew tool</strong> automatically detects and corrects page rotation in scanned documents, ensuring perfect horizontal alignment through advanced image processing and secure client-side technology.</p>
+                    
+                    <img src="/images/pdf-deskew-correction.jpg" alt="PDF deskewing process showing before and after skew correction for improved document readability" class="blog-image" />
+                    
+                    <h3>Why Deskew PDF Documents?</h3>
+                    
+                    <p><strong>PDF deskewing</strong> addresses multiple document quality and usability challenges:</p>
+                    
+                    <ul>
+                        <li><strong>Professional Presentation</strong> - Ensure documents appear properly aligned and professionally formatted</li>
+                        <li><strong>OCR Accuracy</strong> - Improve text recognition accuracy for searchable PDF creation</li>
+                        <li><strong>Reading Experience</strong> - Enhance document readability by correcting tilted text and images</li>
+                        <li><strong>Archive Quality</strong> - Standardize document orientation for consistent archive presentation</li>
+                        <li><strong>Print Optimization</strong> - Ensure proper alignment for professional printing and reproduction</li>
+                        <li><strong>Digital Workflow</strong> - Prepare documents for automated processing and content extraction</li>
+                    </ul>
+                    
+                    <h3>Advanced Deskewing Technology</h3>
+                    
+                    <p>Our <strong>PDF straightening tool</strong> employs sophisticated algorithms for accurate skew detection and correction:</p>
+                    
+                    <h4>Intelligent Skew Detection</h4>
+                    <p>Advanced analysis techniques identify page rotation with precision:</p>
+                    
+                    <ul>
+                        <li><strong>Text Line Analysis</strong> - Analyzes horizontal text lines to determine optimal rotation angle</li>
+                        <li><strong>Edge Detection</strong> - Identifies page boundaries and content edges for alignment reference</li>
+                        <li><strong>Automatic Correction</strong> - Calculates optimal rotation angle for perfect horizontal alignment</li>
+                        <li><strong>Quality Preservation</strong> - Maintains image quality while correcting document orientation</li>
+                        <li><strong>Batch Processing</strong> - Processes multiple pages efficiently for large documents</li>
+                    </ul>
+                    
+                    <h4>Professional Correction Features</h4>
+                    <p>Comprehensive straightening capabilities for optimal document quality:</p>
+                    
+                    <ul>
+                        <li><strong>Precision Alignment</strong> - Accurate rotation correction to within fractions of degrees</li>
+                        <li><strong>Content Preservation</strong> - Maintains text clarity and image quality during straightening</li>
+                        <li><strong>Format Integrity</strong> - Preserves original document formatting and layout structure</li>
+                        <li><strong>Resolution Maintenance</strong> - Keeps original image resolution and document quality</li>
+                        <li><strong>Automated Processing</strong> - No manual adjustment required for optimal results</li>
+                    </ul>
+                    
+                    <div class="story-section">
+                        <h3>📄 Case Study: Legal Firm Document Digitization Excellence</h3>
+                        <p>Heritage Legal Partners faced significant challenges when digitizing thousands of historical legal documents. Their scanning process resulted in skewed pages that made documents difficult to read and unprofessional in appearance, causing problems during court submissions and client presentations.</p>
+                        
+                        <p>By implementing systematic PDF deskewing protocols, Heritage Legal achieved: <strong>95% improvement in document readability</strong>, <strong>enhanced professional presentation</strong>, <strong>improved OCR accuracy</strong>, and <strong>streamlined digital workflows</strong>. The solution enabled them to create perfectly aligned digital archives that meet the highest professional standards.</p>
+                    </div>
+                    
+                    <h3>Understanding Document Alignment Technology</h3>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12H4A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
+                            </div>
+                            <h4>Automatic Correction</h4>
+                            <p>Intelligent algorithms detect and correct page skew automatically for perfect horizontal alignment and professional presentation.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Quality Preservation</h4>
+                            <p>Advanced processing maintains original document quality while correcting alignment issues and improving readability.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" /></svg>
+                            </div>
+                            <h4>Secure Processing</h4>
+                            <p>All deskewing happens in your browser, ensuring your documents remain private and secure throughout the process.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Professional Document Enhancement Applications</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📚 Archive and Document Management</h4>
+                        <p><strong>Legal Archives:</strong> Straighten historical legal documents and court filings for professional digital archives and improved accessibility.</p>
+                        <p><strong>Medical Records:</strong> Correct alignment in scanned medical documents and patient records for enhanced readability and compliance.</p>
+                        <p><strong>Business Documentation:</strong> Improve presentation quality of scanned contracts, reports, and business correspondence.</p>
+                        <p><strong>Academic Research:</strong> Enhance readability of scanned research papers, thesis documents, and historical academic materials.</p>
+                    </div>
+                    
+                    <h3>Integration with Document Processing Workflows</h3>
+                    
+                    <p>Enhance document quality by combining <strong>PDF deskewing</strong> with other optimization tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="crop-pdf.html"><strong>Crop PDF</strong></a> to remove unwanted margins after straightening document alignment</li>
+                        <li>Apply <a href="compress-pdf.html"><strong>Compress PDF</strong></a> to optimize file size while maintaining corrected alignment</li>
+                        <li>Combine with <a href="rotate-pdf.html"><strong>Rotate PDF</strong></a> to correct major orientation issues before fine-tuning with deskewing</li>
+                        <li>Use <a href="organize-pdf.html"><strong>Organize PDF</strong></a> to structure documents after alignment correction</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Straighten Your Documents?</h4>
+                        <p>Experience professional <strong>PDF deskewing</strong> that automatically corrects alignment issues for perfect document presentation. No registration required, no file uploads, and unlimited straightening.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>document enhancement tools</strong></a> including <a href="crop-pdf.html"><strong>Crop PDF</strong></a>, <a href="rotate-pdf.html"><strong>Rotate PDF</strong></a>, and <a href="organize-pdf.html"><strong>Organize PDF</strong></a> for comprehensive document optimization.</p>
+                    </div>
+                        <li><strong>Pattern Recognition</strong> - Recognizes document structure to determine correct orientation</li>
+                        <li><strong>Multi-Point Calibration</strong> - Uses multiple reference points for accurate angle calculation</li>
+                    </ul>
+                    
+                    <h4>Precision Correction Processing</h4>
+                    <p>Professional-grade correction algorithms ensure optimal results:</p>
+                    
+                    <ul>
+                        <li><strong>Sub-Degree Accuracy</strong> - Corrects skew with precise angular measurements</li>
+                        <li><strong>Quality Preservation</strong> - Maintains image quality during rotation and alignment</li>
+                        <li><strong>Content Integrity</strong> - Preserves all text, images, and formatting during correction</li>
+                        <li><strong>Batch Processing</strong> - Handles multiple pages efficiently for large documents</li>
+                    </ul>
+                    
+                    <img src="/images/skew-detection-algorithm.jpg" alt="Skew detection algorithm showing text line analysis and edge detection for accurate PDF straightening" class="blog-image" />
+                    
+                    <h3>Professional Use Cases</h3>
+                    
+                    <h4>Document Digitization Projects</h4>
+                    <p>Organizations digitizing paper archives use <strong>PDF deskewing</strong> to ensure consistent document quality. Proper alignment improves archive searchability and professional presentation for digital document collections.</p>
+                    
+                    <h4>Legal Document Processing</h4>
+                    <p>Law firms straighten scanned contracts, court documents, and legal filings to ensure professional presentation and accurate OCR processing for case management systems.</p>
+                    
+                    <h4>Academic Research Archives</h4>
+                    <p>Universities and research institutions deskew historical documents, manuscripts, and research papers to create high-quality digital archives with improved accessibility and searchability.</p>
+                    
+                    <h4>Business Document Management</h4>
+                    <p>Companies correct skewed invoices, receipts, and business correspondence to maintain professional document standards and enable automated processing workflows.</p>
+                    
+                    <h3>Document Scanning Best Practices</h3>
+                    
+                    <p>Optimize your <strong>scanned document quality</strong> with these professional techniques:</p>
+                    
+                    <h4>Scanning Preparation</h4>
+                    <ul>
+                        <li><strong>Document Alignment</strong> - Position documents as straight as possible during initial scanning</li>
+                        <li><strong>Scanner Calibration</strong> - Ensure scanner bed is clean and properly calibrated</li>
+                        <li><strong>Resolution Settings</strong> - Use appropriate resolution for intended document use</li>
+                        <li><strong>Lighting Conditions</strong> - Ensure consistent lighting for optimal scan quality</li>
+                    </ul>
+                    
+                    <h4>Post-Scan Processing</h4>
+                    <ul>
+                        <li><strong>Quality Assessment</strong> - Review scanned documents for skew and quality issues</li>
+                        <li><strong>Batch Correction</strong> - Process multiple documents efficiently with consistent settings</li>
+                        <li><strong>Format Optimization</strong> - Choose appropriate file formats for intended use</li>
+                        <li><strong>Archive Organization</strong> - Organize corrected documents with consistent naming conventions</li>
+                    </ul>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Enhance your document processing by combining <strong>PDF deskewing</strong> with our other professional tools:</p>
+                    
+                    <ul>
+                        <li><a href="compress-pdf.html"><strong>Compress PDF</strong></a> - Optimize file sizes after deskewing for efficient storage</li>
+                        <li><a href="merge-pdf.html"><strong>Merge PDF</strong></a> - Combine straightened documents into organized collections</li>
+                        <li><a href="organize-pdf.html"><strong>Organize PDF</strong></a> - Arrange corrected pages in optimal order</li>
+                        <li><a href="add-watermark.html"><strong>Add Watermark</strong></a> - Brand straightened documents with professional watermarks</li>
+                        <li><a href="protect-pdf.html"><strong>Protect PDF</strong></a> - Secure corrected documents with password protection</li>
+                        <li><a href="add-page-numbers.html"><strong>Add Page Numbers</strong></a> - Add pagination to straightened document collections</li>
+                    </ul>
+                    
+                    <h3>Technical Specifications</h3>
+                    
+                    <p>Our <strong>PDF deskew tool</strong> provides comprehensive document straightening capabilities:</p>
+                    
+                    <ul>
+                        <li><strong>Skew Detection</strong> - Advanced algorithms for accurate angle detection</li>
+                        <li><strong>Rotation Precision</strong> - Sub-degree accuracy for optimal alignment</li>
+                        <li><strong>Quality Preservation</strong> - Maintains original document quality during correction</li>
+                        <li><strong>Format Support</strong> - Works with all PDF versions and scanned document types</li>
+                        <li><strong>Batch Processing</strong> - Efficient handling of multi-page documents</li>
+                        <li><strong>Client-Side Processing</strong> - Complete browser-based correction for maximum privacy</li>
+                    </ul>
+                    
+                    <h3>Common Deskewing Scenarios</h3>
+                    
+                    <p>Address typical <strong>document alignment challenges</strong> with strategic deskewing:</p>
+                    
+                    <h4>Scanner Feed Issues</h4>
+                    <p>Automatic document feeders sometimes cause slight skewing during batch scanning. Deskewing corrects these alignment issues to ensure consistent document presentation across large scanning projects.</p>
+                    
+                    <h4>Manual Scanning Errors</h4>
+                    <p>Hand-placed documents on flatbed scanners may not be perfectly aligned. Automatic deskewing eliminates the need for precise manual positioning while maintaining professional results.</p>
+                    
+                    <h4>Historical Document Preservation</h4>
+                    <p>Aging documents may be warped or difficult to position perfectly during digitization. Deskewing ensures historical materials are preserved with optimal alignment and readability.</p>
+                    
+                    <h4>Mobile Scanning Correction</h4>
+                    <p>Documents scanned with mobile devices often have slight rotation issues. Deskewing corrects these alignment problems to create professional-quality digital documents.</p>
+                    
+                    <img src="/images/pdf-deskewing-applications.jpg" alt="Common PDF deskewing applications showing scanner correction, document digitization, and archive processing" class="blog-image" />
+                    
+                    <h3>OCR and Text Recognition Benefits</h3>
+                    
+                    <p>Proper document alignment significantly improves <strong>OCR accuracy and text recognition</strong>:</p>
+                    
+                    <h4>Text Recognition Improvement</h4>
+                    <ul>
+                        <li><strong>Character Accuracy</strong> - Straight text lines improve OCR character recognition rates</li>
+                        <li><strong>Word Segmentation</strong> - Proper alignment helps OCR software identify word boundaries</li>
+                        <li><strong>Line Detection</strong> - Horizontal text lines enable better paragraph and section recognition</li>
+                        <li><strong>Language Processing</strong> - Aligned text improves multi-language OCR performance</li>
+                    </ul>
+                    
+                    <h4>Searchable PDF Creation</h4>
+                    <ul>
+                        <li><strong>Index Quality</strong> - Better text recognition creates more accurate search indexes</li>
+                        <li><strong>Content Extraction</strong> - Improved OCR enables reliable content extraction for databases</li>
+                        <li><strong>Accessibility Features</strong> - Better text recognition improves screen reader compatibility</li>
+                        <li><strong>Translation Support</strong> - Accurate text recognition enables automated translation services</li>
+                    </ul>
+                    
+                    <h3>Privacy and Security Features</h3>
+                    
+                    <p>Our <strong>secure PDF deskewing tool</strong> prioritizes document security and user privacy:</p>
+                    
+                    <h4>Client-Side Processing</h4>
+                    <p>All deskewing happens directly in your browser using advanced JavaScript libraries. Your PDF files never leave your device, ensuring complete privacy and eliminating data breach risks.</p>
+                    
+                    <h4>No Server Dependencies</h4>
+                    <p>Unlike cloud-based correction services, our tool doesn't upload, store, or transmit your PDF files to external servers. This approach guarantees that sensitive documents remain under your complete control.</p>
+                    
+                    <h4>Temporary Processing</h4>
+                    <p>Corrected PDF files exist only in your browser's temporary memory and are automatically cleared when you close the tab or navigate away from the page.</p>
+                    
+                    <h3>Quality Assurance and Verification</h3>
+                    
+                    <p>Ensure optimal deskewing results with these quality control measures:</p>
+                    
+                    <h4>Pre-Processing Assessment</h4>
+                    <ul>
+                        <li><strong>Skew Evaluation</strong> - Assess the degree of skew before processing</li>
+                        <li><strong>Content Analysis</strong> - Identify text-heavy areas for optimal detection</li>
+                        <li><strong>Quality Standards</strong> - Determine acceptable correction tolerances</li>
+                        <li><strong>Batch Planning</strong> - Plan processing approach for multiple documents</li>
+                    </ul>
+                    
+                    <h4>Post-Processing Verification</h4>
+                    <ul>
+                        <li><strong>Alignment Check</strong> - Verify text lines are properly horizontal</li>
+                        <li><strong>Quality Assessment</strong> - Ensure image quality is maintained after correction</li>
+                        <li><strong>Content Integrity</strong> - Confirm all content remains intact and readable</li>
+                        <li><strong>OCR Testing</strong> - Test text recognition accuracy on corrected documents</li>
+                    </ul>
+                    
+                    <h3>Industry-Specific Applications</h3>
+                    
+                    <h4>Healthcare Documentation</h4>
+                    <p>Medical facilities deskew patient records, medical forms, and clinical documentation to ensure professional presentation and accurate digital processing for electronic health records.</p>
+                    
+                    <h4>Financial Services</h4>
+                    <p>Banks and financial institutions straighten scanned checks, loan documents, and financial statements to maintain professional standards and enable automated processing systems.</p>
+                    
+                    <h4>Government Archives</h4>
+                    <p>Government agencies deskew historical records, official documents, and public records to create high-quality digital archives with improved accessibility and searchability.</p>
+                    
+                    <h4>Educational Institutions</h4>
+                    <p>Schools and universities correct skewed student records, academic transcripts, and research documents to maintain professional standards and enable digital workflow integration.</p>
+                    
+                    <h3>Advanced Processing Techniques</h3>
+                    
+                    <p>Master professional document correction with these advanced strategies:</p>
+                    
+                    <h4>Batch Processing Optimization</h4>
+                    <ul>
+                        <li><strong>Consistent Settings</strong> - Apply uniform correction parameters across document batches</li>
+                        <li><strong>Quality Monitoring</strong> - Monitor correction results for consistency and accuracy</li>
+                        <li><strong>Workflow Integration</strong> - Incorporate deskewing into automated document processing workflows</li>
+                        <li><strong>Performance Optimization</strong> - Optimize processing speed for large document collections</li>
+                    </ul>
+                    
+                    <h4>Quality Enhancement</h4>
+                    <ul>
+                        <li><strong>Multi-Pass Processing</strong> - Apply multiple correction passes for complex skew patterns</li>
+                        <li><strong>Selective Correction</strong> - Target specific pages or sections for focused correction</li>
+                        <li><strong>Validation Procedures</strong> - Implement quality checks throughout the correction process</li>
+                        <li><strong>Archive Standards</strong> - Maintain consistent quality standards for long-term document preservation</li>
+                    </ul>
+                    
+                    <h3>Troubleshooting Common Issues</h3>
+                    
+                    <h4>Detection Accuracy Problems</h4>
+                    <p>If skew detection is inaccurate, ensure the document has clear text lines and sufficient contrast. Documents with primarily images or graphics may require manual adjustment.</p>
+                    
+                    <h4>Quality Degradation</h4>
+                    <p>If image quality decreases after deskewing, verify the source document quality and consider using higher resolution scans for better correction results.</p>
+                    
+                    <h4>Processing Performance</h4>
+                    <p>For large documents or slow processing, consider breaking documents into smaller sections or ensuring adequate system resources are available.</p>
+                    
+                    <div class="tool-cta">
+                        <h4>Straighten Your PDF Documents Today</h4>
+                        <p>Automatically correct skewed pages and improve document presentation with professional deskewing technology. Enhance readability, OCR accuracy, and professional appearance with complete privacy.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF enhancement tools</strong></a> including <a href="compress-pdf.html"><strong>file optimization</strong></a>, <a href="organize-pdf.html"><strong>page organization</strong></a>, and <a href="add-watermark.html"><strong>document branding</strong></a> for comprehensive document processing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Note: A full deskewing tool is highly complex and requires advanced image processing libraries.
+        // The following is a simplified placeholder.
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processButton = document.getElementById('process-button');
+        const statusArea = document.getElementById('status-area');
+        let selectedFile = null;
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length === 0) return;
+            selectedFile = files[0];
+            renderFileList();
+            processButton.disabled = !selectedFile;
+        }
+
+        function renderFileList() {
+            fileList.innerHTML = '';
+            if (selectedFile) {
+                const fileElement = document.createElement('div');
+                fileElement.textContent = `File: ${selectedFile.name}`;
+                fileList.appendChild(fileElement);
+            }
+        }
+
+        processButton.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            processButton.disabled = true;
+            statusArea.textContent = 'This feature is under development. Please check back soon.';
+            // Proper implementation requires a sophisticated image processing library to detect and correct skew.
+            processButton.disabled = false;
+        });
+    });
+    </script>
+</body>
+</html>

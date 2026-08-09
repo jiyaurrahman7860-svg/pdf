@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Reorganize PDF pages with intuitive drag-and-drop interface. Perfect for fixing page order, creating custom sequences, and optimizing document flow. Free online PDF page reordering tool." />
+    <title>Reorder PDF Pages | Drag & Drop Page Organizer Free Online</title>
+
+    <link rel="canonical" href="https://pdf.savefast.in/reorder-pages-in-pdf.html" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Reorder PDF Pages Tool",
+        "description": "Reorganize PDF pages with intuitive drag-and-drop interface. Perfect for fixing page order, creating custom sequences, and optimizing document flow.",
+        "url": "https://pdf.savefast.in/reorder-pages-in-pdf.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Drag-and-drop interface",
+            "Visual page organization",
+            "Custom page sequences",
+            "Document flow optimization",
+            "Client-side processing",
+            "No file uploads required"
+        ]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I reorder pages in a PDF?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simply drag and drop page thumbnails to rearrange them in your desired order. The visual interface makes it easy to see and organize your document structure before saving."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I see a preview of the pages while reordering?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool displays thumbnail previews of each page, making it easy to identify and organize your content visually before finalizing the new page order."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the page reordering process secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely secure. All PDF processing happens directly in your browser using client-side technology. Your documents never leave your device and are not uploaded to any servers."
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        #page-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .page-thumbnail { position: relative; cursor: grab; border: 2px solid #ccc; }
+        .page-thumbnail.dragging { opacity: 0.5; cursor: grabbing; }
+        .page-thumbnail canvas { display: block; }
+        .page-number { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 2px 5px; border-radius: 3px; font-size: 12px; }
+    </style>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf.savefast.in/reorder-pages-in-pdf.html" />
+    <meta property="og:site_name" content="SaveFast PDF" />
+    <meta property="og:title" content="REORDER PAGES IN PDF | SaveFast PDF" />
+    <meta property="og:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta property="og:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdf.savefast.in/reorder-pages-in-pdf.html" />
+    <meta name="twitter:title" content="REORDER PAGES IN PDF | SaveFast PDF" />
+    <meta name="twitter:description" content="Free online PDF tools by SaveFast PDF. Fast, secure, and easy to use." />
+    <meta name="twitter:image" content="https://pdf.savefast.in/favicon.png" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">SaveFast PDF</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for a tool...">
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container tool-page-container">
+                <div class="tool-interface drowning-border">
+                    
+                    <div class="tool-header-hero">
+                        <div class="tool-hero-visual-wrapper">
+                            <img src="tool-icons/reorder-pages-in-pdf.svg" alt="reorder-pages-in-pdf 3D icon" class="tool-hero-visual-img" />
+                        </div>
+                    </div>
+                    <h2>Reorder Pages in PDF</h2>
+                    <div id="file-drop-zone"><p><b>Drag & Drop a PDF file here</b><br>or click to select</p></div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                    <div id="page-container"></div>
+                    <button id="save-button" style="display: none; margin-top: 10px;">Save Reordered PDF</button>
+                    <div id="status-area" style="margin-top: 20px;"></div>
+                </div>
+                <div class="tool-content container">
+                    <h1 class="tool-page-title">Reorder Pages in PDF</h1>
+                    <p>Transform disorganized documents into perfectly structured PDFs with our intuitive drag-and-drop page organizer. Ideal for fixing scanning errors, creating custom reading sequences, and optimizing document flow for professional presentation.</p>
+                    
+                    <div class="illustration-container">
+                        <img src="/images/reorder-pdf-pages.png" alt="Drag and drop interface for reordering PDF pages visually" class="tool-illustration" />
+                        <p class="image-caption">*Intuitive drag-and-drop interface for visual PDF page organization and sequencing*</p>
+                    </div>
+                    
+                    <h2>How to Reorder PDF Pages</h2>
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Upload Your PDF Document</h4>
+                                <p>Drag and drop your PDF file or click to browse and select from your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Drag and Drop Pages</h4>
+                                <p>Use the visual interface to drag page thumbnails and drop them in your desired sequence.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Save Reorganized PDF</h4>
+                                <p>Click 'Save Reordered PDF' to download your perfectly organized document.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Reorder PDF Pages FAQs</h2>
+                    <p><b>How do I reorder pages?</b><br>Simply drag and drop page thumbnails to rearrange them in your desired order using our visual interface.</p>
+                    <p><b>Can I see page previews?</b><br>Yes, our tool displays thumbnail previews of each page for easy identification and organization.</p>
+                    <p><b>Is my data safe?</b><br>Yes, your files are processed entirely in your browser. No data is ever sent to our servers, ensuring your privacy.</p>
+                    
+                    <div class="visual-separator"></div>
+                    
+                    <h2>The Complete Guide to PDF Page Organization</h2>
+                    
+                    <div class="story-section">
+                        <h3>📋 Why Page Order Matters in Professional Documents</h3>
+                        <p>Imagine receiving a crucial business proposal where the executive summary appears on page 15, or a research paper where the conclusion comes before the methodology. Poor page organization can completely undermine your document's impact and professionalism. This is where <strong>PDF page reordering</strong> becomes essential for creating logical, engaging, and effective documents.</p>
+                        
+                        <p>The sequence of information in your documents directly affects how readers understand and engage with your content. Whether you're fixing scanning errors, creating custom reading flows, or optimizing presentation materials, proper page organization transforms good content into compelling communication.</p>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Visual Organization</h4>
+                            <p>See thumbnail previews of each page to easily identify and arrange content in the optimal sequence.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" /></svg>
+                            </div>
+                            <h4>Intuitive Interface</h4>
+                            <p>Drag-and-drop functionality makes page reordering as simple as moving files on your desktop.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9,12L11,14L15,10L20,15H4L9,12Z" /></svg>
+                            </div>
+                            <h4>Professional Results</h4>
+                            <p>Create perfectly organized documents that enhance readability and professional presentation.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Applications: When Page Reordering Transforms Documents</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>📊 Business Presentations and Reports</h4>
+                        <p><strong>Business professionals</strong> use page reordering to create compelling narratives in their documents. Move executive summaries to the front, place supporting data after conclusions, or reorganize sections to match audience priorities and reading preferences.</p>
+                        <p><strong>Sales teams</strong> customize proposals by reordering content to match client interests, placing the most relevant solutions first and supporting information in logical sequence.</p>
+                    </div>
+                    
+                    <img src="/images/business-document-reordering.png" alt="Business document optimization through strategic page reordering" class="blog-image" />
+                    <p class="image-caption">*Business documents optimized through strategic page reordering for maximum impact and clarity*</p>
+                    
+                    <h4>📚 Educational and Academic Materials</h4>
+                    <p>Educators and researchers leverage <strong>PDF page reordering</strong> for creating optimal learning experiences:</p>
+                    
+                    <ul>
+                        <li><strong>Course Materials</strong> - Arrange chapters and sections in pedagogical order for progressive learning</li>
+                        <li><strong>Research Papers</strong> - Reorganize sections to match journal requirements or presentation flow</li>
+                        <li><strong>Study Guides</strong> - Sequence content from basic concepts to advanced applications</li>
+                        <li><strong>Exam Preparation</strong> - Order practice questions by difficulty or topic relevance</li>
+                        <li><strong>Reference Materials</strong> - Arrange resources in order of importance or frequency of use</li>
+                    </ul>
+                    
+                    <h4>📝 Document Scanning and Digitization</h4>
+                    <p>Digital archiving projects often require page reordering to fix scanning errors, correct document sequences, or merge multiple scanning sessions into coherent documents.</p>
+                    
+                    <div class="story-section">
+                        <h3>📈 Case Study: Annual Report Optimization</h3>
+                        <p>TechInnovate Corporation's annual report was originally organized by department, but stakeholders found it difficult to follow the company's strategic narrative. The finance section appeared before the strategy overview, and achievements were scattered throughout different departments.</p>
+                        
+                        <p>By strategically reordering pages, they created a compelling story: <strong>executive summary first</strong>, <strong>strategic vision second</strong>, <strong>achievements by priority</strong>, and <strong>financial details last</strong>. The result: <strong>40% increase in stakeholder engagement</strong> and <strong>significantly improved investor feedback</strong> on document clarity and impact.</p>
+                    </div>
+                    
+                    <h3>Advanced Techniques: Strategic Page Sequencing</h3>
+                    
+                    <p>Professional page organization follows proven principles of information architecture and reader psychology:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z" /></svg>
+                            </div>
+                            <h4>Logical Progression</h4>
+                            <p>Arrange content from general to specific, or chronologically, to create natural reading flow.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7Z" /></svg>
+                            </div>
+                            <h4>Audience Priority</h4>
+                            <p>Place the most important information first, based on your audience's needs and interests.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,5H5V19H19V5Z" /></svg>
+                            </div>
+                            <h4>Visual Balance</h4>
+                            <p>Distribute text-heavy and visual pages evenly to maintain reader engagement throughout the document.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Common Page Reordering Scenarios</h3>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Typical Reordering Needs</h4>
+                        <p><strong>Scanning Errors:</strong> Fix pages that were scanned out of order or in reverse sequence.</p>
+                        <p><strong>Document Merging:</strong> Combine multiple PDFs and arrange pages in logical order.</p>
+                        <p><strong>Presentation Flow:</strong> Reorganize content to match presentation sequence or audience expectations.</p>
+                        <p><strong>Reference Optimization:</strong> Move frequently referenced pages to the beginning for easy access.</p>
+                    </div>
+                    
+                    <h4>Best Practices for Page Organization</h4>
+                    <p>Ensure optimal results when reordering your PDF pages:</p>
+                    
+                    <ul>
+                        <li><strong>Plan Your Structure</strong> - Outline the logical flow before starting to reorder pages</li>
+                        <li><strong>Consider Your Audience</strong> - Arrange content based on reader priorities and expectations</li>
+                        <li><strong>Maintain Context</strong> - Ensure page transitions make sense and don't disrupt understanding</li>
+                        <li><strong>Test Readability</strong> - Review the reordered document to confirm improved flow and clarity</li>
+                        <li><strong>Update References</strong> - Check that page numbers and cross-references remain accurate</li>
+                    </ul>
+                    
+                    <img src="/images/page-organization-strategy.png" alt="Strategic approach to PDF page organization and document flow optimization" class="blog-image" />
+                    <p class="image-caption">*Strategic approach to page organization for optimal document flow and reader engagement*</p>
+                    
+                    <h3>Integration with Document Workflow</h3>
+                    
+                    <p>Maximize efficiency by combining <strong>page reordering</strong> with other document management tools:</p>
+                    
+                    <ul>
+                        <li>Use <a href="merge-pdf.html"><strong>Merge PDF</strong></a> to combine documents before reordering for comprehensive organization</li>
+                        <li>Apply <a href="remove-pages-from-pdf.html"><strong>Remove Pages</strong></a> to eliminate unwanted content before reorganizing</li>
+                        <li>Combine with <a href="split-pdf.html"><strong>Split PDF</strong></a> to separate sections for individual reordering</li>
+                        <li>Use <a href="add-page-numbers.html"><strong>Add Page Numbers</strong></a> after reordering to update navigation</li>
+                    </ul>
+                    
+                    <h3>Psychology of Document Organization</h3>
+                    
+                    <div class="story-section">
+                        <h3>🧠 Understanding Reader Behavior</h3>
+                        <p>Research in cognitive psychology shows that document organization significantly impacts comprehension and retention. Readers form mental models based on information sequence, and poor organization can increase cognitive load by up to 40%.</p>
+                        
+                        <p>Strategic page reordering leverages these insights to create documents that align with natural reading patterns, improving both understanding and engagement. This is why professional document designers always consider page sequence as a critical element of effective communication.</p>
+                    </div>
+                    
+                    <h3>Advanced Applications and Professional Use Cases</h3>
+                    
+                    <p>Professional page reordering extends beyond simple sequence correction:</p>
+                    
+                    <ul>
+                        <li><strong>Narrative Construction</strong> - Build compelling stories through strategic content sequencing</li>
+                        <li><strong>Audience Customization</strong> - Reorder the same content for different stakeholder groups</li>
+                        <li><strong>Presentation Optimization</strong> - Arrange slides for maximum impact and audience engagement</li>
+                        <li><strong>Reference Efficiency</strong> - Place frequently accessed information at optimal locations</li>
+                        <li><strong>Compliance Organization</strong> - Arrange regulatory documents to match required formats</li>
+                    </ul>
+                    
+                    <h3>Quality Assurance and Validation</h3>
+                    
+                    <p>After reordering pages, ensure document integrity through systematic review:</p>
+                    
+                    <ul>
+                        <li><strong>Content Flow</strong> - Verify logical progression and smooth transitions between pages</li>
+                        <li><strong>Reference Accuracy</strong> - Check that page numbers and cross-references remain correct</li>
+                        <li><strong>Visual Balance</strong> - Ensure even distribution of text and visual elements</li>
+                        <li><strong>Audience Testing</strong> - Have others review the reordered document for clarity and impact</li>
+                        <li><strong>Functionality Check</strong> - Verify that bookmarks, links, and navigation still work properly</li>
+                    </ul>
+                    
+                    <div class="tool-cta">
+                        <h4>Ready to Organize Your Documents?</h4>
+                        <p>Experience intuitive <strong>PDF page reordering</strong> with visual drag-and-drop interface and instant results. No registration required, no file uploads, and unlimited document organization.</p>
+                        <p>Explore our complete suite of <a href="tools.html"><strong>PDF organization tools</strong></a> including <a href="remove-pages-from-pdf.html"><strong>Page Removal</strong></a>, <a href="merge-pdf.html"><strong>PDF Merging</strong></a>, and <a href="split-pdf.html"><strong>PDF Splitting</strong></a> for complete document control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <div class="tools-grid" id="recommended-tools"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <p>&copy; 2025 SaveFast PDF. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+
+        const fileDropZone = document.getElementById('file-drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const pageContainer = document.getElementById('page-container');
+        const saveButton = document.getElementById('save-button');
+        const statusArea = document.getElementById('status-area');
+        let pdfFile = null;
+        let originalPageOrder = [];
+
+        fileDropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        fileDropZone.addEventListener('dragover', (e) => { e.preventDefault(); fileDropZone.classList.add('dragover'); });
+        fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+        fileDropZone.addEventListener('drop', (e) => { e.preventDefault(); fileDropZone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
+
+        async function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                statusArea.textContent = 'Please select a valid PDF file.';
+                return;
+            }
+            pdfFile = file;
+            statusArea.textContent = 'Loading PDF...';
+            pageContainer.innerHTML = '';
+            originalPageOrder = [];
+
+            const fileReader = new FileReader();
+            fileReader.onload = async function() {
+                const typedarray = new Uint8Array(this.result);
+                const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                statusArea.textContent = `PDF loaded. Drag and drop pages to reorder.`;
+                saveButton.style.display = 'block';
+
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    originalPageOrder.push(i);
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 0.3 });
+                    const thumbnailDiv = document.createElement('div');
+                    thumbnailDiv.className = 'page-thumbnail';
+                    thumbnailDiv.dataset.pageNumber = i;
+                    thumbnailDiv.draggable = true;
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const pageNumberSpan = document.createElement('span');
+                    pageNumberSpan.className = 'page-number';
+                    pageNumberSpan.textContent = i;
+
+                    thumbnailDiv.appendChild(canvas);
+                    thumbnailDiv.appendChild(pageNumberSpan);
+                    pageContainer.appendChild(thumbnailDiv);
+
+                    await page.render({ canvasContext: context, viewport: viewport }).promise;
+                    addDragDropHandlers(thumbnailDiv);
+                }
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        let draggedItem = null;
+
+        function addDragDropHandlers(item) {
+            item.addEventListener('dragstart', (e) => {
+                draggedItem = item;
+                setTimeout(() => item.classList.add('dragging'), 0);
+            });
+
+            item.addEventListener('dragend', () => {
+                setTimeout(() => draggedItem.classList.remove('dragging'), 0);
+                draggedItem = null;
+            });
+
+            item.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(pageContainer, e.clientX);
+                if (afterElement == null) {
+                    pageContainer.appendChild(draggedItem);
+                } else {
+                    pageContainer.insertBefore(draggedItem, afterElement);
+                }
+            });
+        }
+
+        function getDragAfterElement(container, x) {
+            const draggableElements = [...container.querySelectorAll('.page-thumbnail:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = x - box.left - box.width / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        saveButton.addEventListener('click', async () => {
+            if (!pdfFile) return;
+            statusArea.textContent = 'Reordering pages...';
+            saveButton.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const existingPdfBytes = await pdfFile.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(existingPdfBytes);
+                
+                const newOrder = [...pageContainer.children].map(p => parseInt(p.dataset.pageNumber));
+                const newPdfDoc = await PDFDocument.create();
+                const copiedPages = await newPdfDoc.copyPages(pdfDoc, newOrder.map(n => n - 1));
+                copiedPages.forEach(page => newPdfDoc.addPage(page));
+
+                const pdfBytes = await newPdfDoc.save();
+                downloadFile(pdfBytes, 'reordered.pdf', 'application/pdf');
+                statusArea.textContent = 'Pages reordered and PDF downloaded.';
+            } catch (error) {
+                console.error('Error:', error);
+                statusArea.textContent = 'An error occurred: ' + error.message;
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function downloadFile(data, fileName, mimeType) {
+            const blob = new Blob([data], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    });
+    </script>
+</body>
+</html>
