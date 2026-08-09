@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 220 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Dark Glassmorphic Shell Background Gradient -->
+    <linearGradient id="glassBg_highlight_pdf_text" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Shield Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <!-- Glossy White Sheet Gradient -->
+    <linearGradient id="sheetGrad_highlight_pdf_text" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+
+    <!-- Red PDF Badge Gradient -->
+    <linearGradient id="pdfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="glowFilter_highlight_pdf_text" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Drop Shadow -->
+    <filter id="shadow3D_highlight_pdf_text" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Glassmorphic Card Container -->
+  <rect width="220" height="125" rx="14" fill="url(#glassBg_highlight_pdf_text)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.2"/>
+
+  <!-- Neon Ambient Halo Background Glow -->
+  <circle cx="110" cy="62" r="45" fill="#eab308" opacity="0.25" filter="blur(16px)" />
+
+  <!-- 3D Graphics Layer -->
+  
+      
+    <g transform="translate(36, 26)" filter="url(#shadow3D_highlight_pdf_text)">
+      <!-- 3D Glossy White Sheet Body -->
+      <rect width="58" height="72" rx="10" fill="url(#sheetGrad_highlight_pdf_text)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+      
+      <!-- Top Fold Corner Graphic -->
+      <path d="M44,0 L58,14 L44,14 Z" fill="#cbd5e1"/>
+      
+      
+      <!-- Header Badge Block -->
+      <rect x="6" y="8" width="46" height="28" rx="5" fill="url(#pdfGrad)"/>
+      <text x="29" y="26" fill="#ffffff" font-size="13" font-weight="900" font-family="'Outfit', sans-serif" text-anchor="middle">PDF</text>
+      
+
+      
+
+      
+    </g>
+  
+      <g filter="url(#glowFilter_highlight_pdf_text)">
+        <circle cx="140" cy="62" r="28" fill="#eab308"/>
+        <path d="M130,62 L138,70 L152,54" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+    
+</svg>

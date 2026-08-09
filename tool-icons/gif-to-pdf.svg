@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 220 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Dark Glassmorphic Shell Background Gradient -->
+    <linearGradient id="glassBg_gif_to_pdf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Shield Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <!-- Glossy White Sheet Gradient -->
+    <linearGradient id="sheetGrad_gif_to_pdf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+
+    <!-- Red PDF Badge Gradient -->
+    <linearGradient id="pdfGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="glowFilter_gif_to_pdf" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Drop Shadow -->
+    <filter id="shadow3D_gif_to_pdf" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Glassmorphic Card Container -->
+  <rect width="220" height="125" rx="14" fill="url(#glassBg_gif_to_pdf)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.2"/>
+
+  <!-- Neon Ambient Halo Background Glow -->
+  <circle cx="110" cy="62" r="45" fill="#f59e0b" opacity="0.25" filter="blur(16px)" />
+
+  <!-- 3D Graphics Layer -->
+  
+      <!-- Left JPG Image Document -->
+      
+    <g transform="translate(32, 28)" filter="url(#shadow3D_gif_to_pdf)">
+      <!-- 3D Glossy White Sheet Body -->
+      <rect width="54" height="68" rx="10" fill="url(#sheetGrad_gif_to_pdf)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+      
+      <!-- Top Fold Corner Graphic -->
+      <path d="M40,0 L54,14 L40,14 Z" fill="#cbd5e1"/>
+      
+      
+      <!-- Header Badge Block -->
+      <rect x="6" y="8" width="42" height="22" rx="5" fill="#f59e0b"/>
+      <text x="27" y="22" fill="#ffffff" font-size="13" font-weight="900" font-family="'Outfit', sans-serif" text-anchor="middle">GIF</text>
+      
+
+      
+      <!-- Photo Mountain Graphic -->
+      <circle cx="27" cy="36" r="6" fill="#f97316"/>
+      <path d="M10,58 L25,44 L35,58 Z" fill="#e11d48"/>
+      <path d="M23,58 L44,48 L50,58 Z" fill="#f59e0b"/>
+      
+
+      
+    </g>
+  
+
+      <!-- Glowing Arrow -->
+      <g filter="url(#glowFilter_gif_to_pdf)">
+        <path d="M98,62 L120,62 M112,54 L122,62 L112,70" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- Right Red PDF Document -->
+      
+    <g transform="translate(134, 28)" filter="url(#shadow3D_gif_to_pdf)">
+      <!-- 3D Glossy White Sheet Body -->
+      <rect width="54" height="68" rx="10" fill="url(#sheetGrad_gif_to_pdf)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+      
+      <!-- Top Fold Corner Graphic -->
+      <path d="M40,0 L54,14 L40,14 Z" fill="#cbd5e1"/>
+      
+      
+      <!-- Header Badge Block -->
+      <rect x="6" y="8" width="42" height="22" rx="5" fill="url(#pdfGrad)"/>
+      <text x="27" y="22" fill="#ffffff" font-size="13" font-weight="900" font-family="'Outfit', sans-serif" text-anchor="middle">PDF</text>
+      
+
+      
+
+      
+    </g>
+  
+    
+</svg>
