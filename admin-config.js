@@ -1,7 +1,7 @@
 /**
  * SaveFast PDF - Global Admin Configuration & Real-Time Sync Engine
- * Real-time sync across user panel & admin console tabs via localStorage events.
- * Manages Tool Statuses: Active & Online, Maintenance Mode, Disabled / Offline.
+ * Guarantees 100% frontend action whenever admin changes tool status or settings.
+ * Handles Active, Maintenance Mode, Disabled/Offline statuses, badges, support email & announcements.
  */
 (function() {
     const DEFAULT_CONFIG = {
@@ -15,15 +15,20 @@
             link: 'edit-pdf-text.html',
             dismissible: true
         },
-        toolsConfig: {
-            'edit-pdf-text.html': { badge: 'hot', status: 'active' },
-            'merge-pdf.html': { badge: 'featured', status: 'active' },
-            'compress-pdf.html': { badge: 'hot', status: 'active' }
-        },
+        toolsConfig: {},
         gaTrackingId: '',
         customHeadScript: '',
         customFooterScript: ''
     };
+
+    // Helper: Normalize any href or URL path to standard file key e.g. "jpg-to-pdf.html"
+    function normalizeHref(href) {
+        if (!href) return '';
+        let clean = href.split('/').pop().split('?')[0].split('#')[0].toLowerCase();
+        if (!clean) return '';
+        if (!clean.endsWith('.html')) clean += '.html';
+        return clean;
+    }
 
     function getConfig() {
         try {
@@ -35,6 +40,18 @@
             console.warn('Error parsing SaveFast admin config:', e);
         }
         return DEFAULT_CONFIG;
+    }
+
+    function getToolConfig(toolsConfig, href) {
+        const norm = normalizeHref(href);
+        if (!toolsConfig || !norm) return { status: 'active', badge: 'none' };
+
+        for (let key in toolsConfig) {
+            if (normalizeHref(key) === norm) {
+                return toolsConfig[key] || { status: 'active', badge: 'none' };
+            }
+        }
+        return { status: 'active', badge: 'none' };
     }
 
     function applyAdminConfig() {
@@ -79,53 +96,67 @@
         if (!cards || cards.length === 0) return;
 
         cards.forEach(card => {
-            const href = card.getAttribute('href');
-            if (!href) return;
+            const rawHref = card.getAttribute('href');
+            if (!rawHref) return;
 
-            const tCfg = toolsConfig[href] || {};
+            const tCfg = getToolConfig(toolsConfig, rawHref);
             const status = tCfg.status || 'active'; // 'active', 'maintenance', 'disabled'
             const badge = tCfg.badge || 'none';
 
-            // Reset classes
+            // Reset initial card attributes
             card.classList.remove('tool-maintenance', 'tool-disabled');
-            card.style.display = '';
+            if (!card.dataset.origDisplay) {
+                card.dataset.origDisplay = getComputedStyle(card).display || 'flex';
+            }
+            card.style.display = card.dataset.origDisplay;
             card.style.opacity = '';
 
-            // Remove existing admin overlays/badges
+            // Clean existing admin badges/overlays
             const oldBadge = card.querySelector('.tool-admin-badge');
             if (oldBadge) oldBadge.remove();
             const oldOverlay = card.querySelector('.tool-maintenance-overlay');
             if (oldOverlay) oldOverlay.remove();
 
-            // Handle 3-State Statuses
+            // Clear custom click handler if re-activated
+            card.onclick = null;
+
+            // Handle Statuses
             if (status === 'disabled') {
-                card.style.display = 'none'; // Completely hide disabled tools
+                card.style.display = 'none'; // Completely hide disabled tools from grid
                 card.classList.add('tool-disabled');
             } else if (status === 'maintenance') {
                 card.classList.add('tool-maintenance');
-                card.style.opacity = '0.75';
-                
+                card.style.opacity = '0.85';
+                card.style.position = 'relative';
+
                 const overlay = document.createElement('div');
                 overlay.className = 'tool-maintenance-overlay';
                 overlay.style.cssText = `
                     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-                    background: rgba(15, 23, 42, 0.85);
+                    background: rgba(15, 23, 42, 0.88);
                     backdrop-filter: blur(4px);
                     display: flex; flex-direction: column; align-items: center; justify-content: center;
-                    color: #fbbf24; font-weight: 700; font-size: 13px; z-index: 10;
-                    border-radius: var(--radius-lg, 12px); text-align: center; padding: 10px;
+                    color: #fbbf24; font-weight: 800; font-size: 13px; z-index: 10;
+                    border-radius: var(--radius-lg, 12px); text-align: center; padding: 12px;
+                    border: 2px solid #d97706; box-shadow: inset 0 0 20px rgba(245,158,11,0.2);
                 `;
-                overlay.innerHTML = `🛠️ <span>Under Maintenance</span>`;
-                card.style.position = 'relative';
+                overlay.innerHTML = `
+                    <div style="font-size: 24px; margin-bottom: 4px;">🛠️</div>
+                    <span style="font-size: 14px; color: #fbbf24;">Under Maintenance</span>
+                    <span style="font-size: 11px; color: #94a3b8; font-weight: 500; margin-top: 2px;">Check back soon</span>
+                `;
                 card.appendChild(overlay);
 
-                card.addEventListener('click', (e) => {
+                // Intercept click on maintenance tool card
+                card.onclick = function(e) {
                     e.preventDefault();
-                    alert('This tool is currently undergoing scheduled maintenance. Please try again shortly.');
-                }, { capture: true, once: true });
+                    e.stopPropagation();
+                    alert('🛠️ This tool is currently undergoing scheduled maintenance. Please check back shortly!');
+                    return false;
+                };
             }
 
-            // Handle Badges
+            // Handle Badges for Active Tools
             if (badge && badge !== 'none' && status === 'active') {
                 const badgeEl = document.createElement('div');
                 badgeEl.className = 'tool-admin-badge';
@@ -138,9 +169,9 @@
                 badgeEl.style.cssText = `
                     position: absolute; top: 12px; right: 12px;
                     background: ${bg}; color: #ffffff;
-                    padding: 3px 10px; border-radius: 50px;
+                    padding: 4px 10px; border-radius: 50px;
                     font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
-                    box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 5;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 5;
                 `;
                 badgeEl.textContent = badgeText;
                 card.style.position = 'relative';
@@ -150,33 +181,35 @@
     }
 
     function applyToolPageStatus(toolsConfig) {
-        const path = window.location.pathname.split('/').pop();
-        if (!path || path === 'index.html' || path === 'tools.html' || path === 'admin.html') return;
+        const currentFile = normalizeHref(window.location.pathname);
+        if (!currentFile || currentFile === 'index.html' || currentFile === 'tools.html' || currentFile === 'admin.html') return;
 
-        const tCfg = toolsConfig[path];
-        if (!tCfg) return;
-
+        const tCfg = getToolConfig(toolsConfig, currentFile);
         const status = tCfg.status || 'active';
-        const toolInterface = document.querySelector('.tool-interface');
 
-        if (!toolInterface) return;
+        if (status === 'active') return;
+
+        const toolInterface = document.querySelector('.tool-interface') || document.querySelector('.tool-container') || document.querySelector('main');
+        if (!toolInterface || toolInterface.dataset.statusApplied === status) return;
+
+        toolInterface.dataset.statusApplied = status;
 
         if (status === 'disabled') {
             toolInterface.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">🔴</div>
-                    <h2 style="color: #ef4444; margin-bottom: 12px;">Tool Currently Offline</h2>
-                    <p style="color: #94a3b8; margin-bottom: 24px;">This tool has been temporarily disabled by the administrator.</p>
-                    <a href="tools.html" class="editor-btn btn-success" style="padding: 10px 24px; text-decoration: none; display: inline-block;">Browse Active Tools →</a>
+                <div style="text-align: center; padding: 60px 20px; background: #0f172a; border-radius: 16px; border: 1px solid rgba(239,68,68,0.3); max-width: 600px; margin: 40px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                    <div style="font-size: 56px; margin-bottom: 16px;">🔴</div>
+                    <h2 style="color: #ef4444; font-size: 26px; font-weight: 800; margin-bottom: 12px;">Tool Currently Offline</h2>
+                    <p style="color: #94a3b8; font-size: 15px; margin-bottom: 24px; line-height: 1.6;">This tool has been temporarily disabled by the administrator. Please select another active tool from our toolkit.</p>
+                    <a href="tools.html" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; box-shadow: 0 8px 20px rgba(79,70,229,0.3);">Browse Active Tools →</a>
                 </div>
             `;
         } else if (status === 'maintenance') {
             toolInterface.innerHTML = `
-                <div style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">🛠️</div>
-                    <h2 style="color: #fbbf24; margin-bottom: 12px;">Scheduled Maintenance</h2>
-                    <p style="color: #cbd5e1; margin-bottom: 24px;">This tool is currently undergoing updates to improve performance and features. Please check back shortly!</p>
-                    <a href="tools.html" class="editor-btn" style="padding: 10px 24px; text-decoration: none; display: inline-block; background: #334155;">View All Tools</a>
+                <div style="text-align: center; padding: 60px 20px; background: #0f172a; border-radius: 16px; border: 1px solid rgba(245,158,11,0.3); max-width: 600px; margin: 40px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                    <div style="font-size: 56px; margin-bottom: 16px;">🛠️</div>
+                    <h2 style="color: #fbbf24; font-size: 26px; font-weight: 800; margin-bottom: 12px;">Scheduled Maintenance</h2>
+                    <p style="color: #cbd5e1; font-size: 15px; margin-bottom: 24px; line-height: 1.6;">This tool is currently undergoing updates to improve performance and features. Please check back shortly!</p>
+                    <a href="tools.html" style="background: #334155; color: #ffffff; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block;">View All Tools</a>
                 </div>
             `;
         }
@@ -229,9 +262,22 @@
         }
     });
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyAdminConfig);
-    } else {
+    // MutationObserver to automatically detect dynamically added tool cards (e.g. tools.html, search results, recommended tools)
+    const observer = new MutationObserver(() => {
         applyAdminConfig();
+    });
+
+    function init() {
+        applyAdminConfig();
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Polling fallback to guarantee dynamic cards are caught
+        [200, 500, 1000, 2000].forEach(delay => setTimeout(applyAdminConfig, delay));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();
