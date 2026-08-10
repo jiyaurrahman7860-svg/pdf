@@ -581,7 +581,7 @@
     <script src="tools.js"></script>
     <script src="script.js"></script>
     <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version || '2.11.338'}/pdf.worker.min.js`;
 
     document.addEventListener('DOMContentLoaded', () => {
         const fileDropZone = document.getElementById('file-drop-zone');

@@ -549,7 +549,7 @@
             if (!selectedFile) return;
 
             processButton.disabled = true;
-            statusArea.textContent = 'Uploading and converting... This may take a moment.';
+            window.SaveFastToolUI.showProcessing(fileDropZone, '📤 Uploading PDF to Server...', 'Converting PDF to Word document');
 
             const formData = new FormData();
             formData.append('file', selectedFile);
@@ -571,12 +571,11 @@
 
                 const blob = await response.blob();
                 const originalName = selectedFile.name.replace(/\.pdf$/i, '');
-                downloadFile(blob, `${originalName}.docx`, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-                statusArea.textContent = 'Conversion successful! Your download should start automatically.';
+                window.SaveFastToolUI.showSuccess(fileDropZone, blob, `${originalName}.docx`);
 
             } catch (error) {
                 console.error('Error during conversion:', error);
-                statusArea.textContent = 'An error occurred during conversion: ' + (error.message || 'Please try again.');
+                window.SaveFastToolUI.showError(fileDropZone, error.message || 'Please try again.');
             } finally {
                 processButton.disabled = false;
             }

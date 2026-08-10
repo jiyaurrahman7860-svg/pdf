@@ -478,16 +478,23 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             processButton.disabled = true;
-            statusArea.textContent = 'Converting your file... Please wait.';
+            window.SaveFastToolUI.showProcessing(fileDropZone, '📤 Uploading Word file to Server...', 'Converting Word document to PDF');
 
             const formData = new FormData(form);
             fetch(form.action, {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
+            .then(async response => {
                 if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text || 'Network response was not ok') });
+                    let errMsg = 'Network response was not ok';
+                    try {
+                        const errJson = await response.json();
+                        if (errJson.error) errMsg = errJson.error;
+                    } catch(e) {
+                        errMsg = await response.text();
+                    }
+                    throw new Error(errMsg || 'Server conversion error');
                 }
                 const contentDisposition = response.headers.get('Content-Disposition');
                 let filename = 'converted.pdf';
@@ -501,19 +508,11 @@
                 return response.blob().then(blob => ({ blob, filename }));
             })
             .then(({ blob, filename }) => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                statusArea.textContent = 'Your file has been converted and downloaded.';
+                window.SaveFastToolUI.showSuccess(fileDropZone, blob, filename);
             })
             .catch(error => {
                 console.error('Error:', error);
-                statusArea.textContent = 'An error occurred: ' + error.message;
+                window.SaveFastToolUI.showError(fileDropZone, error.message);
             })
             .finally(() => {
                 processButton.disabled = false;

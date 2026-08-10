@@ -551,7 +551,7 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             processButton.disabled = true;
-            statusArea.textContent = 'Extracting data... This may take some time.';
+            window.SaveFastToolUI.showProcessing(fileDropZone, '📤 Uploading PDF to Server...', 'Extracting tables & converting to Excel');
 
             const formData = new FormData(form);
             fetch(form.action, {
@@ -581,19 +581,11 @@
                 return response.blob().then(blob => ({ blob, filename }));
             })
             .then(({ blob, filename }) => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                statusArea.textContent = 'Your file has been converted and downloaded.';
+                window.SaveFastToolUI.showSuccess(fileDropZone, blob, filename);
             })
             .catch(error => {
                 console.error('Error:', error);
-                statusArea.textContent = 'An error occurred: ' + error.message;
+                window.SaveFastToolUI.showError(fileDropZone, error.message);
             })
             .finally(() => {
                 processButton.disabled = false;
