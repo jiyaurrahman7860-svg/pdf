@@ -561,7 +561,12 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Server error: ${response.statusText}`);
+                    let errMsg = `Server error: ${response.statusText}`;
+                    try {
+                        const errJson = await response.json();
+                        if (errJson.error) errMsg = errJson.error;
+                    } catch(e) {}
+                    throw new Error(errMsg);
                 }
 
                 const blob = await response.blob();
@@ -571,7 +576,7 @@
 
             } catch (error) {
                 console.error('Error during conversion:', error);
-                statusArea.textContent = 'An error occurred during conversion. Please try again.';
+                statusArea.textContent = 'An error occurred during conversion: ' + (error.message || 'Please try again.');
             } finally {
                 processButton.disabled = false;
             }

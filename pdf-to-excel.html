@@ -558,9 +558,16 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
+            .then(async response => {
                 if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text || 'Network response was not ok') });
+                    let errMsg = 'Network response was not ok';
+                    try {
+                        const errJson = await response.json();
+                        if (errJson.error) errMsg = errJson.error;
+                    } catch(e) {
+                        errMsg = await response.text();
+                    }
+                    throw new Error(errMsg || 'Server conversion error');
                 }
                 const contentDisposition = response.headers.get('Content-Disposition');
                 let filename = 'converted.xlsx';
