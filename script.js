@@ -184,10 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Load Global Admin Configuration ---
-    if (!document.getElementById('savefast-admin-config-script')) {
+    if (!window.SaveFastAdminConfigEngineLoaded && !document.getElementById('savefast-admin-config-script')) {
         const configScript = document.createElement('script');
         configScript.id = 'savefast-admin-config-script';
-        configScript.src = 'admin-config.js';
+        const isSubdir = window.location.pathname.includes('/admin/');
+        configScript.src = isSubdir ? '../admin-config.js' : 'admin-config.js';
         document.head.appendChild(configScript);
     }
 

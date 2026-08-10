@@ -4,6 +4,9 @@
  * Handles Active, Maintenance Mode, Disabled/Offline statuses, badges, support email & announcements.
  */
 (function() {
+    if (window.SaveFastAdminConfigEngineLoaded) return;
+    window.SaveFastAdminConfigEngineLoaded = true;
+
     const DEFAULT_CONFIG = {
         supportEmail: 'support@savefast.in',
         supportPhone: '+91 98765 43210',
@@ -20,6 +23,10 @@
         customHeadScript: '',
         customFooterScript: ''
     };
+
+    let isUpdatingDOM = false;
+    let observer = null;
+    let observerDebounceTimer = null;
 
     // Helper: Normalize any href or URL path to standard file key e.g. "jpg-to-pdf.html"
     function normalizeHref(href) {
@@ -55,40 +62,65 @@
     }
 
     function applyAdminConfig() {
-        const config = getConfig();
-        window.SaveFastAdminConfig = config;
+        if (isUpdatingDOM) return;
+        isUpdatingDOM = true;
 
-        // 1. Apply Support Email & Contact Info Site-Wide
-        if (config.supportEmail) {
-            document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-                link.href = `mailto:${config.supportEmail}`;
-                if (link.textContent.includes('@')) {
-                    link.textContent = config.supportEmail;
-                }
-            });
-
-            document.querySelectorAll('.support-email-text, #support-email-display').forEach(el => {
-                el.textContent = config.supportEmail;
-            });
+        if (observer) {
+            observer.disconnect();
         }
 
-        // 2. Render / Update Global Announcement Banner Real-Time
-        const existingBanner = document.getElementById('savefast-announcement-banner');
-        if (config.announcement && config.announcement.enabled) {
-            const isDismissed = sessionStorage.getItem('savefast_announcement_dismissed');
-            if (!isDismissed) {
-                if (existingBanner) existingBanner.remove();
-                renderAnnouncementBanner(config.announcement);
+        try {
+            const config = getConfig();
+            window.SaveFastAdminConfig = config;
+
+            // 1. Apply Support Email & Contact Info Site-Wide
+            if (config.supportEmail) {
+                document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+                    if (link.href !== `mailto:${config.supportEmail}`) {
+                        link.href = `mailto:${config.supportEmail}`;
+                    }
+                    if (link.textContent.includes('@') && link.textContent !== config.supportEmail) {
+                        link.textContent = config.supportEmail;
+                    }
+                });
+
+                document.querySelectorAll('.support-email-text, #support-email-display').forEach(el => {
+                    if (el.textContent !== config.supportEmail) {
+                        el.textContent = config.supportEmail;
+                    }
+                });
             }
-        } else if (existingBanner) {
-            existingBanner.remove();
+
+            // 2. Render / Update Global Announcement Banner Real-Time
+            const existingBanner = document.getElementById('savefast-announcement-banner');
+            if (config.announcement && config.announcement.enabled) {
+                const isDismissed = sessionStorage.getItem('savefast_announcement_dismissed');
+                if (!isDismissed) {
+                    if (!existingBanner) {
+                        renderAnnouncementBanner(config.announcement);
+                    }
+                } else if (existingBanner) {
+                    existingBanner.remove();
+                }
+            } else if (existingBanner) {
+                existingBanner.remove();
+            }
+
+            // 3. Sync & Enforce Tool Statuses on Tool Cards (Active / Maintenance / Disabled)
+            applyToolCardStatuses(config.toolsConfig || {});
+
+            // 4. Enforce Page-Level Status on Tool Pages
+            applyToolPageStatus(config.toolsConfig || {});
+        } catch (err) {
+            console.error('Error applying SaveFast admin config:', err);
+        } finally {
+            isUpdatingDOM = false;
+            if (observer && document.body) {
+                try {
+                    observer.observe(document.body, { childList: true, subtree: true });
+                } catch(e) {}
+            }
         }
-
-        // 3. Sync & Enforce Tool Statuses on Tool Cards (Active / Maintenance / Disabled)
-        applyToolCardStatuses(config.toolsConfig || {});
-
-        // 4. Enforce Page-Level Status on Tool Pages
-        applyToolPageStatus(config.toolsConfig || {});
     }
 
     function applyToolCardStatuses(toolsConfig) {
@@ -102,6 +134,12 @@
             const tCfg = getToolConfig(toolsConfig, rawHref);
             const status = tCfg.status || 'active'; // 'active', 'maintenance', 'disabled'
             const badge = tCfg.badge || 'none';
+
+            if (card.dataset.appliedStatus === status && card.dataset.appliedBadge === badge) {
+                return;
+            }
+            card.dataset.appliedStatus = status;
+            card.dataset.appliedBadge = badge;
 
             // Reset initial card attributes
             card.classList.remove('tool-maintenance', 'tool-disabled');
@@ -262,17 +300,38 @@
         }
     });
 
-    // MutationObserver to automatically detect dynamically added tool cards (e.g. tools.html, search results, recommended tools)
-    const observer = new MutationObserver(() => {
-        applyAdminConfig();
+    // MutationObserver to automatically detect dynamically added tool cards
+    observer = new MutationObserver((mutations) => {
+        if (isUpdatingDOM) return;
+
+        let containsToolCard = false;
+        for (let mutation of mutations) {
+            for (let node of mutation.addedNodes) {
+                if (node.nodeType === 1) {
+                    if (node.classList && (node.classList.contains('tool-card') || node.classList.contains('tools-grid') || node.id === 'recommended-tools' || node.querySelector?.('.tool-card'))) {
+                        if (!node.classList.contains('tool-admin-badge') && !node.classList.contains('tool-maintenance-overlay') && node.id !== 'savefast-announcement-banner') {
+                            containsToolCard = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (containsToolCard) break;
+        }
+
+        if (containsToolCard) {
+            clearTimeout(observerDebounceTimer);
+            observerDebounceTimer = setTimeout(() => {
+                applyAdminConfig();
+            }, 100);
+        }
     });
 
     function init() {
         applyAdminConfig();
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // Polling fallback to guarantee dynamic cards are caught
-        [200, 500, 1000, 2000].forEach(delay => setTimeout(applyAdminConfig, delay));
+        if (document.body && observer) {
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
     }
 
     if (document.readyState === 'loading') {
