@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Redirect mytoolspdf.com and www.mytoolspdf.com to pdf.savefast.in (301 Permanent)
+  RewriteCond %{HTTP_HOST} ^(www\.)?mytoolspdf\.com$ [NC]
+  RewriteRule ^(.*)$ https://pdf.savefast.in/$1 [R=301,L]
+  
+  # Force HTTPS on pdf.savefast.in
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} ^pdf\.savefast\.in$ [NC]
+  RewriteRule ^(.*)$ https://pdf.savefast.in/$1 [R=301,L]
+</IfModule>

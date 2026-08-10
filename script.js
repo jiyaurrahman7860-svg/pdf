@@ -183,6 +183,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Load Global Admin Configuration ---
+    if (!document.getElementById('savefast-admin-config-script')) {
+        const configScript = document.createElement('script');
+        configScript.id = 'savefast-admin-config-script';
+        configScript.src = 'admin-config.js';
+        document.head.appendChild(configScript);
+    }
+
     initThemeToggle();
     initAmbientBackground();
 });
+
